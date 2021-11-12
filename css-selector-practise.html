@@ -11,12 +11,13 @@
       p.a[tabindex="1"]:focus {color:blue;}
       p.a[tabindex="1"]:hover {color:red;}
       p.a[tabindex="1"]:active {color:green;}
+      body> :first-child {color:red}
       .c>span{color:red}
       .c>span>span{color:green}
       .c>span>span+span{color:blue}
       div>visited {color:orange;}
       div>link {color:pink;}
-      div>[href$="a@b.com"]{color:blue;}
+      div>[href^="mailto:" i]{color:blue;}
       div>[href^="tel:"]{color:yellow;}
       div>[href^="aaa"]{font-size:30px;}
 
@@ -25,11 +26,11 @@
       .a li:nth-child(6){color:red;}
       .a li:nth-child(7){color:red;}
       .b li:nth-child(n+65){color:green;}
-      .b li:(:nth-child(25-n)){color:red;}
+      .b li:nth-child(-n+25){color:red;}
       .prime li:nth-child(odd){color:yellow}
-
+      .b li:nth-child(n+35):nth-child(-n+50){color:blue;}
     </style>
-
+uy
   </head>
   <body>
     <p >红色</p>
