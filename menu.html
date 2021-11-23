@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+ <style>
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.main-menu>li{
+  display: inline-block;
+  border: solid 1px;
+
+}
+.main-menu ul{
+  display: none;
+  position: absolute;
+
+}
+li:hover>ul{
+  display: block;
+
+  width: 3em;
+
+}
+.main-menu li:hover{background-color: aqua;}
+.main-menu li{
+  position: relative;
+}
+ul ul ul{
+  left: 100%;
+  top: 0px;
+}
+
+
+
+
+
+
+
+ </style>
+</head>
+
+
+<body>
+  <div>
+    <ul  class="main-menu">
+      <li>1
+        <ul>
+          <li>1</li>
+          <li>2</li>
+          <li>3
+            <ul>
+              <li>4</li>
+              <li>5</li>
+              <li>6</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+  </div>
+</body>
+</html>
