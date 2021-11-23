@@ -7,133 +7,42 @@
   <title>Document</title>
 </head>
 <style>
-  html{font-size: 0px;
-    margin: 0px;
-    padding: 0px;
-
-}
-body{
-  margin: 0px;
-  padding: 0px;
-}
-.d1{
-  font-size: 16px;
-background-color:#3C3C3C;
-
-}
-.d1 span{
-display: inline-block;
-padding-top: 1px;
-color: #727272;
-}
-
-.d1 section{
-display: inline-block;
-padding-top: 1px;
-color:#727272;
-}
-
-.d1 main{
-display: inline-block;
-padding-top: 1px;
-color: #727272;
-}
-
-.d1 span ul{font-size: 16px;
- position:absolute;
- background-color:#D1D1D1 ;
- color:#727272 ;
- width: 150px;
- height: 200px;
- border: solid;
- top: 20px;
- left: 0px;
-list-style: none;
-padding-left: 0px;
-margin: 0px;
-visibility: hidden;
-}
-.d1 span ul ol{position:absolute;
- background-color:#D1D1D1 ;
- color:#727272 ;
- width: 150px;
- height: 200px;
- border: solid;
- top: 20px;
- left: 150px;
-list-style: none;
-padding-left: 0px;
-margin: 0px;
-visibility: hidden;
-
-}
-.d1 li{
-  border-bottom:1px solid;
-}
-.d1 span ul>li:nth-of-type(2):hover{
- background-color: aqua;
-}
-.d1 span li:nth-of-type(2):hover ol{
-  visibility: visible;
-
-}
-.d1 span:hover{
-  color: aqua;
-}
-.d1 span:hover ul{
-  visibility:visible;
-}
-p{font-size: 16px;
-}
-
-
-
-
-
-.d1 section ul{position: absolute;
-  left: 54px;
-  top: 5px;
+ul{
   list-style: none;
   padding: 0px;
-  background-color:#D1D1D1;
-  width:150px;
-  height: 200px;
-  border: 1px solid;
-  color: #3C3C3C;
 
 }
-section ul ol{
-  position: absolute;
-  left: 150px;
-  list-style: none;
-  background-color:#D1D1D1;
-  width:150px;
-  height: 200px;
-  padding: 0px;
-  border: 1px solid;
-  color: #3C3C3C;
+.menu>li{
+  display: inline-block;
+}
+.menu ul{
+display: none;
+position: absolute;
+}
+.menu li:hover>ul{
+  display: block;
 
 }
-.d1 section ul,ol{
-  visibility: hidden;
-
-}
-
-
-.d1 section ul li:nth-of-type(3):hover ol{
-  visibility: visible;
-}
-.d1 section ul>li:nth-of-type(3):hover{
+li:hover{
   background-color: aqua;
 }
-.d1 section:hover ul{
-  visibility: visible;
-}
-.d1 section:hover{
-  color: aqua;
-}
 
-
+.menu ul ul{
+  display: none;
+}
+.menu li{
+  position: relative;
+}
+ul ul ul{
+  left: 100%;
+  top: 0px;
+}
+.menu li li{
+  width: 6em;
+}
+.menu{
+  background-color: aqua;
+}
 
 
 
@@ -154,40 +63,36 @@ section ul ol{
 
 </style>
 <body>
-<div class="d1">
-    <span>文件(F)
+<ul class="menu">
+  <li>文件
     <ul>
       <li>新建文件</li>
-      <li>打开窗口
-        <ol>
+      <li>打开窗口</li>
+      <li>打开文件
+        <ul>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li></ul>
+        </li>
+    </ul>
+  </li>
+  <li>编辑
+    <ul>
+      <li>1</li>
+      <li>2
+        <ul>
           <li>4</li>
           <li>5</li>
           <li>6</li>
-        </ol>
+        </ul>
       </li>
-      <li>哦哦</li>
+      <li>3</li>
     </ul>
-
-    </span>
-    <section>编辑(E)
-      <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3
-          <ol>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
-          </ol>
-        </li>
-        <li>4</li>
-        <li>5</li>
-      </ul>
-</section>
-    <main>选择(S)</main>
-</div>
+  </li>
+  <li>选择</li>
+  <li>查看</li>
+  <li>转到</li>
+</ul>
 
 
 </body>
