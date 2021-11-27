@@ -8,38 +8,44 @@
 </head>
 <style>
 
-label{
-  display:table-cell;
-  width:300px;
-  height:160px;
-  border:1px solid;
-  border-radius:80px;
-  vertical-align: middle;
-  background-color: turquoise;
-  
+label{box-sizing: border-box;
+  display: inline-block;
+  width: 272px;
+  height: 156px;
+  border: 4px solid #c7c7c7;
+  border-radius: 99999px;
+  position: relative;
+ padding: 7px;
+ box-shadow: inset 0 0 0px 0px white;
+transition:1s ;
+
 
 
 }
-span{display: block;
-  width:150px;
-  height:150px;
- border:1px solid;
-  border-radius:150px;
-  background-color:red;
+span{
+  display: inline-block;
+  width:134px;
+  height:134px;
+ box-shadow: 0 5px 15px #999;
+  border-radius:99999px;
+  background-color:white;
+  position: absolute;
   transition:1s ;
+  left: 7px;
+  top: 7px;
 
 
 
 }
 input:checked+label span{
- margin-left: 148px;
-   transition:1s 0.5s;
-  background-color:green;
+ left: 124px;
+  
+
 
 }
 input:checked+label{
-  background-color: yellow;
-  transition:1.5s;
+  box-shadow: inset 0 0 0px 75px  #30f34a;
+
 }
 
 
