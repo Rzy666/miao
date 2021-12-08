@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style type="text/less">
+    * {
+      zbox-shadow: inset 0 0 0 1px red;
+    }
+    html {
+      height: 100%;
+
+    }
+
+    body {
+      margin: 0;
+      height: 100%;
+
+    }
+
+    header {
+      background-color: #333333;
+      height: 40px;
+      width: 100%;
+    }
+
+    .caidan {
+      width: 1225px;
+      margin: auto;
+      position: relative;
+      background-color: #333333;
+    }
+
+    .caidan a {
+      color: #B0B0B0;
+      line-height: 40px;
+      font-size: 12px;
+      margin-right: 7px;
+      text-decoration: none;
+    }
+
+
+    .caidan a::after {
+      content: "|";
+      color: #424242;
+    }
+
+    .caidan a:hover {
+      color: #FFFFFF;
+    }
+
+    .app img {
+      display: none;
+      width: 100px;
+      height: 100px;
+    }
+    .app:hover img {
+      display: block;
+      position: absolute;
+      top: 40px;
+      left: 546px;
+
+    }
+    .caidan a:nth-last-of-type(-n+4){
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      position: relative;
+
+    }
+    .caidan a:nth-last-of-type(4) {
+      margin-left: 156px;
+    }
+    .caidan a:last-child {
+      display: inline-block;
+      width: 120px;
+      height: 40px;
+      background-color: #424242;
+      text-align: center;
+    }
+    .icon {
+      width: 16px;
+      height: 16px;
+      margin-bottom: -4px;
+
+    }
+
+
+     .quankuan{
+      width: 100%;
+      position: relative;
+
+    }
+    .neirongkuang {
+      width: 1225px;
+      height: 100px;
+      margin: auto;
+
+
+      aside {
+        width: 60px;
+        height: 60px;
+        background:url(https://s02.mifile.cn/assets/static/image/logo-mi2.png);
+        background-size:100%;
+        float:left;
+        margin-top:20px;
+       }
+       ul {list-style: none;
+         display: inline-block;
+         margin-top: 40px;
+         li {
+           display: inline-block;
+           margin-right: 5px;
+           &:first-child{
+             margin-left: 150px;}
+         &:hover ul {
+               transition: 1s;
+               height: 201px;
+               border-top:1px solid #ccc;
+               z-index: 150;
+               background-color: white;
+             }
+           }
+
+
+           ul {
+             width: 1225px;
+             position: absolute;
+             top: 100px;
+             left: 18px;
+             display: flex;
+             height:0px;
+             border: none;
+             overflow: hidden;
+             transition: 1s;
+             li {
+               width: 204px;
+               height: 201px;
+              display:flex;
+               align-items: center;
+               flex-direction:column;
+
+
+               img {height: 110px;
+                width: 160px;
+                margin-top: 34px;
+              }
+
+                P {
+                  font-size: 10px;
+                  margin: 0px;
+                  padding: 0px;
+
+
+               }
+
+
+
+           }
+         }
+       }
+
+
+    .input1 {
+      margin-left: 160px;
+      width: 233px;
+      height: 48px;
+      box-sizing:border-box;
+      outline: none;
+
+    }
+    .input2 {
+      width:48px;
+      height: 48px;
+      margin-left: -5px;
+      border-left: 0px ;
+      outline: none;
+    }
+
+    }
+    .daobo {
+      width: 1234px;
+      height: 460px;
+      margin:auto;
+      .slider{
+      width: 1000px;
+      height: 460px;
+      position: relative;
+      margin-left:234px;
+      margin-top: -460px;
+      z-index: 2;
+
+      input {
+        display: none;
+        &:nth-child(1):checked ~ .slides .slide:nth-child(1),
+        &:nth-child(2):checked ~ .slides .slide:nth-child(2),
+        &:nth-child(3):checked ~ .slides .slide:nth-child(3),
+        &:nth-child(4):checked ~ .slides .slide:nth-child(4) {
+          display: block;
+        }
+        &:nth-child(1):checked ~ .indicators label:nth-child(1),
+        &:nth-child(2):checked ~ .indicators label:nth-child(2),
+        &:nth-child(3):checked ~ .indicators label:nth-child(3),
+        &:nth-child(4):checked ~ .indicators label:nth-child(4) {
+          background-color: white;
+        }
+      }
+    }
+    .slides {
+     height: 100%;
+     position: relative;
+   .slide {
+     &:first-child {
+       display: block;
+     }
+     display: none;
+     height: 100%;
+     width:100%;
+     position:absolute;
+      label {
+       position: absolute;
+       line-height: 70px;
+       top: 0;
+       bottom: 0;
+       margin: auto;
+       height:70px;
+       &:first-child{
+         left: 0;
+       }
+       &:nth-child(2) {
+         right: 0;
+       }
+     }
+
+     img {
+       width: 100%;
+       height: 100%;
+     }
+
+   }
+   .indicators {
+     position: absolute;
+     bottom: 10px;
+     right: 10px;
+     label {
+       float: left;
+       width: 5px;
+       height:5px;
+       border: 2px solid;
+       display:inline-block;
+       border-radius:9999px;
+       cursor: pointer;
+
+       &:hover {
+         background-color: white;
+       }
+
+     }
+
+   }
+    }
+  .cebian {
+      font-size: 14px;
+      width: 234px;
+      height: 460px;
+
+
+      ul {list-style: none;
+        padding:0px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: #58585D;
+        position: relative;
+
+        li {color: white;
+          height: 42px;
+          line-height: 42px;
+          padding:0 0 0 30px;
+
+          &::after {
+            content: ">";
+            float:right;
+            margin-right:20px;
+          }
+          &:hover {
+            background-color: red;
+          }
+          &:hover .neirong1 {
+            width:1000px;
+            transition: 0s 0s;
+            z-index: 1997;
+            span:hover {
+             color: red;
+            }
+          }
+          &:hover .notebook {
+            width: 1000px;
+            transition: 0s 0s;
+            z-index: 1997;
+            background-color: white;
+            span:hover {
+              color:red;
+            }
+          }
+
+          .neirong1 {
+            display: flex;
+            width: 0px;
+            height: 470px;
+            position: absolute;
+            background-color:white;
+            left:234px;
+            top: 0px;
+            flex-wrap: wrap;
+            xalign-items:center;
+            overflow: hidden;
+            span { width: calc(1000px / 4);
+              height:calc(470px / 6);
+              line-height:calc( 470px / 6);
+             color:black;
+              img {
+                width: 40px;
+              height:42px;
+              vertical-align: middle;
+              margin-right: 10px;
+              margin-left:20px;
+                  }
+
+                }
+              }
+         .notebook {
+           display: flex;
+            width: 0px;
+            height: 470px;
+            position: absolute;
+            background-color:white;
+            left:234px;
+            top: 0px;
+            flex-direction: column;
+            flex-wrap: wrap;
+            xalign-items:center;
+            overflow: hidden;
+            label { width: calc(1000px / 4);
+              height:calc(470px / 6);
+              line-height:calc( 470px / 6);
+              xtext-align:center;
+
+
+             color:black;
+
+
+              img {
+                width: 40px;
+              height:42px;
+              vertical-align: middle;
+              margin-right: 10px;
+              margin-left:20px;
+
+                  }
+
+                }
+
+         }
+        }
+
+      }
+      }
+
+  }
+
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="caidan">
+      <a href="https://www.mi.com/index.html">小米商城 </a>
+      <a href="https://www.miui.com/">MIUI</a>
+      <a href="https://iot.mi.com/">loT</a>
+      <a href="https://i.mi.com/">云服务</a>
+      <a href="https://airstar.com/home">天星数科</a>
+      <a href="https://youpin.mi.com/">有品</a>
+      <a href="https://xiaoai.mi.com/">小爱开放平台</a>
+      <a href="https://qiye.mi.com/">企业团购</a>
+      <a href="https://www.mi.com/aptitude/list/?id=88">资质证照</a>
+      <a href="https://www.mi.com/aptitude/list/">协议规则</a>
+      <a class="app" href="https://www.mi.com/appdownload/">下载app
+        <img src="https://i1.mifile.cn/f/i/17/appdownload/download.png?1" alt="下载app">
+
+      </a>
+      <a href="https://xiaomishare.mi.com/?from=micom">智能生活</a>
+      <a href="javascript:;">Select Location</a>
+
+      <a href="javascript:void(0);">登录</a>
+      <a href="javascript:void(0);">注册</a>
+      <a href="javascript:void(0);">消息通知</a>
+      <a href="https://www.mi.com/buy/cart">
+        <svg t="1638205379532" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+          p-id="3280" width="200" height="200">
+          <path
+            d="M391.075907 592.906681c9.688663-4.299933 20.980847-5.502317 31.746028-6.77838 134.465504-15.985066 268.960685-31.719422 403.441539-47.581692 59.44181-7.011694 92.640933-42.044582 94.380554-101.465926 1.139963-38.904055 0.581238-77.873602 0.207731-116.810403-0.497327-51.817156-10.743692-62.096267-63.767326-62.199621-146.411581-0.283456-292.824185-0.132006-439.236789 0.002047-10.852162 0.011256-22.25998-0.664126-32.432667 2.316765-18.136056 5.310959-28.998451 18.680455-28.326139 38.141692 0.666172 19.244296 11.037381 32.593326 30.55183 35.756365 13.727653 2.222621 27.872814 2.526543 41.832757 2.547009 119.933533 0.187265 239.867066 0.011256 359.799576 0.232291 16.48137 0.031722 32.959669 1.65264 53.613058 2.761903 0 27.622104 1.01819 50.755987-0.236384 73.768097-1.935072 35.480073-11.598152 45.274136-48.381917 49.754171C647.791709 481.184157 501.270635 498.653017 351.562984 516.641717c-6.339382-21.62246-12.698207-42.144866-18.3663-62.854537-24.644283-90.042759-49.362244-180.073238-73.40073-270.28075-5.650697-21.204951-14.134929-39.038108-38.609343-40.102347-27.967982-1.218758-56.139601-1.697665-84.021625 0.303922-21.456684 1.540076-35.524075 18.003026-34.428114 37.041638 1.222851 21.234627 13.237489 34.92851 34.404578 37.98001 15.259542 2.200108 30.896684 1.769296 50.640354 2.715855 4.725628 14.882965 8.888438 26.499537 12.110829 38.373982 31.787984 117.124558 63.596434 234.245022 95.034447 351.463724 19.698644 73.443709 46.433542 94.891184 121.810277 94.995561 144.855132 0.202615 289.709241 0.093121 434.564373 0.002047 12.437264-0.007163 25.113981 0.529049 37.255509-1.602498 19.119453-3.355421 29.622668-16.502859 31.332612-35.516912 1.677199-18.635429-12.228509-35.266202-32.893154-38.616506-12.181437-1.971911-24.839735-1.302669-37.284161-1.309832-138.624221-0.075725-277.248442 0.011256-415.872662-0.141216-13.95892-0.013303-28.260647 0.221034-41.708937-2.775206-5.505387-1.225921-12.431124-10.56973-12.720719-16.512069C379.13597 604.168166 385.470235 595.394339 391.075907 592.906681z"
+            p-id="3281"></path>
+          <path
+            d="M833.169767 784.881994c-25.285896-0.137123-48.251957 21.859867-48.992831 46.923706-0.780783 26.440186 24.426319 51.116191 50.859341 49.795103 24.692379-1.237177 47.246047-25.032116 46.775326-49.345871C881.329627 807.365054 858.386078 785.021164 833.169767 784.881994z"
+            p-id="3282"></path>
+          <path
+            d="M385.798716 785.054933c-25.814945-0.426719-48.053436 20.579711-49.024553 46.305629-0.946558 25.073048 20.208251 48.476061 45.314045 50.125631 26.424836 1.738597 51.847855-22.279423 51.643194-48.786123C433.536974 807.558459 411.323043 785.477558 385.798716 785.054933z"
+            p-id="3283"></path>
+        </svg>
+        购物车(0)
+      </a>
+    </div>
+  </header>
+  <div class="quankuan">
+    <div class="neirongkuang">
+      <aside></aside>
+      <ul>
+        <li>Xiaomi手机
+          <ul>
+            <li>
+              <img
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                alt="">
+              <p>Xiaomi Civi</p>
+              <p>2599元起</p>
+            </li>
+            <li>
+              <img
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/087c52d253d9301dff7743d6bf2d0330.png?thumb=1&w=200&h=138&f=webp&q=90"
+                alt="">
+              <p>Xiaomi Civi</p>
+              <p>2599元起</p>
+            </li>
+            <li>
+
+              <img
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/85e44ea2405ff8414148bbde7446b137.png?thumb=1&w=200&h=138&f=webp&q=90"
+                alt="">
+              <p>Xiaomi Civi</p>
+              <p>2599元起</p>
+            </li>
+            <li>
+
+              <img
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/1a359e9346e3c6ee8c9d8389e3fd9458.png?thumb=1&w=200&h=138&f=webp&q=90"
+                alt="">
+              <p>Xiaomi Civi</p>
+              <p>2599元起</p>
+            </li>
+            <li>
+
+              <img
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a1c45eadcedeb27b1cafca0359422da9.png?thumb=1&w=200&h=138&f=webp&q=90"
+                alt="">
+              <p>Xiaomi Civi</p>
+              <p>2599元起</p>
+            </li>
+            <li>
+
+              <img
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/56e3379b5422cb06e5c8a0c546445606.png?thumb=1&w=200&h=138&f=webp&q=90"
+                alt="">
+              <p>Xiaomi Civi</p>
+              <p>2599元起</p>
+            </li>
+          </ul>
+        </li>
+        <li>Redmi红米
+          <ul>
+            <li>
+              <img
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7e78629420a392da6fd3e34dae9fac5d.png?thumb=1&w=200&h=138&f=webp&q=90"
+                alt="">
+              <p>Xiaomi Civi</p>
+              <p>2599元起</p>
+            </li>
+            <li>
+              <img
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/25149bd95f33f9814aa4c4983c0d9b71.png?thumb=1&w=200&h=138&f=webp&q=90"
+                alt="">
+              <p>Xiaomi Civi</p>
+              <p>2599元起</p>
+            </li>
+            <li>
+              <img
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a785b54d06c72ff63e64d0fa51ee02f5.png?thumb=1&w=200&h=138&f=webp&q=90"
+                alt="">
+              <p>Xiaomi Civi</p>
+              <p>2599元起</p>
+            </li>
+            <li>
+              <img
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/e3c5d99c28700a3c45ea65eebbea0a04.png?thumb=1&w=200&h=138&f=webp&q=90"
+                alt="">
+              <p>Xiaomi Civi</p>
+              <p>2599元起</p>
+            </li>
+            <li>
+              <img
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a1c45eadcedeb27b1cafca0359422da9.png?thumb=1&w=200&h=138&f=webp&q=90"
+                alt="">
+              <p>Xiaomi Civi</p>
+              <p>2599元起</p>
+            </li>
+            <li>
+              <img
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/acd0f27496ccdf81ef42124c35e8bfc4.png?thumb=1&w=200&h=138&f=webp&q=90"
+                alt="">
+              <p>Xiaomi Civi</p>
+              <p>2599元起</p>
+            </li>
+          </ul>
+        </li>
+        <li>电视</li>
+        <li>笔记本</li>
+        <li>平板</li>
+        <li>家电</li>
+        <li>路由器</li>
+        <li>服务</li>
+        <li>社区</li>
+
+      </ul>
+
+      <input class="input1" type="text">
+      <input class="input2" type="text">
+
+    </div>
+  </div>
+  <div class="daobo">
+    <div class="cebian">
+      <ul>
+        <li>手机
+          <div class="neirong1">
+            <span><a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+          </div>
+        </li>
+        <li>电视
+          <div class="neirong1">
+            <span><a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+            <span>
+              <a href="https://www.mi.com/redminote11pro">
+                <img
+                  src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                  alt="">Note 11 pro 系列
+              </a>
+              </a>
+            </span>
+
+          </div>
+        </li>
+        <li>笔记本 平板
+          <div class="notebook">
+            <label for=""><a href="https://www.mi.com/redminote11pro"> <span>
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                    alt="">Note 11 pro 系列 </span></a></label>
+            <label for=""><a href="https://www.mi.com/redminote11pro"> <span>
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                    alt="">Note 11 pro 系列 </span></a></label>
+            <label for=""><a href="https://www.mi.com/redminote11pro"> <span>
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                    alt="">Note 11 pro 系列 </span></a></label>
+            <label for=""><a href="https://www.mi.com/redminote11pro"> <span>
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                    alt="">Note 11 pro 系列 </span></a></label>
+            <label for=""><a href="https://www.mi.com/redminote11pro"> <span>
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                    alt="">Note 11 pro 系列 </span></a></label>
+            <label for=""><a href="https://www.mi.com/redminote11pro"> <span>
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                    alt="">Note 11 pro 系列 </span></a></label>
+            <label for=""><a href="https://www.mi.com/redminote11pro"> <span>
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                    alt="">Note 11 pro 系列 </span></a></label>
+            <label for=""><a href="https://www.mi.com/redminote11pro"> <span>
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                    alt="">Note 11 pro 系列 </span></a></label>
+            <label for=""><a href="https://www.mi.com/redminote11pro"> <span>
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                    alt="">Note 11 pro 系列 </span></a></label>
+            <label for=""><a href="https://www.mi.com/redminote11pro"> <span>
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                    alt="">Note 11 pro 系列 </span></a></label>
+            <label for=""><a href="https://www.mi.com/redminote11pro"> <span>
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                    alt="">Note 11 pro 系列 </span></a></label>
+
+            <label for=""><a href="https://www.mi.com/redminote11pro"> <span>
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                    alt="">Note 11 pro 系列 </span></a></label>
+            <label for=""><a href="https://www.mi.com/redminote11pro"> <span>
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                    alt="">Note 11 pro 系列 </span></a></label>
+            <label for=""><a href="https://www.mi.com/redminote11pro"> <span>
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                    alt="">Note 11 pro 系列 </span></a></label>
+            <label for=""><a href="https://www.mi.com/redminote11pro"> <span>
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                    alt="">Note 11 pro 系列 </span></a></label>
+            <label for=""><a href="https://www.mi.com/redminote11pro"> <span>
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                    alt="">Note 11 pro 系列 </span></a></label>
+            <label for=""><a href="https://www.mi.com/redminote11pro"> <span>
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                    alt="">Note 11 pro 系列 </span></a></label>
+            <label for=""><a href="https://www.mi.com/redminote11pro"> <span>
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                    alt="">Note 11 pro 系列 </span></a></label>
+            <label for=""><a href="https://www.mi.com/redminote11pro"> <span>
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                    alt="">Note 11 pro 系列 </span></a></label>
+            <label for=""><a href="https://www.mi.com/redminote11pro"> <span>
+                  <img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a95d59ec8c9c6ae7061f314eb4901e7c.png?thumb=1&w=50&h=50&f=webp&q=90"
+                    alt="">Note 11 pro 系列 </span></a></label>
+            <label for=""> <span></span></label>
+            <label for=""> <span></span></label>
+            <label for=""> <span></span></label>
+            <label for=""> <span></span></label>
+          </div>
+        </li>
+        <li>家电</li>
+        <li>出行 穿戴</li>
+        <li>智能 路由器</li>
+        <li> 电源 配件</li>
+        <li>健康 儿童</li>
+        <li>耳机 音箱</li>
+        <li>生活 箱包</li>
+      </ul>
+    </div>
+
+    <div class="slider">
+      <input type="radio" name="slider1" id="i1">
+      <input type="radio" name="slider1" id="i2">
+      <input type="radio" name="slider1" id="i3">
+      <input type="radio" name="slider1" id="i4">
+      <div class="slides">
+        <div class="slide">
+          <label for="i4">prea</label>
+          <label for="i2">next</label>
+          <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0ce57203f1618c7554d8a22f92e18446.jpg?w=2452&h=920"
+            alt="">
+        </div>
+        <div class="slide">
+          <label for="i1">prea</label>
+          <label for="i3">next</label>
+          <img
+            src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/58a3a8220d309b2700d9e262742445e7.jpg?thumb=1&w=1533&h=575&f=webp&q=90"
+            alt="">
+        </div>
+        <div class="slide">
+          <label for="i2">prea</label>
+          <label for="i4">next</label>
+          <img
+            src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/918820682e4a490221cfd92b24c14b86.jpg?thumb=1&w=1533&h=575&f=webp&q=90"
+            alt="">
+        </div>
+        <div class="slide">
+          <label for="i3">prea</label>
+          <label for="i1">next</label>
+          <img
+            src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/61bef947ca0b863003b3e68336192a3a.jpg?thumb=1&w=1533&h=575&f=webp&q=90"
+            alt="">
+        </div>
+        <div class="indicators">
+          <label for="i1"></label>
+          <label for="i2"></label>
+          <label for="i3"></label>
+          <label for="i4"></label>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
+
+</body>
+<script src="less.min.js"></script>
+
+</html>
