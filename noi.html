@@ -464,25 +464,93 @@ while (counter < (n - 1)){
 console.log((n-2)*180-duSum)
 </script>
 <script id="ch0105/09">
+var m = Number(prompt(""))
+var n = Number(prompt(""))
 
+var sum = 0
+while(m <= n){
+  if(m % 2 == 1){
+    sum = m + sum
+  }
+  m = m + 1
+}
+console.log(sum)
 </script>
 <script id="ch0105/10">
-
+var m = Number(prompt(""))
+var n = Number(prompt(""))
+var Sum = 0
+while( m <= n){
+  if (m % 17 == 0){
+    Sum = Sum + m
+  }
+  m = m + 1
+}
+console.log(Sum)
 </script>
 <script id="ch0105/11">
-
+var n = Number(prompt("个数"))
+var counter = 0
+var a1 = 0
+var a5 = 0
+var a10 = 0
+while (counter < n) {
+  var m = Number(prompt("整数"))
+  if (m == 1) {
+    a1 = a1+1
+  }
+  if(m == 5) {
+    a5 = a5 +1
+  }
+  if (m == 10) {
+    a10 = a10 + 1
+  }
+  counter = counter + 1
+}
+console.log(a1 ,a5 , a10)
 </script>
 <script id="ch0105/12">
-
+  var N = Number(prompt(""))
+  var m = Number(prompt(""))
+  var counter = 0
+  var aSum = 0
+  while( counter < N) {
+    var a = Number(prompt(""))
+    if (a == m) {
+      aSum =aSum + 1
+    }
+    counter = counter + 1
+  }
+  console.log(aSum)
 </script>
 <script id="ch0105/13">
-
+var a = Number(prompt(""))
+var n = Number(prompt(""))
+console.log(a**n)
 </script>
 <script id="ch0105/14">
+var x = Number(prompt(""))
+var n = Number(prompt(""))
+var counter = 0
+var any = x
+while(counter < n) {
+  any = any + any*0.001
+  counter = counter + 1
+}
+console,log = (any.toFixed(4))
 
 </script>
 <script id="ch0105/15">
-
+var R = Number(prompt(""))
+var M = Number(prompt(""))
+var Y = Number(prompt(""))
+var counter = 0
+var sum = M
+while( counter < Y) {
+  sum = sum + sum * (R / 100)
+  counter = counter + 1
+}
+console.log(parseInt(sum))
 </script>
 <script id="ch0105/16">
 
