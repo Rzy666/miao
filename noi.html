@@ -870,13 +870,13 @@
   var sum = 0
 
   for (var i = 1; i <= n; i++) {
-    var flag  = false
+    var flag = false
     if (i % 7 == 0) {
       flag = true
     } else {
-         var m = i
+      var m = i
       while (m > 0) {
-       var d = m % 10
+        var d = m % 10
         if (d == 7) {
           flag = true
           break
@@ -1013,4 +1013,257 @@
 
   }
   console.log(编号)
+</script>
+<script>
+  var square = function (x) {
+    return x * x
+  }
+  console.log(square(2))
+</script>
+<script>
+  function factorial(n) {
+    var result = 1
+    for (var i = 1; i <= n; i++) {
+      result *= i
+    }
+    return result
+  }
+  console.log(factorial())
+</script>
+<script>
+  function isPrime(n) { // 判断一个数是不是素数，那n % i的平方及以内的数字，如果能模就不是素数，不能就是
+    for (var i = 2; i * i <= n; i++) {
+      if (n % i == 0) {
+        return false
+      }
+    }
+    return true
+  }
+  console.log(isPrime())
+</script>
+<script>
+  function qiao7(n) {
+    if (n % 7 == 0) {
+      return ture
+    }
+    while (n > 0) {
+      var d = n % 10
+      if (d == 7) {
+        return true
+      }
+      n = (n - d) / 10
+    }
+    return false
+  }
+  console.log(qiao7())
+</script>
+<script>
+  function fibb(n) {
+    var a = 0
+    var b = 1
+    for (var i = 0; i < n; i++) {
+      b = a + b
+      a = b - a
+    }
+    return a
+  }
+</script>
+<script>
+  let sum = 0
+  var n = Number(prompt())
+
+  function qiao7(n) {
+    if (n % 7 == 0) {
+      return true
+    }
+    while (n > 0) {
+      let d = n % 10
+      if (d == 7) {
+        return true
+      }
+      n = (n - d) / 10
+    }
+    return false
+  }
+  for (var i = 1; i <= n; i++) {
+    if (!qiao7(i)) {
+      sum += i * i
+    }
+  }
+  console.log(sum)
+</script>
+<script>
+  function fibb(n) {
+    let a = 0
+    let b = 1
+    for (var i = 1; i <= n; i++) {
+      b = a + b
+      a = b - a
+    }
+    return a
+  }
+  fibb(Number(prompt()))
+</script>
+<script id="narcissistic">
+  function nar(n) {
+    let d = n % 10
+    let s = (n - d) / 10 % 10
+    let b = (n - s * 10 - d) / 100
+    if (d ** 3 + s ** 3 + b ** 3 == n && n > 100) {
+      return true
+    }
+    return false
+  }
+  console.log(nar(prompt()))
+</script>
+<script id="narcissistics">
+  function nar(n) {
+    let d = n % 10
+    let s = (n - d) / 10 % 10
+    let b = (n - s * 10 - d) / 100
+    if (d ** 3 + s ** 3 + b ** 3 == n) {
+      return true
+    }
+    return false
+  }
+  for (var i = 100; i < 1000; i++) {
+    if (nar(i)) {
+      console.log(i)
+    }
+  }
+</script>
+<script id="palindrom">
+  palindrom(Number(prompt()))
+
+  function palindrom(x) {
+    if (x < 0 || (x != 0 && x % 10 == 0)) {
+      return false
+    } else if (x < 0 && x > 10) {
+      return ture
+    }
+    let y = x
+    let num = 0
+    while (x !== 0) {
+      num = x % 10 + num * 10 //求出最后一位数，再一步一步乘十顶上去
+      x = Math.floor(x / 10) // 一步一步缩小10倍
+    }
+    return y === num
+  }
+</script>
+<script id="weekday">
+
+</script>
+<script id="comolete-number">
+  comolete(Number(prompt()))
+
+  function comolete(x) {
+    let sum = 0
+    for (var i = 0; i <= x / 2; i++) {
+      if (x % i == 0) {
+        sum += i
+      }
+    }
+   return sum == x
+  }
+</script>
+<script id="comolete-numbers">
+  function comolete(x) {
+    let sum = 0
+    for (var i = 0; i <= x / 2; i++) {
+      if (x % i == 0) {
+        sum += i
+      }
+    }
+    if (sum == x) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  for (var s = 1; s < 1000; s++) {
+    if (comolete(s)) {
+      console.log(s)
+    }
+  }
+</script>
+<script id="prime">
+  function isPrime(n) {
+    for (var i = 2; i * i <= n; i++) {
+      if (n % i == 0) {
+        return false
+      }
+    }
+    return true
+  }
+  isPrime(Number(prompt()))
+</script>
+<script id="primes">
+  function isPrime(n) {
+    for (var i = 2; i * i <= n; i++) {
+      if (n % i == 0) {
+        return false
+      }
+    }
+    return true
+  }2
+  3
+  for (var s = 2; s <= 100 ;s++){
+    if(isPrime(s)){
+      console.log(s)
+    }
+  }
+</script>
+<script>
+  function numwidth(n){
+    let width = 0
+    do {
+      width++
+      let d = n % 10
+      n = (n -d) / 10
+    }while (n > 0)
+    return width
+  }
+</script>
+<script id="itoa">
+
+let result = ''
+function itoa(n) {
+  debugger
+  while( n > 0){
+let d = n % 10
+if (d == 0){
+result += '0'
+}
+if (d == 1){
+result += '1'
+}
+if (d == 2){
+result += '2'
+}
+if (d == 3){
+result += '3'
+}
+if (d ==4 ){
+result += '4'
+}
+if (d == 5){
+result += '5'
+}
+if (d == 6){
+result += '6'
+}
+if (d == 7){
+result += '7'
+}
+if (d == 8){
+result += '8'
+}
+if (d == 9){
+result += '9'
+}
+n = (n - d) / 10
+  }
+  return result
+}
 </script>
