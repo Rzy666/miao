@@ -27,7 +27,7 @@ var rzy666 = {
     return result
   }
 
-  defference: function (array, [values]) {
+  difference: function (array, [values]) {
     var result = []
     for (var i = 0; i < array.length; i++){
       for (var j = 0; j < [values].length; j++){
