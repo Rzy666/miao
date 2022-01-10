@@ -31,18 +31,18 @@ var rzy666 = {
     var result = []
 
   },
-  drop: function (array, number) {
+  drop: function (array, n = 1) {
     let len = array.length
      var result = []
-    if (number >= len) {
+    if (n >= len) {
       return result
     }
-    for (var i = number ; i < len; i++){
+    for (var i = n ; i < len; i++){
       result.push(array[i])
     }
     return result
   },
-  dropRight : function (array, n) {
+  dropRight : function (array, n = 1) {
    let len = array.length
    var result = []
    if (n >= len) {
@@ -53,5 +53,5 @@ var rzy666 = {
    }
    return result
   }
-  
+
 }
