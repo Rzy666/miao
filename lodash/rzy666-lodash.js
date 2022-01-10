@@ -80,7 +80,7 @@ var rzy666 = {
     }
     return result
   },
-  flattenDepth: function (array, [depth = 1]) {
+  flattenDepth: function (array, depth = 1) {
     if (depth == 0) {
        return  array.slice()
     }
@@ -101,11 +101,49 @@ var rzy666 = {
   head: function (array) {
     return array[0]
   },
-  indexOf: function (array, value, [fromIndex = 0]) {
+  indexOf: function (array, value, fromIndex = 0) {
     for (var i = fromIndex; i < array.length; i++){
       if (array[i] == value) {
           return i
         }
     }
-    },
+    return -1
+  },
+  initial: function (array) {
+    var res = []
+    for (var i = 0; i < array.length - 1; i++){
+      res.push(array[i])
+    }
+    return res
+  },
+  fill: function (array, value, [start = 0], [end = array.length]) {
+    for (var i = start; i < end; i++){
+      array[i] == value
+    }
+    return array
+  },
+  join: function (array, [separator = ',']) {
+    var str = ''
+    for (var i = 0; i < array.length; i++){
+      if (i == array.length - 1) {
+         str = str + array[i]
+      } else {
+        str = str + array[i] + separator
+      }
+    }
+    return str
+  },
+  last: function (array) {
+    var len = array.length - 1
+    return array[len ]
+  },
+  lastIndexOf: function (array, value, fromIndex = array.length - 1) {
+    for (var i = fromIndex; i >= 0; i--){
+      if (array[i] == value) {
+        return i
+      }
+    }
+    return -1
+  },
+
 }
