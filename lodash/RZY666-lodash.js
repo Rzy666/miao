@@ -1,4 +1,4 @@
-var <Rzy666> = {
+var Rzy666 = {
   chunk: function (array, size) {
 
   }
