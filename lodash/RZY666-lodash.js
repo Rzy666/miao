@@ -17,4 +17,28 @@ var rzy666 = {
     return result
   }
 
+  compact: function (array) {
+    var result = []
+    for (var i = 0; i < array.length; i++){
+      if (array[i]) {
+        result.push(array[i])
+      }
+    }
+    return result
+  }
+
+  defference: function (array, [values]) {
+    var result = []
+    for (var i = 0; i < array.length; i++){
+      for (var j = 0; j < [values].length; j++){
+        if (array[i] == [values][j]) {
+          array[i] == 0
+        }
+      }
+      if (array[i]) {
+        result.push(array[i])
+      }
+    }
+    return result
+  }
 }
