@@ -1163,7 +1163,7 @@
         sum += i
       }
     }
-   return sum == x
+    return sum == x
   }
 </script>
 <script id="comolete-numbers">
@@ -1188,8 +1188,9 @@
   }
 </script>
 <script id="prime">
+  // 判断是不是素数
   function isPrime(n) {
-    for (var i = 2; i * i <= n; i++) {
+    for (var i = 2; i * i <= n; i++) { // 从2开始能模0的都不是素数
       if (n % i == 0) {
         return false
       }
@@ -1206,64 +1207,190 @@
       }
     }
     return true
-  }2
+  }
+  2
   3
-  for (var s = 2; s <= 100 ;s++){
-    if(isPrime(s)){
+  for (var s = 2; s <= 100; s++) {
+    if (isPrime(s)) {
       console.log(s)
     }
   }
 </script>
 <script>
-  function numwidth(n){
+  function numwidth(n) {
     let width = 0
     do {
       width++
       let d = n % 10
-      n = (n -d) / 10
-    }while (n > 0)
+      n = (n - d) / 10
+    } while (n > 0)
     return width
   }
 </script>
 <script id="itoa">
+  let result = ''
 
-let result = ''
-function itoa(n) {
-  debugger
-  while( n > 0){
-let d = n % 10
-if (d == 0){
-result += '0'
-}
-if (d == 1){
-result += '1'
-}
-if (d == 2){
-result += '2'
-}
-if (d == 3){
-result += '3'
-}
-if (d ==4 ){
-result += '4'
-}
-if (d == 5){
-result += '5'
-}
-if (d == 6){
-result += '6'
-}
-if (d == 7){
-result += '7'
-}
-if (d == 8){
-result += '8'
-}
-if (d == 9){
-result += '9'
-}
-n = (n - d) / 10
+  function itoa(n) {
+    debugger
+    while (n > 0) {
+      let d = n % 10
+      if (d == 0) {
+        result += '0'
+      }
+      if (d == 1) {
+        result += '1'
+      }
+      if (d == 2) {
+        result += '2'
+      }
+      if (d == 3) {
+        result += '3'
+      }
+      if (d == 4) {
+        result += '4'
+      }
+      if (d == 5) {
+        result += '5'
+      }
+      if (d == 6) {
+        result += '6'
+      }
+      if (d == 7) {
+        result += '7'
+      }
+      if (d == 8) {
+        result += '8'
+      }
+      if (d == 9) {
+        result += '9'
+      }
+      n = (n - d) / 10
+    }
+    return result
   }
-  return result
-}
+</script>
+<script id="sqrt">
+  // 二分法求平方根 以n=16为例
+  function sqrt(n) {
+    let left = 0
+    let right = n // 16
+    do {
+      var min = (right - left) / 2 // min = 8
+      if (min * min < n) { // 8*8= 64
+        left = min
+      } else if (min * min > n) { // 64 > 16
+        right = min //取值范围 0 - 8
+      } else {
+        return min
+      }
+    } while (Math.abs(min * min - n) > 0.00000001)
+    return min
+  }
+</script>
+<script>
+  function sqrt(n) {
+    var left = 0
+    var right = n
+  }
+</script>
+<script>
+  function inputs(n) {
+    if (n == 0) {
+      return
+    }
+    var x = Number(prompt())
+    inputs(n - 1)
+    console.log(x)
+  }
+</script>
+<Script>
+  function isEven(n) {
+    if(n == 0){
+      return true
+    } else if(n == 1){
+      return false5
+    } else {
+      return isEven(n - 2)
+    }
+  }
+</Script>
+<script>
+  function countBs(str) {
+    var count = 0
+    for (var i = 0; i < str.length; i++) {
+      if (str[i] == 'B')
+        count++
+    }
+    return count
+  }
+</script>
+<script>
+  function countChar(str, char) {
+    var count = 0
+    for (var i = 0; i < str.length; i++) {
+      if (str[i] == 'char') count++
+    }
+    return count
+  }
+</script>
+<script>
+  function countBs(str){
+    return countChar(str, B)
+  }
+</script>
+<script>
+  var s = ''
+  var result = ''
+ for(var i = 0;i< 7;i++){
+  s+= '#'
+  result += s + '\n'
+ }
+ console.log(result)
+
+</script>
+<script>
+  function chess(size){
+    var oddline = ''
+    var evenline = ''
+    for (var i = 0;i <size ;i++ ){
+             if (i % 2 == 0) {
+             evenLine += ' '
+             oddLine += '#'
+             } else {
+             evenLine += '#'
+             oddLine += ' '
+             }
+    }
+    var result = ''
+    for(var i = 0;i <size ; i++){
+      if(i % 2 == 0){
+        result += evenline + '\n'
+      } else {
+        result += oddline + '\n'
+      }
+    }
+    return result
+  }
+</script>
+<script>
+  function indexOf(array ,value){
+    for(var i = 0 ;i < array.length;i+=){
+      if(array[i] === value){
+        return i
+      }
+    }
+    return -1
+  }
+</script>
+<script>
+  var number = Math.round(Math.random()*100)
+  do{
+    var n = Number(prompt('输入一个数字'))
+    if(n > number){
+      alert ('too big')
+    } else if ( n < number ){
+      alert ('too small')
+    }
+  }while(n != number)
+  alert ("恭喜大聪明")
 </script>

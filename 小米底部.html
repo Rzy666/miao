@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/mi/mifont.css">
+  <style type="text/less">
+    .last-main {
+      width: 100%;
+      height: 333px;
+      margin-top: 30px;
+      .shouhou {
+        font-size: 0;
+        width: 1226px;
+        height: 79px;
+        margin: auto;
+        background-color: #fff;
+        box-sizing: border-box;
+        border-bottom:1px solid #e0e0e0;;
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          li {display: inline-block;
+            width: calc(1226px / 5);
+            height: 79px;
+            font-size: 16px;
+            line-height:79px;
+            text-align: center;
+            position: relative;
+          }
+          .li-i::after {
+             content:"";
+             position: absolute;
+             right: 0;
+             top: 26px;
+             width: 1px;
+             height: 26px;
+             background-color: #ccc;
+          }
+        }
+      }
+      .pailie {
+        width:1226px;
+        margin: auto;
+        height: 227px;
+        background-color: #fff;
+        position: relative;
+
+        .pailie-1{
+          width: calc((1226px / 5) * 4);
+          height:100%;
+          margin: 0px;
+          dl {
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+            width: calc(((1226px / 5) * 4) / 6);
+            height: 100%;
+            float: left;
+            &::after {
+              content: "";
+               position: absolute;
+               right: 244px;
+               top: 50px;
+               width: 1px;
+               height: 118px;
+               background-color: #ccc;
+            }
+
+            dt {
+              margin-top: 40px;
+              margin-bottom: 25px;
+              font-size: 14px;
+            }
+
+            dd {
+              margin: 0;
+              margin-bottom: 10px;
+              font-size: 12px;
+            }
+          }
+
+        }
+        .pailie-2{
+          width: clac(1226px / 5);
+          height: 100%;
+          float: right;
+          position: absolute;
+          top: 30px;
+          right: 30px;
+          text-align: center;
+          .phone {
+            color: red;
+            font-size: 22px;
+            margin:10px 0;
+          }
+          .time {
+            color: #616161;
+            font-size: 12px;
+            padding: 0 0 5px;
+            margin: 0px;
+          }
+          .follow {
+            a {
+                  width: 24px;
+                  height: 24px;
+                  display: inline-block;
+                  vertical-align: middle;
+                  margin-left: 6px;
+                  margin-top: -3px;
+                  }
+
+            a:nth-child(1) {
+              background: url(https://cdn.cnbj1.fds.api.mi-img.com/staticsfile/global/wb.png);
+              background-size: cover;
+            }
+            a:nth-child(2) {
+              background: url( https://cdn.cnbj1.fds.api.mi-img.com/staticsfile/global/wx.png);
+              background-size: cover;
+            }
+          }
+        }
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="last-main">
+    <div class="shouhou">
+      <ul>
+        <a href="">
+          <li class="li-i"> <i class="iconfont-tool"></i> 预约维修服务</li>
+        </a>
+        <a href="">
+          <li class="li-i"> <i class="iconfont-circle-7"></i> 7天无理由退货</li>
+        </a>
+        <a href="">
+          <li class="li-i"> <i class="iconfont-circle-15"></i> 15天免费换货</li>
+        </a>
+        <a href="">
+          <li class="li-i"> <i class="iconfont-gift"></i> 满69包邮</li>
+        </a>
+        <a href="">
+          <li> <i class="iconfont-location"></i> 520余家售后网点</li>
+        </a>
+      </ul>
+    </div>
+    <div class="pailie">
+      <div class="pailie-1">
+        <dl>
+          <dt>帮助中心</dt>
+          <dd> <a href="">账户管理</a> </dd>
+          <dd> <a href="">购物指南</a> </dd>
+          <dd> <a href="">订单操作</a> </dd>
+        </dl>
+        <dl>
+          <dt>服务支持</dt>
+          <dd> <a href="">售后政策</a> </dd>
+          <dd> <a href="">自助服务</a> </dd>
+          <dd> <a href="">相关下载</a> </dd>
+        </dl>
+        <dl>
+          <dt>线下门店</dt>
+          <dd> <a href="">小米之家</a> </dd>
+          <dd> <a href="">服务网点</a> </dd>
+          <dd> <a href="">授权体验店</a> /专区</dd>
+        </dl>
+        <dl>
+          <dt>关于小米</dt>
+          <dd> <a href="">了解小米</a> </dd>
+          <dd> <a href="">加入小米</a> </dd>
+          <dd> <a href="">投资者关系</a> </dd>
+          <dd> <a href="">企业社会责任</a> </dd>
+          <dd> <a href="">廉洁举报</a> </dd>
+        </dl>
+        <dl>
+          <dt>关注我们</dt>
+          <dd> <a href="">新浪微博</a> </dd>
+          <dd> <a href="">官方微信</a> </dd>
+          <dd> <a href=""></a>联系我们 </dd>
+          <dd> <a href=""></a>公益基金会 </dd>
+        </dl>
+        <dl>
+          <dt>特色服务</dt>
+          <dd> <a href="">F码通道</a> </dd>
+          <dd> <a href=""> 礼物码</a> </dd>
+          <dd> <a href=""> 防伪查询</a> </dd>
+        </dl>
+      </div>
+      <div class="pailie-2">
+        <p class="phone">400-100-5678</p>
+        <p class="time">8:00-18:00（仅收市话费）</p>
+        <a href="#" class="btn btn-line-primary btn-small J_contactBtn">
+          <em class="iconfont-message2"></em> 人工客服</a>
+        <p class="follow">关注小米：
+          <a href="https://weibo.com/xiaomishangcheng" target="_blank" class="wb"></a>
+          <a href="javascript:void(0);" id="J_followWx" class="wx"></a>
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="../less.min.js"></script>
+
+</html>

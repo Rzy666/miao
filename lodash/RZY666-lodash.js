@@ -15,7 +15,7 @@ var rzy666 = {
        result.push(temp)
      }
     return result
-  }
+  },
 
   compact: function (array) {
     var result = []
@@ -25,20 +25,32 @@ var rzy666 = {
       }
     }
     return result
-  }
+  },
 
-  difference: function (array, [values]) {
+  difference: function (array, ...values) {
     var result = []
-    for (var i = 0; i < array.length; i++){
-      for (var j = 0; j < [values].length; j++){
-        if (array[i] == [values][j]) {
-          array[i] == 0
-        }
-      }
-      if (array[i]) {
-        result.push(array[i])
-      }
+
+  },
+  drop: function (array, number) {
+    let len = array.length
+     var result = []
+    if (number >= len) {
+      return result
+    }
+    for (var i = number ; i < len; i++){
+      result.push(array[i])
     }
     return result
-  }
+  },
+  dropRight : function (array, n) {
+   let len = array.length
+   var result = []
+   if (n >= len) {
+     return result
+   }
+   for (var i = 0; i <= len - (n + 1); i++) {
+     result.push(array[i])
+   }
+   return result
+ }
 }

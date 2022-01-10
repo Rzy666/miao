@@ -112,29 +112,29 @@
     dot(x, y, "red")
   }
   //画实心矩形
-  // for (var x = 200; x < 300; x++) {
-  //   for (var y = 200; y < 300; y++) {
-  //     dot(x, y, 'red')
-  //   }
-  // }
+  for (var x = 200; x < 300; x++) {
+    for (var y = 200; y < 300; y++) {
+      dot(x, y, 'red')
+    }
+  }
   //画出rgb色彩空间的某一面（尺寸要大于100x100）
-  // for (var x = 0; x < 100; x++) {
-  //   for (var y = 0; y < 100; y++) {
-  //     var color = 'rgb(' + x / 100 * 256 + ',' + y / 100 * 256 + ',255)'
-  //     var x1 =  x
-  //     var y1 =  y + 0.27*x
-  //     dot(x1, y1, color)
-  //   }
-  // }
-  // for (var x = 0; x < 100; x++) {
-  //   for (var y = 0; y < 100; y++) {
-  //     var color = 'rgb(' + x / 100 * 256 + ',' + y / 100 * 256 +
-  //       ',255)'
-  //     var x1 = 0.5 * x - 0.87 * y
-  //     var y1 =0.87 * y + 0.5 * x
-  //     dot (x1 + 100, y1 + 100, color)
-  //   }
-  // }
+  for (var x = 0; x < 100; x++) {
+    for (var y = 0; y < 100; y++) {
+      var color = 'rgb(' + x / 100 * 256 + ',' + y / 100 * 256 + ',255)'
+      var x1 = x
+      var y1 = y + 0.27 * x
+      dot(x1, y1, color)
+    }
+  }
+  for (var x = 0; x < 100; x++) {
+    for (var y = 0; y < 100; y++) {
+      var color = 'rgb(' + x / 100 * 256 + ',' + y / 100 * 256 +
+        ',255)'
+      var x1 = 0.5 * x - 0.87 * y
+      var y1 = 0.87 * y + 0.5 * x
+      dot(x1 + 100, y1 + 100, color)
+    }
+  }
 
   for (var x = 200; x < 300; x++) {
     var y = 200
@@ -152,7 +152,262 @@
     var x = 300
     dot(x, y, 'yellow')
   }
+  //画圆
+  function round(cx, cy, r) {
+    var x = 0
+    var y = r
+    while (x <= y) {
+      x++
+      var a = x * x + y * y
+      var b = x * x + (y - 1) * (y - 1)
+      if (Math.abs(a - r * r) > Math.abs(b - r * r)) {
+        y--
+      }
+      dot(x + cx, y + cy, 'red')
+      dot(x + cx, -y + cy, 'red')
+      dot(-x + cx, y + cy, 'red')
+      dot(-x + cx, -y + cy, 'red')
+      dot(y + cx, x + cy, 'red')
+      dot(y + cx, -x + cy, 'red')
+      dot(-y + cx, x + cy, 'red')
+      dot(-y + cx, -x + cy, 'red')
+    }
+  }
+  round(100, 100, 100, ) <
+    script >
+    function rgb(r, g, b) {
+      return 'rgn(' + r + ',' + g + ',' + b + ')'
+    }
 </script>
+var n = Number(prompt())
+var a = []
+for (var i = 0 ; i < n ; i++){ var num=Number(prompt()) a.push(num) } for(var i=n - 1 ; i> 0;i--){
+  console.log(a[i])
+  }
+  </script>
+  <script>
+    function deepEqual(a, b) {
+      if (a === b) {
+        return true
+      }
+      if (a !== a && b !== b) {
+        return true
+      }
+      // 两个都是数组
+      if (Array.isArray(a) && Array.isArray(b)) {
+        if (a.length !== b.length) {
+          return false
+        } else {
+          for (var i = 0; i < a.length; i++) {
+            if (!deepEqual(a[i], b[i])) {
+              return false
+            }
+          }
+          return true
+        }
+      } // 两个都是对象 if
+      (!Array.isArray(a) && !Array.isArray(b) && typeof a === 'object' && typeof b === 'object') {
+        for (var key in a) { //
+          a的每个属性都要在b里 // 一旦不在，就返回false if (!(key in b)) { return false } } for (var key in b) { // b的每个属性都要在a里 //
+          一旦不在， 就返回false
+          if (!(key in a)) {
+            return false
+          }
+        }
+        for (var key in a) {
+          if (!deepEqual(a[key], b[key])) {
+            return
+            false
+          }
+        }
+        return true
+      }
+      return false
+    }
+  </script>
+  <script>
+    var node = {
+      val: 2,
+      next: null
+    }
+
+    function arayToList(array) {
+      if (array.length == 0) {
+        return null
+      }
+      var nodes = []
+      for (var i = 0; i < array.length; i++) {
+        var node = {
+          val: array[i],
+          next: null
+        }
+        nodes.push(node)
+      }
+    }
+  </script>
+  <script>
+    function arayToList2(array) {
+      var head = {
+        val: array[0],
+        next: null
+      }
+      var prev = head
+      for (var i = 1; i < array.length; i++) {
+        var node = {
+          val: array[i],
+          next: null
+        }
+        prev.next = node
+        prev = node
+      }
+      return head
+    }
+  </script>
+  <script>
+    //证明俩个数组都是完全一样的
+    function deepEqual(a, b) {
+      if (a === b) {
+        return true
+      }
+      if (a !== a && b !== b) {
+        return true
+      }
+      // 两个都是数组
+      if (Array.isArray(a) && Array.isArray(b)) {
+        if (a.length !== b.length) {
+          return false
+        } else {
+          for (var i = 0; i < a.length; i++) {
+            if (!deepEqual(a[i], b[i])) {
+              return false
+            }
+          }
+          return true
+        }
+      } // 两个都是对象 if
+      (!Array.isArray(a) && !Array.isArray(b) && typeof a === 'object' && typeof b === 'object') {
+        for (var key in a) { //
+          a的每个属性都要在b里 // 一旦不在，就返回false if (!(key in b)) { return false } } for (var key in b) { // b的每个属性都要在a里 // 一旦不在，就返回false
+          if (!(key in a)) {
+            return false
+          }
+        }
+        for (var key in a) {
+          if (!deepEqual(a[key], b[key])) {
+            return false
+          }
+        }
+        return
+        true
+      }
+      return false
+    }
+  </script>
+  <script>
+    function append(val, head) {
+      var node = {
+        val: val,
+        next: null
+      }
+      if (head == null) {
+        return node
+      }
+      var p = head
+      while (p.next) {
+        p = p.next
+      }
+      p.next = node
+      return head
+    }
+  </script>
+  <script>
+    function nth(list, n) {
+      if (list == null && n < 0) {
+        return undefined
+      }
+      var p = list
+      var c = 0
+      while (p && c < n) {
+        c++
+        p = p.next
+      }
+      if (p) {
+        return p.val
+      } else {
+        return undefined
+      }
+    }
+  </script>
+  <script>
+    function nth(list, n) {
+      if (list == null && n < 0) {
+        return undefined
+      }
+      if (n == 0) {
+        return list.val
+      }
+      return nth(list.next, n - 1)
+    }
+  </script>
+  <script>
+    function inside(list, n, val) {
+      var node = {
+        val: val,
+        next: null
+      }
+      if (n == 0) {
+        node.next = list
+        return node
+      }
+      var list = p
+      var c = 0
+      while (p && c < n - 1) {
+        c++
+        p = p.next
+      }
+      var q = p.next
+      p, next = node
+      node.next = q
+      return list
+    }
+  </script>
+  <script>
+    function parseCsv(csvStr) {
+
+    }
+  </script>
+  <script>
+    var ary = [1, 2, 3, 4, 5, 6, 7]
+    var sum = 0
+    for (var i = 0; i < ary.length; i++) {
+      sum += ary[i]
+    }
+    console.log(sum)
+    var max = -Infinity
+    for (var i = 0; i < ary.length; i++) {
+      max = ary[i] > max ? ary[i] : max
+    }
+    console.log(max)
+    //
+
+    function f(ary, reducer, initial) {
+      for (var i = 0; i < ary.length; i++) {
+        initial = reducer(initial, ary[i])
+      }
+      return initial
+
+    }
+    reduce([1, 2, 3, 4, 5], (sum, currcent) => {
+      return sum + currcent
+    }, 0)
+    reduce([1, 2, 3, 4, 5], (sum, currcent) => sum * currcent, 1)
+    reduce([1, 2, 3, 4, 5], (max, currcent) => max > currcent ? max : currcent, -Infinity)
+
+    function f(ary, reducer, initial) {
+      for (var i = 1; i < ary.length; i++) {
+        initial = reducer(initial, ary[i])
+      }
+      return initial
+  </script>
 
 </html>
-/

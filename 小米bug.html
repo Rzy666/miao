@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style type="text/less">
+       *{
+       margin: 0;
+       padding: 0;
+
+       }
+
+       html {
+       height: 100%;
+       body {
+       height: 100%;
+       margin: 0%;
+       font-size: 0px;
+       overflow-y: scroll;
+
+       a{
+       text-decoration: none;
+       }
+
+       ul {
+       list-style: none;
+       padding: 0px;
+       }
+       }
+       }
+        .daohang2{
+        width: 100%;
+        position: relative;
+        .nav-2{
+        width: 1226px;
+        height: 100px;
+        margin: auto;
+        font-size: 16px;
+        .mi-logo a {display: block;
+        width: 60px;
+        height:60px;
+        background:url(https://s02.mifile.cn/assets/static/image/logo-mi2.png);
+        background-size:100%;
+        margin-top:20px;
+        float:left;
+        }
+        .nav-ul {
+        display: flex;
+        font-size: 16px;
+        ul {
+        margin: 0px;
+        margin-left:180px;
+        &:hover li div ul {
+        height: 240px;
+        transition:.5s;
+        li {
+        height: 240px;
+        }
+        }
+
+        li {
+        display:inline-block;
+          a {
+            margin-left: 18px;
+          }
+        display: inline-block;
+        line-height: 80px;
+
+        line-height:100px;
+        xmargin-left: 18px;
+        &:hover {
+        .nav-menu {
+        z-index: 1000;
+        overflow: hidden;
+        }
+        }
+        .nav-menu {
+        position: absolute;
+        width: 100%;
+        top: 100%;
+        left: 0;
+        background-color: #fff;
+        ul {
+        width: 1226px;
+        margin: auto;
+        height: 0px;
+        display:flex;
+        li {
+        width: calc(100% / 6);
+        height: 0px;
+        transition: .5s;
+        margin: 0px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        a {
+        display: flex;
+        flex-direction:column;
+        justify-content:center;
+        img {
+        width: 160px;
+        height: 110px;
+        }
+        p {
+        margin:0px;
+        font-size: 10px;
+        padding: 0px;
+        line-height: 20px;
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        }
+        .nav-input {
+        position: absolute;
+        right: 150px;
+        top:26px;
+        display: flex;
+        margin-left: 30px;
+
+        input {
+        width: 223px;
+        height: 48px;
+        border:none;
+        outline:none;
+        box-sizing:border-box;
+        border-right:none;
+        border: 1px solid;
+        padding:10px;
+        position: relative;
+        &:focus {
+        border-color: red;
+        + button {
+        border-color: red;
+        }
+        ~ .input-so {
+        display: block;
+        }
+        }
+        }
+        input:nth-child(2) {
+        border: 1PX solid;
+        width: 48px;
+        border-left:0px;
+        &:hover {
+        background-color: red;
+        color: white;
+        border:none;
+        outline:none;
+        }
+        }
+        .input-so {
+        display: none;
+        position: absolute;
+        top: 100%;
+        border: 1px solid red;
+        width: 222px;
+        border-top: none;
+        padding: 0;
+        box-shadow: border-box;
+        ul {
+        margin:0px;
+        }
+
+
+        }
+        }
+        }
+        }
+
+  </style>
+</head>
+<body>
+          <div class="daohang2">
+            <nav class="nav-2">
+              <div class="mi-logo"><a href="#"></a></div>
+              <div class="nav-ul">
+                <ul>
+                  <li> <a href="#"> xiaomi手机</a>
+                    <div class="nav-menu">
+                      <ul>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li> <a href="#"> Redmi红米</a>
+                    <div class="nav-menu">
+                      <ul>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米12</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米10</p>
+                            <p>2499起</p>
+                          </a></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li> <a href="#"> 电视</a>
+                    <div class="nav-menu">
+                      <ul>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li> <a href="#"> 笔记本</a>
+                    <div class="nav-menu">
+                      <ul>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li> <a href="#"> 平板</a>
+                    <div class="nav-menu">
+                      <ul>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li><a href="#">
+                            <img
+                              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8cad77bda138fd94eadbc2ddfced7c56.png?thumb=1&w=200&h=138&f=webp&q=90"
+                              alt="">
+                            <p>小米11</p>
+                            <p>2499起</p>
+                          </a></li>
+                        <li></li>
+                        <li></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li> <a href="#"> 家电</a></li>
+                  <li> <a href="#"> 路由器</a></li>
+                  <li> <a href="#"> 服务</a></li>
+                  <li> <a href="#"> 社区</a></li>
+                </ul>
+              </div>
+              <div class="nav-input">
+                <input type="text">
+                <!-- <a class="search-btn iconfont" href="" style="block;width:48px;height:48px; border: 1px solid;">qwwwe</a> -->
+                <input type="submit" value="" class="search-btn iconfont;width:48px;height:48px;font-size:30px;">
+                <div class="input-so">
+                  <ul>
+                    <li>小米1</li>
+                    <li>小米2</li>
+                    <li>小米3</li>
+                    <li>小米4</li>
+                    <li>小米</li>
+                    <li>小米</li>
+                    <li>小米</li>
+                    <li>小米</li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </div>
+
+</body>
+<script src="../less.min.js"></script>
+</html>

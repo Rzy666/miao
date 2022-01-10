@@ -1,0 +1,131 @@
+<script>
+  function insetSort(ary) { //插入排序
+    //从第二个数开始比较根前面的一个比较，如果比前面的小就换位
+    for (var i = 1; i < ary.length; i++) {
+      var t = ary[i]
+      for (var j = i - 1; j >= 0; j--) {
+        if (ary[j] > t) {
+          ary[j + 1] = ary[j]
+        } else {
+          break
+        }
+      }
+      ary[j + 1] = t
+    }
+    return ary
+  }
+</script>
+
+<script>
+  //生成n个由n以内组成的随机数组
+  function randomAry(n) {
+    var ary = []
+    for (var i = 0; i < n; i++) {
+      ary.push(Math.floor(Math.random() * n))
+    }
+    return ary
+  }
+</script>
+<script>
+  //判断一个数组是否升序
+  function insetSort(ary) {
+    for (var i = 0; i < ary.length - 1; i++) {
+      if (ary[i] > ary[i + 1]) {
+        return false
+      }
+    }
+    return true
+  }
+</script>
+<script>
+  //冒泡排序
+  // 判断前面的数根最后面的的最大值的数 即到时第一项根倒数第二项
+  function bubbleSort(ary) {
+    for (var i = ary.length - 2; i >= 0; i--) {
+      for (var j = 0; j <= i; j++) {
+        if (ary[j] > ary[j + 1]) {
+          var t = ary[j]
+          ary[j] = ary[j + 1]
+          ary[j + 1] = t
+        }
+      }
+    }
+    return ary
+  }
+</script>
+<script>
+  //交换数组第i项根第j项的值
+  function swap(ary, i, j) {
+    var t = ary[i]
+    ary[i] = ary[j]
+    ary[j] = t
+  }
+</script>
+<script>
+  //选择排序
+  function select(ary) {
+    for (var i = 0; i < ary.length - 1; i++) {
+      var min = i //第一项设为值最小的下标
+      for (var j = i + 1; j < ary.length; j++) {
+        if (ary[j] < ary[min]) {
+          min = j //如果有数还小交换下标
+        }
+      }
+      var y = ary[i]
+      ary[i] = ary[min]
+      ary[min] = y //交换数字
+    }
+    return ary
+  }
+</script>
+<script>
+  //归并排序
+  function mergeSort(ary) {
+    if (ary.length < 2) { //如果数组只有一项则返回原数组
+      return ary
+    }
+    var mid = Math.floor(ary.length / 2) //把数组一份为二
+    var left = ary.slice(0, mid) //左边拍
+    var right = ary.slice(mid) //右边排
+    mergeSort(left)
+    mergeSort(right)
+    var i = 0 //左边指针
+    var j = 0 //右边指针
+    var k = 0 //合起来的指针
+    while (i < left.length && j < right.length) {
+      if (left[i] < right[j]) {
+        ary[k++] = left[i++] //如果第一项小于右边的第一项则新数组得到左边第一项
+      } else {
+        ary[k++] = right[j++]
+      }
+    }
+    while (j < right.length) { //如果出循环右边的长度还有没有循环的，ary就全部接右边的
+      ary[k++] = right[j++]
+    }
+    while (i < left.length) { //如果出循环左边的长度还有没有循环的，ary就全部接右边的
+      ary[k++] = left[i++]
+    }
+    return ary
+  }
+  debugger;
+  mergeSort([1, 2, 5, 3, 7, 9])
+</script>
+<script>
+  function insetSort(ary) {
+    for (var i = 1; i < ary.length; i++) {
+      var t = ary[i]
+      for (var j = i - 1; j > 0; j--) {
+        if (ary[j] > ary[i]) {
+          ary[j + 1] = ary[j]
+        } else {
+          break
+        }
+      }
+      ary[j + 1] = t
+    }
+    return ary
+  }
+</script>
+<script>
+ 
+</script>

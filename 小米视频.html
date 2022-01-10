@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/mi/mifont.css">
+ <style type="text/less">
+.xmiv {width: 1226px;
+        margin: auto;
+        box-shadow-bottom: 0 0 1px 0;
+        height: 58px;
+        margin-top: 50px;
+        line-height: 58px;
+        display:flex;
+        justify-content: space-between;
+  h2 {
+        font-weight: lighter;
+        margin: 0;
+        }
+
+.xmiv-2 {
+        margin-right: 25px;
+        a:hover {
+        color: red;
+  }
+ }
+}
+.video-list {
+  width: 1226px;
+  height: 285px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+   #v1:checked ~ .video-list-son .video-play:nth-child(1),
+   #v2:checked ~ .video-list-son .video-play:nth-child(2),
+   #v3:checked ~ .video-list-son .video-play:nth-child(3),
+   #v4:checked ~ .video-list-son .video-play:nth-child(4) {
+    visibility: visible;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  #v1:checked ~ .video-list-son .video-play:nth-child(1) .show label i,
+  #v2:checked ~ .video-list-son .video-play:nth-child(2) .show label i,
+  #v3:checked ~ .video-list-son .video-play:nth-child(3) .show label i,
+  #v4:checked ~ .video-list-son .video-play:nth-child(4) .show label i {
+       display: inline-block;
+       vertical-align: middle;
+       text-align: center;
+       float: right;
+       line-height: 30px;
+       font-size: 20px;
+       width: 30px;
+       margin: 0;
+       margin-top: 10px;
+       transition: none;
+  }
+  input {
+    display: none;
+  }
+  label {
+    width: 296px;
+    height: 100%;
+    position: relative;
+
+    h3 {
+      font-weight: 400;
+      text-align: center;
+    }
+    h4 {
+      font-weight: 300;
+      text-align: center;
+      color: #b0b0b0;
+    }
+    img {
+      width: 100%;
+      height: 177px;
+       &:hover ~ .play-button {
+       background-color: red;
+       }
+
+    }
+    .play .play-button {
+          position: absolute;
+          width: 36px;
+          height: 24px;
+          left: 20px;
+          bottom: 120px;
+          text-align: center;
+          border: 2px solid #fff;
+          border-radius: 12px;
+          background-color: rgba(0, 0, 0, 0.5);
+          i {
+            font-size: 30px;
+            line-height: 24px;
+            margin: 0;
+            color: #fff;
+
+          }
+    }
+  }
+  .video-list-son {
+    position: absolute;
+
+
+    .video-play {
+      visibility: hidden;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 2000;
+      .show {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 880px;
+            height: ;
+            transform: translate(-50%, -55%);
+
+        .close {
+            height: 50px;
+            line-height: 50px;
+
+            background-color: #fff;
+          .span {
+            font-size: 18px;
+            vertical-align: middle;
+            margin-left: 20px;
+          }
+          label i:hover {
+            background-color: red;
+            color: white;
+          }
+        }
+      }
+    }
+        .video {
+        width: 880px;
+          .video-1 {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+  }
+}
+   .last-main {
+   width: 100%;
+   height: 333px;
+   margin-top: 30px;
+   .shouhou {
+   font-size: 0;
+   width: 1226px;
+   height: 79px;
+   margin: auto;
+   background-color: #fff;
+   box-sizing: border-box;
+   border-bottom:1px solid #e0e0e0;;
+   ul {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+   li {display: inline-block;
+   width: calc(1226px / 5);
+   height: 79px;
+   font-size: 16px;
+   line-height:79px;
+   text-align: center;
+   position: relative;
+   }
+   .li-i::after {
+   content:"";
+   position: absolute;
+   right: 0;
+   top: 26px;
+   width: 1px;
+   height: 26px;
+   background-color: #ccc;
+   }
+   }
+   }
+   .pailie {
+   width:1226px;
+   margin: auto;
+   height: 227px;
+   background-color: #fff;
+   position: relative;
+
+   .pailie-1{
+   width: calc((1226px / 5) * 4);
+   height:100%;
+   margin: 0px;
+   dl {
+   list-style: none;
+   margin: 0px;
+   padding: 0px;
+   width: calc(((1226px / 5) * 4) / 6);
+   height: 100%;
+   float: left;
+   &::after {
+   content: "";
+   position: absolute;
+   right: 244px;
+   top: 50px;
+   width: 1px;
+   height: 118px;
+   background-color: #ccc;
+   }
+
+   dt {
+   margin-top: 40px;
+   margin-bottom: 25px;
+   font-size: 14px;
+   }
+
+   dd {
+   margin: 0;
+   margin-bottom: 10px;
+   font-size: 12px;
+   }
+   }
+
+   }
+   .pailie-2{
+   width: clac(1226px / 5);
+   height: 100%;
+   float: right;
+   position: absolute;
+   top: 30px;
+   right: 30px;
+   text-align: center;
+   .phone {
+   color: red;
+   font-size: 22px;
+   margin:10px 0;
+   }
+   .time {
+   color: #616161;
+   font-size: 12px;
+   padding: 0 0 5px;
+   margin: 0px;
+   }
+   .follow {
+   a {
+   width: 24px;
+   height: 24px;
+   display: inline-block;
+   vertical-align: middle;
+   margin-left: 6px;
+   margin-top: -3px;
+   }
+
+   a:nth-child(1) {
+   background: url(https://cdn.cnbj1.fds.api.mi-img.com/staticsfile/global/wb.png);
+   background-size: cover;
+   }
+   a:nth-child(2) {
+   background: url( https://cdn.cnbj1.fds.api.mi-img.com/staticsfile/global/wx.png);
+   background-size: cover;
+   }
+   }
+   }
+   }
+   }
+  </style>
+</head>
+<body>
+  <div>
+
+    <div class="xmiv">
+      <h2>视频</h2>
+      <div class="xmiv-2"><a href="">查看全部 <i class="iconfont iconfont-arrow-right-big"></i> </a></div>
+    </div>
+    <div class="video-list">
+   <input type="checkbox" id="v1">
+   <input type="checkbox" id="v2">
+   <input type="checkbox" id="v3">
+   <input type="checkbox" id="v4">
+   <label for="v1">
+     <div class="play">
+       <img
+         src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/e74c4ff741bcdfc5b28a48a43e4edc6d.jpg?thumb=1&w=370&h=225&f=webp&q=90"
+         alt="">
+       <div class="play-button">
+         <i class="iconfont-play"></i>
+       </div>
+     </div>
+     <h3>2021春季发布会第一场</h3>
+   </label>
+   <label for="v2">
+   <div class="play">
+     <img
+       src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/101b19aca4bb489bcef0f503e44ec866.jpg?thumb=1&w=296&h=180&f=webp&q=90"
+       alt="">
+     <div class="play-button">
+       <i class="iconfont-play"></i>
+     </div>
+   </div>
+   <h3>Redmi 10X系列发布会</h3>
+   <h4>Redmi 10X系列发布会</h4>
+   </label>
+   <label for="v3">
+     <div class="play">
+    <img
+      src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/96563e75833ba4563bd469dd28203b09.jpg?thumb=1&w=296&h=180&f=webp&q=90"
+      alt="">
+    <div class="play-button">
+      <i class="iconfont-play"></i>
+    </div>
+    <h3>小米10 青春版 发布会</h3></div>
+   </label>
+   <label for="v4">
+     <div class="play">
+    <img
+      src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/2fd26bb99b723337a2f8eaba84f7d5bb.jpg?thumb=1&w=296&h=180&f=webp&q=90"
+      alt="">
+    <div class="play-button">
+      <i class="iconfont-play"></i>
+    </div>
+    <h3>小米10 8K手机拍大片</h3>
+    </div>
+   </label>
+   <div class="video-list-son">
+    <div class="video-play">
+      <div class="show">
+    <div class="close">
+      <span>2021春季新品发布会第一场</span>
+      <label for="v1"><i style="border-radius:50%" data-v-54b15c30="" data-v-f6440f00=""
+          class="mi-dialog__close iconfont"></i></label>
+    </div>
+    <div class="video">
+      <video controls muted class="video-1"
+        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/812358b69886e576c66a01f1f00affe9.mp4"
+        type="video/mp4"></video>
+    </div>
+    </div>
+    </div>
+    <div class="video-play">
+      <div class="show">
+        <div class="close">
+          <span>Redmi 10X系列发布会</span>
+          <label for="v2"><i style="border-radius:50%" data-v-54b15c30="" data-v-f6440f00=""
+              class="mi-dialog__close iconfont"></i></label>
+        </div>
+        <div class="video">
+          <video controls muted class="video-1"
+             src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/11c70c96529b6e6938567ec1aa0910e0.mp4"
+               type="video/mp4"></video>
+           </div>>
+      </div>
+    </div>
+     <div class="video-play">
+       <div class="show">
+         <div class="close">
+           <span>小米10 青春版 发布会</span>
+           <label for="v3"><i style="border-radius:50%" data-v-54b15c30="" data-v-f6440f00=""
+               class="mi-dialog__close iconfont"></i></label>
+         </div>
+         <div class="video">
+           <video controls muted class="video-1"
+           src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7cdabcaa763392c86b944eaf4e68d6a3.mp4"
+             type="video/mp4"></video>
+         </div>
+       </div>
+     </div>
+     <div class="video-play">
+       <div class="show">
+         <div class="close">
+           <span>小米10 8K手机拍大片</span>
+           <label for="v4"><i style="border-radius:50%" data-v-54b15c30="" data-v-f6440f00=""
+               class="mi-dialog__close iconfont"></i></label>
+         </div>
+         <div class="video">
+           <video controls muted class="video-1"
+             src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/e25d81c4922fca5ebe51877717ef9b76.mp4"
+             type="video/mp4"></video>
+         </div>
+       </div>
+     </div>
+  </div>
+</div>
+<div class="last-main">
+  <div class="shouhou">
+    <ul>
+      <a href="">
+        <li class="li-i"> <i class="iconfont-tool"></i> 预约维修服务</li>
+      </a>
+      <a href="">
+        <li class="li-i"> <i class="iconfont-circle-7"></i> 7天无理由退货</li>
+      </a>
+      <a href="">
+        <li class="li-i"> <i class="iconfont-circle-15"></i> 15天免费换货</li>
+      </a>
+      <a href="">
+        <li class="li-i"> <i class="iconfont-gift"></i> 满69包邮</li>
+      </a>
+      <a href="">
+        <li> <i class="iconfont-location"></i> 520余家售后网点</li>
+      </a>
+    </ul>
+  </div>
+  <div class="pailie">
+    <div class="pailie-1">
+      <dl>
+        <dt>帮助中心</dt>
+        <dd> <a href="">账户管理</a> </dd>
+        <dd> <a href="">购物指南</a> </dd>
+        <dd> <a href="">订单操作</a> </dd>
+      </dl>
+      <dl>
+        <dt>服务支持</dt>
+        <dd> <a href="">售后政策</a> </dd>
+        <dd> <a href="">自助服务</a> </dd>
+        <dd> <a href="">相关下载</a> </dd>
+      </dl>
+      <dl>
+        <dt>线下门店</dt>
+        <dd> <a href="">小米之家</a> </dd>
+        <dd> <a href="">服务网点</a> </dd>
+        <dd> <a href="">授权体验店</a> /专区</dd>
+      </dl>
+      <dl>
+        <dt>关于小米</dt>
+        <dd> <a href="">了解小米</a> </dd>
+        <dd> <a href="">加入小米</a> </dd>
+        <dd> <a href="">投资者关系</a> </dd>
+        <dd> <a href="">企业社会责任</a> </dd>
+        <dd> <a href="">廉洁举报</a> </dd>
+      </dl>
+      <dl>
+        <dt>关注我们</dt>
+        <dd> <a href="">新浪微博</a> </dd>
+        <dd> <a href="">官方微信</a> </dd>
+        <dd> <a href=""></a>联系我们 </dd>
+        <dd> <a href=""></a>公益基金会 </dd>
+      </dl>
+      <dl>
+        <dt>特色服务</dt>
+        <dd> <a href="">F码通道</a> </dd>
+        <dd> <a href=""> 礼物码</a> </dd>
+        <dd> <a href=""> 防伪查询</a> </dd>
+      </dl>
+    </div>
+    <div class="pailie-2">
+      <p class="phone">400-100-5678</p>
+      <p class="time">8:00-18:00（仅收市话费）</p>
+      <a href="#" class="btn btn-line-primary btn-small J_contactBtn">
+        <em class="iconfont-message2"></em> 人工客服</a>
+      <p class="follow">关注小米：
+        <a href="https://weibo.com/xiaomishangcheng" target="_blank" class="wb"></a>
+        <a href="javascript:void(0);" id="J_followWx" class="wx"></a>
+      </p>
+    </div>
+  </div>
+</body>
+<script src="../less.min.js"></script>
+</html>
