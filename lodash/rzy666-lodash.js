@@ -48,7 +48,7 @@ var rzy666 = {
    if (n >= len) {
      return result
    }
-   for (var i = 0; i <= len - (n + 1); i++) {
+   for (var i = 0; i <len - n; i++) {
      result.push(array[i])
    }
    return result
