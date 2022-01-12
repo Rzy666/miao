@@ -116,13 +116,13 @@ var rzy666 = {
     }
     return res
   },
-  fill: function (array, value, [start = 0], [end = array.length]) {
+  fill: function (array, value, start = 0, end = array.length) {
     for (var i = start; i < end; i++){
       array[i] == value
     }
     return array
   },
-  join: function (array, [separator = ',']) {
+  join: function (array, separator = ',') {
     var str = ''
     for (var i = 0; i < array.length; i++){
       if (i == array.length - 1) {
@@ -145,5 +145,14 @@ var rzy666 = {
     }
     return -1
   },
-
+  pull :function (array, values) {
+    var res = []
+    for (var i = 0; i < array.length; i++){
+      if (array[i] !== values) {
+        res.push(array[i])
+      }
+    }
+    return res
+},
 }
+
