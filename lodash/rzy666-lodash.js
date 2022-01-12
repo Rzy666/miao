@@ -118,7 +118,7 @@ var rzy666 = {
   },
   fill: function (array, value, start = 0, end = array.length) {
     for (var i = start; i < end; i++){
-      array[i] == value
+      array[i] = value
     }
     return array
   },
@@ -167,6 +167,50 @@ var rzy666 = {
       res.push(array[i])
     }
     return res
+  },
+  take: function (array, n = 1) {
+    var res = []
+    if (array.length <= n) {
+      return array
+    }
+    for (var i = 0; i < n; i++){
+    res.push(array[i])
+    }
+    return res
+  },
+  takeRight: function (array,n = 1) {
+    if (n > array.length) {
+      return array
+    }
+    var res = []
+    for (var i = array.length - 1; i >= array.length - n; i--){
+      res.unshift(array[i])
+    }
+    return res
+  },
+  uniq: function (array) {
+    var map = {}
+    var res = []
+    for (var i = 0; i < array.length; i++){
+      if (array[i] in map) {
+       map[array[i]]++
+      } else {
+       map[array[i]] = 1
+       res.push(array[i])
+      }
+    }
+    return res
+  },
+  without: function (array, ...val) {
+    var res = []
+    array.forEach(item => {//遍历出数组的每一项
+      if (!val.includes(item)){ //item的值不在val中
+        res.push(item)
+      }
+    })
+    return res
+  },
   }
-}
+
+
 
