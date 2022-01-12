@@ -153,6 +153,20 @@ var rzy666 = {
       }
     }
     return res
-},
+  },
+  reverse: function (array) {
+    var res  =  []
+    for (var i = 0; i < array.length; i++){
+      res.unshift(array[i])
+    }
+    return res
+  },
+  tail: function (array) {
+    var res  = []
+    for (var i = 1; i < array.length; i++){
+      res.push(array[i])
+    }
+    return res
+  }
 }
 
