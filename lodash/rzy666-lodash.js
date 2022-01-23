@@ -253,7 +253,7 @@ var rzy666 = function () {
     }
 
     function reduce(collection, iteratee = _.identity, accumulator) {
-      let result = accumulator ? ? 0
+      let result = accumulator ?? 0
       for (let key in collection) {
         let valuer = collection[key]
         result = iteratee(result, valuer, key)
