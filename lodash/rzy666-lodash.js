@@ -339,14 +339,15 @@ var rzy666 = function () {
 
 
   return {
-  
+
     chunk, compact, difference, drop, dropRight, flatten, flattenDeep, flattenDepth,
     head, indexOf, initial, fill, join, last, lastIndexOf, nth, pull,
     reverse, tail, take, takeRight, uniq, without, zip, reduce, size, isBoolean, isEmpty, toArray, max, sum, isNil, isNull, isNumber,
     repeat, concat
 
   }
-}()
+}
+rzy666()
 
 
 
