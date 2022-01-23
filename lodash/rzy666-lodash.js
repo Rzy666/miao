@@ -119,20 +119,20 @@ var rzy666 = function() {
     }
     return -1
   }
-  initial: function (array) {
+  initial: function initial(array) {
     var res = []
     for (var i = 0; i < array.length - 1; i++){
       res.push(array[i])
     }
     return res
   }
-  fill: function (array, value, start = 0, end = array.length) {
+  fill: function fill(array, value, start = 0, end = array.length) {
     for (var i = start; i < end; i++){
       array[i] = value
     }
     return array
   }
-  join: function (array, separator = ',') {
+  join: function join(array, separator = ',') {
     var str = ''
     for (var i = 0; i < array.length; i++){
       if (i == array.length - 1) {
@@ -143,11 +143,11 @@ var rzy666 = function() {
     }
     return str
   }
-  last: function (array) {
+  last: function last(array) {
     var len = array.length - 1
     return array[len ]
   }
-  lastIndexOf: function (array, value, fromIndex = array.length - 1) {
+  lastIndexOf: function lastIndexOf(array, value, fromIndex = array.length - 1) {
     for (var i = fromIndex; i >= 0; i--){
       if (array[i] == value) {
         return i
@@ -155,7 +155,7 @@ var rzy666 = function() {
     }
     return -1
   }
-  pull :function (array, values) {
+  pull :function pull(array, values) {
     var res = []
     for (var i = 0; i < array.length; i++){
       if (array[i] !== values) {
@@ -164,21 +164,21 @@ var rzy666 = function() {
     }
     return res
   }
-  reverse: function (array) {
+  reverse: function reverse(array) {
     var res  =  []
     for (var i = 0; i < array.length; i++){
       res.unshift(array[i])
     }
     return res
   }
-  tail: function (array) {
+  tail: function tail(array) {
     var res  = []
     for (var i = 1; i < array.length; i++){
       res.push(array[i])
     }
     return res
   }
-  take: function (array, n = 1) {
+  take: function take(array, n = 1) {
     var res = []
     if (array.length <= n) {
       return array
@@ -188,7 +188,7 @@ var rzy666 = function() {
     }
     return res
   }
-  takeRight: function (array,n = 1) {
+  takeRight: function takeRight(array,n = 1) {
     if (n > array.length) {
       return array
     }
@@ -198,7 +198,7 @@ var rzy666 = function() {
     }
     return res
   }
-  uniq: function (array) {
+  uniq: function uniq(array) {//数组去重、
     var map = {}
     var res = []
     for (var i = 0; i < array.length; i++){
@@ -212,7 +212,7 @@ var rzy666 = function() {
     return res
   }
   uniq : (ary) => Array.from( new Set(ary)),
-  without: function (array, ...val) {
+  without: function without(array, ...val) {
     var res = []
     array.forEach(item => {//遍历出数组的每一项
       if (!val.includes(item)){ //item的值不在val中
@@ -221,7 +221,7 @@ var rzy666 = function() {
     })
     return res
   }
-  zip: function () {
+  zip: function zip() {
     let res = []
     for (var i = 0; i < arguments[0].length; i++){
       res[i] = []
@@ -231,7 +231,7 @@ var rzy666 = function() {
     }
     return res
   }
-  reduce: function (collection, iteratee = _.identity, accumulator) {
+  reduce: function reduce(collection, iteratee = _.identity, accumulator) {
     let result = accumulator ?? 0
     for (let key in collection) {
       let valuer = collection[key]
@@ -239,31 +239,31 @@ var rzy666 = function() {
     }
     return result
   }
-  size: function (collection) {
+  size: function size(collection) {
     let sum = 0
     for (let key in collection) {
       sum++
     }
     return sum
   }
-  isBoolean: function (values) {
+  isBoolean: function isBoolean(values) {
     let val = typeof(values)
     if (values === null) {
       return false
     }
     return val == "boolean"
   }
-  isEmpty: function (value) {
+  isEmpty: function isEmpty(value) {
 
   }
-  toArray: function (value) {
+  toArray: function toArray(value) {
     let res = []
     for (let key in value) {
       res.push(value[key])
     }
     return  res
   }
-  max: function (array) {
+  max: function max(array) {
     var max = array[0]
     if (max == null) {
       return undefined
@@ -275,7 +275,7 @@ var rzy666 = function() {
     }
      return max
   }
-  sum: function(array) {
+  sum: function sum(array) {
   return array.reduce((sum , val) => sum += val)
   }
   isNil: function (value) {
@@ -326,9 +326,7 @@ var rzy666 = function() {
     }
     return array
   }
-  union: function (...array) {
-    var
-  }
+
 
   return {
     chunk, compact, difference, drop, dropRight, flatten, flattenDeep, flattenDepth,
