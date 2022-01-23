@@ -333,9 +333,7 @@ var rzy666 = function () {
       return array[array.length + n]
     }
   }
-  function pullall(array, values) {
 
-  }
 
 
   return {
@@ -346,8 +344,7 @@ var rzy666 = function () {
     repeat, concat
 
   }
-}
-rzy666()
+}()
 
 
 
