@@ -351,7 +351,7 @@ var rzy666 = function () {
       for (var i in ary) {
         var p = ary[i]
         if (Array.isArray(p)) {
-          for (let j in p {
+          for (let j in p) {
               array.push(p[j])
             }
           }
