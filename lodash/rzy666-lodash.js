@@ -230,7 +230,7 @@ var rzy666 = function () {
       }
       return res
     }
-    uniq: (ary) => Array.from(new Set(ary)),
+    uniq: (ary) => Array.from(new Set(ary))
     function without(array, ...val) {
         var res = []
         array.forEach(item => { //遍历出数组的每一项
@@ -383,7 +383,6 @@ var rzy666 = function () {
 
 
       return {
-
         chunk: chunk,
         compact: compact,
         difference: difference,
@@ -401,7 +400,6 @@ var rzy666 = function () {
         lastIndexOf:lastIndexOf,
         nth:nth,
         pull:pull,
-
         reverse : reverse,
         tail : tail,
         take : take,
