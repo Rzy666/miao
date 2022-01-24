@@ -379,9 +379,140 @@ var rzy666 = function () {
       }
     }
   }
+  function isMatch(object, source) {
+    for (var key in source) {
+      if (source[key] && source[key] == 'object') {
+        if (!isMatch(object[key], source[key])) {
+          return false
+        }
+      } else {
+        if (object[key] !== source[key]) {
+          return false
+        }
+      }
+    }
+    return true
+  }
+  function property(name) {
+    return function (obj) {
+      return function (obj) {
+        return obj[name]
+      }
+    }
+  }
+  function identity(val) {
+    return val
+  }
+  function intersectionBy(array1, array2, predicate = _.identity) {
+    var result = []
+    var set = new Set(array2.map(predicate))
+    for (var i = 0; i < array1.length; i++){
+      if (set.has(predicate(array1[i]))) {
+        result.push(array1[i])
+      }
+    }
+    return result
+  }
+  function intersection(array1, array2) {
+      return intersectionBy(array1, array2)
+  }
+  function intersectionWith(array1, array2, comparor) {
+    var result = []
+    for (var i = 0; i < array1.length; i++){
+      for (var j = 0; j < array2.length; j++){
+        if (comparor(array1[i], array2[j])) {
+          result.push(array1[i])
+        }
+      }
+    }
+    return result
+  }
+  function filter(ary, predicate) {
+    var result = []
+    for (var i = 0; i < ary.length; i++){
+      if (predicate(ary[i]), i) {
+        result.push(ary[i])
+      }
+    }
+    return result
+  }
+  function matches(target) {
+    return function (obj) {
+      for (var key in target) {
+        if (obj[key] !== target[key]) {
+          return false
+        }
+      }
+      return true
+    }
+  }
+  function iteratee(predicate) {
+    if (typeof predicate === 'string') {
+      predicate = property(predicate)
+    }
+    if (Array.isArray(predicate)) {
+      predicate = mactesProperty(...predicate )
+    }
+    if (predicate && typeof predicate === 'object') {
+      predicate = matches(predicate)
+    }
+    return predicate
+  }
+  function transformIteratee(f) {
+    return function (...args) {
+      var last = args.pop()
+      var predicate = iteratee(last)
+      return f(...args ,predicate)
+    }
+  }
+  function findKey(obj, predicate) {
+    predicate = iteratee(predicate)
 
-
-
+  }
+  function matchesProperty(path, val) {
+    return function (obj) {
+      return isEqual(get(obj, path), val)
+    }
+  }
+  function bind(func, thisArg, ...fixedArgs) {
+    return function (...args) {
+      var bindedArgs = fixedArgs.slice()
+      var i = 0
+      for (var j = 0; j < bindedArgs.length; j++){
+        if (bindedArgs[j] === _) {
+          bindedArgs[j] =args[i++]
+        }
+      }
+      bindedArgs.push(...args.slice(i))
+      return func.apply(thisArg ,bindedArgs)
+    }
+  }
+  function ary(func, n = func.length) {
+    return function (...args) {
+      return func.call(this , ...args.slice( 0, n))
+    }
+  }
+  function unary(func) {
+    return function (...args) {
+      return func.call(this ,...args.slice( 0 ,1))
+    }
+  }
+  function spread(f) {
+    return function (ary) {
+      return f.apply(null , ary)
+    }
+  }
+  function before(n, func) {
+    var c = 0
+    var result
+    return function (...args) {
+      if (c < n) {
+        result = func(...args)
+        c++
+      }
+    }
+    return result
+  }
       return {
         chunk: chunk,
         compact: compact,
@@ -417,9 +548,26 @@ var rzy666 = function () {
         isNil : isNil,
         isNull : isNull,
         isNumber : isNumber,
-
         repeat : repeat,
-        concat : concat
+        concat : concat ,
+        sortedIndex: sortedIndex,
+        isMatch: isMatch,
+        property: property,
+        identity: identity,
+        intersectionBy: intersectionBy,
+        intersection: intersection,
+        intersectionWith: intersectionWith,
+        filter: filter,
+        matches: matches,
+        iteratee: iteratee,
+        transformIteratee: transformIteratee,
+        findKey: findKey,
+        matchesProperty: matchesProperty,
+        bind: bind,
+        ary: ary,
+        unary: unary,
+        spread: spread,
+        before : before
 
       }
     }()
