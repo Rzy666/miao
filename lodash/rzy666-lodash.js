@@ -231,7 +231,7 @@ var rzy666 = function () {
       return res
     }
     uniq: (ary) => Array.from(new Set(ary)),
-      function without(array, ...val) {
+    function without(array, ...val) {
         var res = []
         array.forEach(item => { //遍历出数组的每一项
           if (!val.includes(item)) { //item的值不在val中
@@ -252,7 +252,7 @@ var rzy666 = function () {
       return res
     }
 
-    function reduce(collection, iteratee = _.identity, accumulator) {
+    function reduce(collection, iteratee , accumulator) {
       let result = accumulator ?? 0
       for (let key in collection) {
         let valuer = collection[key]
@@ -314,7 +314,7 @@ var rzy666 = function () {
       return value == null
     }
 
-    function isNUmber(value) {
+    function isNumber(value) {
       return typeof (value) === 'number'
     }
 
@@ -368,7 +368,17 @@ var rzy666 = function () {
         } else {
           return array[array.length + n]
         }
+  }
+  function sortedIndex(array, value) {
+    if (value <= array[0]) {
+      return 0
+    }
+    for (var i = 0; i < array.length; i++){
+      if (array[i] < value && value <= array[i + 1]) {
+        return i + 1
       }
+    }
+  }
 
 
 
