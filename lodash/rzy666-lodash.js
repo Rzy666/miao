@@ -451,7 +451,7 @@ var rzy666 = function () {
       predicate = property(predicate)
     }
     if (Array.isArray(predicate)) {
-      predicate = mactesProperty(...predicate )
+      predicate = matchesProperty(...predicate)
     }
     if (predicate && typeof predicate === 'object') {
       predicate = matches(predicate)
@@ -512,6 +512,20 @@ var rzy666 = function () {
       }
     }
     return result
+  }
+  function curry(f, n = f.length) { //绑定
+      return function (...args) {
+        if (args.length < n) {
+          return curry(f.bind(null, ...args), n - args.length)
+        } else {
+          return f(...args)
+        }
+      }
+  }
+  function findIndex(array, predicate, fromIndex = 0) {
+    for ( var i = fromIndex; i < array.length; i++) {
+
+    }
   }
       return {
         chunk: chunk,
