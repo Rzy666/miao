@@ -169,15 +169,20 @@ var rzy666 = function () {
       return -1
     }
 
-    function pull(array, values) {
-      var res = []
-      for (var i = 0; i < array.length; i++) {
-        if (array[i] !== values) {
-          res.push(array[i])
+    function pull(array, ...values) {
+      for (var i = 0; i < array.length; i++){
+        var item = array[i]
+        for (var key in values) {
+          var k = values[key]
+          if (k == item) {
+            array.splice(i, 1)
+            i--
+          }
         }
       }
-      return res
-    }
+      return array
+      }
+
 
     function reverse(array) {
       var res = []
@@ -522,10 +527,93 @@ var rzy666 = function () {
         }
       }
   }
-  function findIndex(array, predicate, fromIndex = 0) {
-    for ( var i = fromIndex; i < array.length; i++) {
-
+  function fromPairs(pairs) {
+    var res = {}
+    for (var key in pairs) {
+      res[key[0]] =key[1]
     }
+    return res
+  }
+  function pullAll(array, values) {
+    return pull( array , ...values)
+  }
+  function pullAllWith(array, ...values, comparator){
+    for (var i = 0; i < array.length; i++){
+      var item = array[i]
+      for (var j in values) {
+        if (comparator(item, values[j])) {
+          array.splice(i, 1)
+          i--
+        }
+      }
+    }
+    return array
+  }
+  function sortedUniq(array) {
+    var res = []
+    for (var i = 0; i < array.length; i++){
+      if (!res.includes(array[i])) {
+        res.push(array[i])
+      }
+    }
+    return res
+  }
+   function sortedUniqBy(array, iteratee) {
+     var res = []
+     for (var i = 0; i < array.length; i++) {
+       if (!res.includes(iteratee(array[i]))) {
+         res.push(array[i])
+       }
+     }
+     return res
+  }
+  function takeRightWhile(array, predicate) {
+    var pre = iteratee(predicate)
+    var res = []
+    for (var i = array.length - 1; i >= 0; i--){
+      if (pre(array[i])) {
+        res.unshift(array[i])
+      } else {
+        break
+      }
+    }
+    return res
+  }
+  function takeWhile(array, predicate) {
+    var pre = iteratee(predicate)
+    var res = []
+    for (var i = 0; i < array.length; i++){
+      if (pre(array[i])) {
+        res.push(array[i])
+      } else {
+        break
+      }
+    }
+    return res
+  }
+  function isEqual(value , other) {
+    if (value === other) return true //基础类型
+    if(value !== value && other !== other) return true //两边都是NaN
+    if (Array.isArray(value) && Array.isArray(other)) {
+      for (var i = 0; i < value.length; i++){
+        if( !isEqual(value[i] ,other[i])) return false
+      }
+      return true
+    } // 两边都不是数组，都不是null， 都是对象的情况
+    else if (!Array.isArray(value) && !Array.isArray(other) && value && other && typeof value == 'object'
+      && typeof other == 'object') {
+      for (let key in value) {
+          if(other[key] == undefined) return false
+      }
+      for (let key in other) {
+        if(value[key] == undefined) return false
+      }
+      for (let key in value) {
+        if(!isEqual(value[key] , other[key])) return false
+      }
+      return true
+    }
+    return false
   }
       return {
         chunk: chunk,
@@ -581,7 +669,15 @@ var rzy666 = function () {
         ary: ary,
         unary: unary,
         spread: spread,
-        before : before
+        before: before,
+        fromPairs: fromPairs,
+        pullAll: pullAll,
+        pullAllWith: pullAllWith,
+        sortedUniq: sortedUniq,
+        sortedUniqBy: sortedUniqBy,
+        takeRightWhile: takeRightWhile,
+        takeWhile: takeWhile,
+        isEqual : isEqual
 
       }
     }()
