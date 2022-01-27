@@ -537,7 +537,7 @@ var rzy666 = function () {
   function pullAll(array, values) {
     return pull( array , ...values)
   }
-  function pullAllWith(array, ...values, comparator){
+  function pullAllWith(array, values, comparator){
     for (var i = 0; i < array.length; i++){
       var item = array[i]
       for (var j in values) {
@@ -614,6 +614,17 @@ var rzy666 = function () {
       return true
     }
     return false
+  }
+  function union(...array) {
+    var res = []
+    for (let item of arguments) {//arguments 相当于吧传的参数作为一个数组
+      for (let i of item) {
+        if (!res.includes(i)) {
+          res.push(i)
+        }
+      }
+    }
+    return res
   }
       return {
         chunk: chunk,
