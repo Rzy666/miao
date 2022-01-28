@@ -1,0 +1,962 @@
+<script>
+  function mapValues(obj, mapper) {
+    var result = []
+    for (var key in obj) {
+      result[key] = mapper(obj[key], key)
+    }
+    return result
+  }
+
+  function mapValues(obj, mapper) {
+    var result = {}
+    for (var key in obj) {
+      result[key] = mapper(obj[key], key)
+    }
+    return result
+  }
+</script>
+<script>
+  function every(ary, predicare) {
+    for (var i = 0; i < ary.length; i++) {
+      if (!predicare(ary[i])) {
+        return false
+      }
+    }
+    return true
+  }
+  //反函数
+  function negate(f) {
+    return function (...ages) {
+      return !f(...ages)
+    }
+  }
+</script>
+<script>
+  var flatten = function (ary) {
+    return ary.reduce((result, item) => {
+      return result.concat(item)
+    }, [])
+  }
+</script>
+<script>
+  //数组转二叉树链表
+  function aryTotree(ary, rootpos = 0) {
+    if (array[rootpos] == null) {
+      return null
+    }
+    var rootnode = createTreeNode(ary[rootpos])
+    var leftPos = rootpos * 2 + 1
+    var rightPos = rootpos * 2 + 2
+    var lefttree = aryTotree(ary, leftPos)
+    var righttree = aryTotree(ary, rightPos)
+    rootnode.left = lefttree
+    rootnode.right = righttree
+    return rootnode
+  }
+</script>
+<script>
+  //链表转数组
+  function treeToAry(tree, idex = 0, ary = []) {
+    if (tree) {
+      ary[idex] = tree.val //将根节点放进盖房的位置
+      treeToAry(tree.left, idex * 2 + 1, ary)
+      treeToAry(tree.right, idex * 2 + 2, ary)
+    }
+    return ary
+  }
+</script>
+<script>
+  //由数组转为数据结构
+  function condensedAryToTree(ary) {
+    var nodes = [] //节点数组专门用来添加子元素
+    if (ary.length == 0) {
+      return null
+    }
+    var root = createTreeNode(ary[0]) //数组第一个元素作为树根
+    nodes.push(root)
+    for (var i = 1; i < ary.length; i++) {
+      var current = nodes.shift
+      var node
+      if (ary[i] == null) {
+        node = null
+      } else {
+        node = createTreeNode(ary[i])
+        nodes.push(node)
+      }
+      current.left = node
+      i++
+      if (ary[i] == null) {
+        node = null
+      } else {
+        node = createTreeNode(ary[i])
+        nodes.push(node)
+      }
+      current.right = node
+    }
+    return root
+  }
+</script>
+<script>
+  function treeToCondensedAry(root) {
+    if (root == null) {
+      return []
+    }
+    var nodes = [root]
+    var result = []
+    while (nodes.length) {
+      var current = nodes.shift()
+      if (current) {
+        result.push(current.val) //如果存在push进结果数组
+        nodes.push(current.left, current.right)
+      } else {
+        result.push(null)
+      }
+    }
+    return result
+  }
+</script>
+<script>
+  function preOrderTraverse(root)
+</script>
+|充电大喵| 2022/1/13 17:35:08
+https://leetcode.com/problems/same-tree/
+https://leetcode.com/problems/maximum-depth-of-binary-tree
+https://leetcode.com/problems/minimum-depth-of-binary-tree
+https://leetcode.com/problems/invert-binary-tree
+https://leetcode.com/problems/binary-tree-level-order-traversal
+https://leetcode.com/problems/binary-tree-level-order-traversal-ii
+https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal
+https://leetcode.com/problems/construct-string-from-binary-tree
+https://leetcode.com/problems/merge-two-binary-trees
+
+|充电大喵| 11:05:35
+https://leetcode.com/problems/binary-tree-inorder-traversal
+https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal
+https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal
+https://leetcode.com/problems/flatten-binary-tree-to-linked-list
+https://leetcode.com/problems/binary-tree-preorder-traversal
+https://leetcode.com/problems/serialize-and-deserialize-binary-tree
+https://leetcode.com/problems/sum-of-left-leaves
+https://leetcode.com/problems/print-binary-tree
+https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal
+
+<script>
+  function insertIntoBST(root, val) {
+
+    if (!root) {
+      var node = createTreeNode(val)
+      return node
+    } else {
+      if (val < root.val) {
+        root.left = insertIntoBST(root.left, val)
+      } else {
+        root.right = insertIntoBST(root.right, val)
+      }
+      return root
+    }
+  }
+</script>
+<script>
+  function createTreeNode(val) {
+    return {
+      val: val,
+      left: null,
+      right: null,
+    }
+    node._proto_ = null
+    return node
+  }
+</script>
+<script>
+  function treeToCondensedAry(root) {
+    if (root == null) {
+      return []
+    }
+    var nodes = [root]
+    var result = []
+    while (nodes.length) {
+      var current = nodes.shift()
+      if (current) {
+        result.push(current.val)
+        nodes.push(current.left, current.right)
+      } else {
+        result.push(null)
+      }
+    }
+    return result
+  }
+
+  function preOrderTraverse(root, action) {
+    if (root) {
+      action(root.val)
+      preOrderTraverse(root.left, action)
+      preOrderTraverse(root.right, action)
+    }
+  }
+  var sum = 0
+  preOrderTraverse(root, val => {
+    sum += val
+  })
+</script>
+<script>
+  function insertIntoBST(root, val) {
+
+    if ((!root)) {
+      var node = createTreeNode(val)
+      return node
+    } else {
+      if (val < root.val) {
+        root.left = insertIntoBST(root.left, val)
+      } else {
+        root.right = insertIntoBST(root.right, val)
+      }
+      return root
+    }
+  }
+
+  function bstSort(ary) {
+    var bst = null //创见一个新的排序二叉树
+    for (var i = 0; i < ary.length; i++) {
+      bst = insertIntoBST(bst, ary[0]) //二叉树先排序
+    }
+    i = 0
+    inOrderTraverse(bst, val => {
+      ary[i++] = val //中序遍历得到数组
+    })
+    return ary
+  }
+</script>
+<script>
+  function fun(n, o) {
+    console.log(o)
+    return {
+      fun: function (m) {
+        return fun(m, n);
+      }
+    };
+  }
+
+  var a = fun(0);
+  a.fun(1);
+  a.fun(2);
+  a.fun(3); //undefined,?,?,?
+  var b = fun(0).fun(1).fun(2).fun(3); //undefined,?,?,?
+  var c = fun(0).fun(1);
+  c.fun(2);
+  c.fun(3); //undefined,?,?,?
+</script>
+<script>
+  Textcell.prototyoe.draw = function (width, height) {
+    var result = []
+    for (var i = 0; i < height; i++) {
+      var line = this.line || ''
+      while (line.length < width) {
+        line += ''
+      }
+      result.push(line)
+    }
+    return result
+  }
+</script>
+<script>
+  function Textcell() { //创建表格
+    this.lines = text.split('\n')
+  }
+  TextCell.prototype.minWidth = function () {
+    return Math.max(...this.lines.map(it => it.length))
+  }
+  TextCell.prototyoe.minHeight = function () {
+    return this.linse.length
+  }
+  TextCell.prototyoe.draw = function (width, height) {
+    var result = []
+    for (var i = 0; i < height; i++) {
+      var line = this.lines[i] || ''
+      while (line.length < width) {
+        line += ''
+      }
+      result.push(line)
+    }
+    return result
+  }
+
+  function rowHeights(rows) {
+    return rows.map(row => {
+      Math.max(...row.map(cell => cell.minHeight(xz)))
+    })
+  }
+
+  function colWidth(rows) {
+    return rows[0].map((_, i) => {
+      var col = rows.map(row => {
+        return row[i]
+      })
+      return Math.max(...col.map(it => it.minWidth()))
+    })
+  }
+
+  function drawTable(rows) {
+    var heights = rowHeights(rows)
+    var widths = colWidth(rows)
+
+    function drawRow(row, 行标) {
+      var blocks = row.map((cell, 列标) => {
+        return cell.draw(widths[列标])
+      })
+      return blocks[0].map((line, idx) => {
+        return blocks.map(block => block[idx]).join('')
+      }).join('\n')
+    }
+    return rows.map(drawRow).join('\n')
+  }
+  rows = []
+  MOUNTAINS.forEach(mount => {
+    var row = []
+    for (var key in mount) {
+      var val = mount[key]
+      row.push(new TextCell(' ' + val))
+    }
+    rows.push(row)
+  })
+
+  function UnderlinedCell(innerCell) {
+    this.inner = innerCell
+  }
+  UnderlinedCell.prototype.minWidth = function () {
+    return this.inner.minWidth
+  }
+  UnderlinedCell.prototype.minHight = function () {
+    return this.inner.minHight
+  }
+  UnderlinedCell.prototype.draw = function (width, height) {
+    return this.inner.draw(width, height - 1).concat('_'.repeat)
+  }
+</script>
+<script>
+  //向量
+  function Vector(x, y) {
+    this.x = x
+    this.y = y
+  }
+  Vector.prototype.plus = function (v) {
+    var x = this.x + v.x
+    var y = this.y + v.y
+    return new vector(x, y)
+  }
+  Vector.prototype.minus = function () {
+    var x = this.x - v.x
+    var y = this.y - v.y
+    return new vector(x, y)
+  }
+  Vector.prototype.getLength = function () {
+    return Math.sqrt(this.x * this.x + this.y * this.y)
+  }
+
+  function Complex(real, imag) {
+    if (this == window) {
+      return new Complex(real, imag) //如果没有加new this等于window
+    }
+    this.real = real
+    this.imag = imag
+  }
+  //静态方法： 直接挂在函数上
+  Complex.prototype.pius = function (c) {
+    var real = this.real + c.real
+    var imag = this.imag + c.imag
+    return new Complex(real, imag)
+  }
+  Complex.prototype.minus = function (c) {
+    var real = this.real - c.real
+    var imag = this.imag - c.imag
+    return new Complex(real, imag)
+  }
+  Complex.prototype.mul = function (c) {
+    var real = this.real * c.real - this.imag * c.imag
+    var imag = this.real * c.imag + this.imag * c.real
+    return new Complex(real, imag)
+  }
+  Complex.prototype.toString = function (c) {
+    if (imag < 0) {
+      return '' + this.real + +this.imag + 'i'
+    }
+    return this.real + '+' + this.imag + 'i'
+  }
+</script>
+<script>
+  var a = new Myset()
+
+  function Myset(val) {
+    this.res = []
+  }
+  Myset.prototype.add = function (val) {
+    if (this.res.includes(val)) {
+      this.res.push(val)
+    }
+    return this
+  }
+  Myset.prototype.delete = function (val) {
+    var i = this.res.indexOf(val)
+    if (i >= 0) {
+      this.res.splice(i, 1)
+    }
+    return this
+  }
+  Myset.prototype.has = function (a) {
+    return this.res.includes(a)
+  }
+  Myset.prototype.clear = function () {
+    return this.res = []
+  }
+</script>
+<script>
+  function stack() {
+    this.head = null
+  }
+  stack.prototype.push = function (val) {
+    var node = {
+      val: val,
+      next: this.head
+    }
+    this.head = node
+    return this
+  }
+  stack.prototype.pop = function (val) {
+    var val = this.head.val
+    this.head = this.head.next
+    return this.val
+  }
+
+  function Queue() {
+    this._head = null
+    this._tail = null
+    this._size = 0
+  }
+  Queue.prototype.enqueue = function (val) {
+    var node = {
+      val,
+      next: null,
+    }
+    if (this._head) {
+      this._tail.next = node
+      this._tail = node
+    } else {
+      this._head = this._tail = node
+    }
+    this._size++
+    return this
+  }
+  Queue.prototype.dequeue = function (val) {
+    if (this._haed) {
+      val = this._head.val
+      this._head = this._head.next
+      if (this._head == null) {
+        this._tail = null
+      }
+      this._size++
+      return val
+    }
+    Queue.prototype.dequeue = function (val) {
+      if (this._head) {
+        return this._head.val
+      }
+    }
+    Queue.denfinePropety(queue.prototyoe, 'size', {
+      get: function () {
+        return this._size
+      }
+    })
+  }
+
+  function MyMap() {
+    this._mapKeys = []
+    this._mapVals = []
+  }
+  MyMap.prototyoe = {
+    set(key, val) {
+      var idx = this._mapKeys.indexOf(key)
+      if (idx < 0) {
+        this._mapKeys.push(key)
+        this._mapVals.push(key)
+      } else {
+        this._mapVals[idx] = val
+      }
+      return this
+    },
+    get(key) {
+      var idx = this._mapKeys.indexOf(key)
+      if (idx >= 0) {
+        return this._mapVals[idx]
+      }
+    },
+    has(key) {
+      var idx = this._mapKeys.indexOf(key)
+      if (idx >= 0) {
+        return true
+      } else {
+        return false
+      }
+    },
+    delete(key) {
+      var idx = this._mapKeys.indexOf(key)
+      if (idx >= 0) {
+        this._mapKeys.splice(idx, 1)
+        this._mapVals.splice(idx, 1)
+      }
+      return this
+    },
+    get size() {
+      return this._mapKeys.length
+    }
+  }
+</script>
+<script>
+  //class定义出来的自动不可枚举,用的时候必须加new
+  class MyMap2 extends BasicMap { //继承必须用extends
+    //静态方法，即以MyMap2.isMap(val)的形式调用，必须用static
+    static isMap() {
+
+    }#
+    mapKeys = []; //私有属性
+
+    #
+    mapVals = [];
+    constructor() { //构造函数
+      super() //调用父类构造函数，如果没有父类就不用写，如果有必须写
+      super.has() //调用父类的方法
+      this.has() // 调用自身的方法
+    }
+    //以下为定义在原型上的方法
+    get() {
+
+    }
+    set() {
+
+    }
+    has() {
+
+    }
+    delete() {
+
+    }
+    clear() {
+
+    }
+    //以下为定义在原型上的getter/setter/accesser
+    get size() {
+
+    }
+    set size() {
+
+    }
+  }
+</script>
+
+<script>
+  var bstFromPreorder = function (preorder) {
+    const build = (preorder, start, end) => {
+      if (start > end) return null;
+      // 根据前序遍历的特点，根节点在第一位，后面接着左子树和右子树
+      let rootVal = preorder[start];
+      let root = new TreeNode(rootVal);
+      // 根据 BST 的特点，左子树都比根节点的值小，右子树都比根节点的值大
+      // p 就是左右子树的分界点
+      let p = start + 1;
+      while (p <= end && preorder[p] < rootVal) {
+        p++;
+      }
+      // [start+1, p-1] 区间内是左子树元素
+      root.left = build(preorder, start + 1, p -
+        1); // [p, end] 区间内是右子树元素
+      root.right = build(preorder, p, end);
+      return root;
+    }; // 前闭后闭区间
+    return build(preorder, 0,
+      preorder.length - 1);
+  };
+</script>
+
+<script>
+  function property(name) {
+    return function (obj) {
+      return obj[name]
+    }
+  }
+
+  function get(obj, path) {
+    var names = path.split('.')
+    for (var name of names) {
+      obj = obj[name]
+      if (obj == null) {
+        return obj
+      }
+    }
+    return obj
+  }
+
+  function bind(func, thisArg, ...fixedArgs) {
+
+  }
+
+  function matches(target) {
+    return function (obj) {
+      if (target == obj) return true
+      for (var key in target) {
+        if (obj[key] !== target[key]) {
+          return false
+        }
+      }
+      return true
+    }
+  }
+
+  function isMatch(obj = {
+    a: 1,
+    b: 2,
+    c: {
+      x: 1,
+      y: 2
+    }
+  }, src = {
+    b: 2,
+    c: {
+      y: 2
+    }
+  }) {
+    for (var key in src) {
+      if (src[key] && typeof src[key] === 'object') {
+        if (!isMatch(obj[key], src[key])) {
+          return false
+        }
+      } else {
+        if (src[key] !== obj[key]) {
+          return false
+        }
+      }
+    }
+    return true
+  }
+
+  function matchesProperty(path, val) {
+    return function (obj) {
+      return isEqual(get(obj.path), val)
+    }
+  }
+
+  function ary(func, n = func.length) {
+    return function (...args) {
+      return func(...args.slice(0, n))
+    }
+  }
+
+  function unary(func) {
+    return function (...args) {
+      return func(...args.slice(0, 1))
+    }
+  }
+
+  function negate(f) {
+    return function (...args) {
+      return !f(...args)
+    }
+  }
+
+  function spread(f) {
+    return function (ary) {
+      return f.apply(null, ary)
+    }
+  }
+
+  function flip(func) {
+    return function (...args) {
+      return func(...args.reverse())
+    }
+  }
+
+  function before(n, func) {
+    var c = 0
+    var result
+    return function (...args) {
+      if (c < n) {
+        result = func(...args)
+        c++
+      }
+      return result
+    }
+  }
+
+  function memoize(func, resolver = it => it) {
+    var map = new memoize.cache()
+    return function memoized(...args) {
+      var key = resolver(...args)
+      if (map.has(key)) {
+        return map.get(key)
+      }
+      var result = func(...args)
+      map.set(key, result)
+      return result
+    }
+    memoized.cache = map
+    return memoized
+  }
+
+  function curry(f, n = f.length) { //绑定
+    return function (...args) {
+      if (args.length < n) {
+        return curry(f.bind(null, ...args), n - args.length)
+      } else {
+        return f(...args)
+      }
+    }
+  }
+
+  class HsahaTable {
+    constructor() {
+      this.mapKeys = Array(32)
+      this.mapvals = Array(32)
+    }
+    //通过映射的key计算出一个整数 ，期望的目标是对不同的字符串都计算出不同的值
+    hashCode(key) {
+      var hash = 131313131
+      var seed = 131
+      for (var i = 0; i < key.length; i++) {
+        hash = (((hash * seed) >>> 0) + key.charCodeAt(i)) >>> 0
+      }
+      return hash % this.mapKeys.length
+    }
+    set(key, val) {
+      var idex = this.hashCode(key)
+      this.mapKeys[idx] = key
+      this.mapvals[idx] = val
+      return this
+    }
+    get(key) {
+      var idex = this.hashCode(key)
+      return this.mapvals[idx]
+    }
+    has(key) {
+      var idex = this.hashCode(key)
+      if (this.mapKeys[idx] !== null) {
+        return true
+      } else {
+        return false
+      }
+    }
+    delete(key) {
+      var idex = this.hashCode(key)
+      delete this.mapKeys[idx]
+      delete this.mapVals[idx]
+    }
+  }
+  func: function (predicate) {
+    let item = predicate
+    if (Array.isArray(item)) {
+      predicate = function (ary) {
+        return ary[item[0]] == item[1]
+      }
+    } else if (typeof item == 'object') {
+      predicate = function (ary) {
+        return JSON.stringify(item) == JSON.stringify(ary) ||
+          JSON.stringify(ary).slice(1).includes(JSON.stringify(item).slice(1))
+      }
+    } else {
+      predicate = function (ary) {
+        if (typeof ary == 'string') {
+          return ary.length
+        }
+        return ary[item] //|| ary[item[0]][item[2]]
+      }
+    }
+    return predicate
+  }
+
+
+
+  class HsahaTable {
+    constructor() {
+      this.maps = Array(32).fill(null)
+
+    }
+    //通过映射的key计算出一个整数 ，期望的目标是对不同的字符串都计算出不同的值
+    hashCode(key) {
+      var hash = 131313131
+      var seed = 131
+      for (var i = 0; i < key.length; i++) {
+        hash = (((hash * seed) >>> 0) + key.charCodeAt(i)) >>> 0
+      }
+      return hash % this.mapKeys.length
+    }
+    set(key, val) {
+      var idx = this.hashCode(key)
+      if (this.maps[idx] == null) {
+        var node = {
+          key: key,
+          val: val,
+          next: null,
+        }
+        this.maps[idx] = node
+        return this
+      } else {
+        var p = this.maps[idx]
+        while (p) {
+          if (p.key == key) {
+            p.val = val
+            return this
+          }
+          p = p.next
+        }
+        var node = {
+          key: key,
+          val: val,
+          next: this.maps[idx]
+        }
+        this.maps[idx] = node
+      }
+      return this
+    }
+    get(key) {
+      var idx = this.hashCode(key)
+      var p = this.maps[idx]
+      while (p) {
+        if (p.key == key) {
+          return p.val
+        }
+        p = p.next
+      }
+      return undefined
+    }
+    has(key) {
+      var idx = this.hashCode(key)
+      var p = this.maps[idx]
+      while (p) {
+        if (p.key == key) {
+          return true
+        }
+        p = p.next
+      }
+      return false
+    }
+
+    delete(key) {
+      var idx = this.hashCode(key)
+      var p = this.maps[idx]
+      if (p.key == key) {
+        this.maps[idx] = p.next
+        return this
+      }
+      while (p.next) {
+        if (p.next.key == key) {
+          p.next = p.next.next
+        }
+        p = p.next
+      }
+      return this
+    }
+  }
+
+
+  function isEqual(value, other) {
+    if (value === other) return true // 基础类型
+    if (value !== value && other !== other) return true // 两边都是NaN
+    if (Array.isArray(value) && (Array.isArray(other))) {
+      for (let i = 0; i < value.length; i++) {
+        if (!isEqual(value[i], other[i])) return false
+      }
+      return true
+    } // 两边都不是数组，都不是null， 都是对象的情况
+    else if (!Array.isArray(value) && !Array.isArray(other) && value && other && typeof value == 'object' &&
+      typeof other == 'object') {
+      for (let key in value) {
+        if (other[key] == undefined) return false
+      }
+      for (let key in other) {
+        if (value[key] == undefined) return false
+      }
+      for (let key in value) {
+        if (!isEqual(value[key], other[key])) return
+        false
+      }
+      return true
+    }
+    return false
+  }
+</script>
+<script>
+  class PriorityQueue {
+    constructor() {
+      this.elements = []
+    }#
+    swap(i, j) {
+      var a = this.elements[i]
+      this.elements[i] = this.elements[j]
+      this.elements[j] = a
+    }
+
+    push(val) {
+      var idx = this.elements.push(val) - 1
+      while (idx > 0) {
+        var pIdx = (idx - 1) >> 1
+        if (this.elements[idx] > this.elements[pIdx]) {
+          this.#swap(idx, pIdx)
+        } else {
+          break
+        }
+        idx = pIdx
+      }
+      return this
+    }
+    pop() {
+      if (this.elements.length == 1) {
+        return this.elements.pop()
+      }
+      if (this.elements.length > 1) {
+        var result = this.elements[0]
+        this.elements[0] = this.elements.pop()
+        this.heapDown(0)
+        return result
+      }
+    }
+    heapDown(idx) {
+      while (true) {
+        var maxIdx = idx
+        var leftIdx = (idx * 2) + 1
+        if (leftIdx < this.length && this.elements[leftIdx] > this.elements[maxIdx]) {
+          maxIdx = leftIdx
+        }
+        var rightIdx = leftIdx + 1
+        if (rightIdx < this.length && this.elements[rightIdx] > this.elements[maxIdx]) {
+          maxIdx = rightIdx
+        }
+        if (maxIdx !== idx) {
+          this.#swap(maxIdx, idx)
+          idx = maxIdx
+        } else {
+          return
+        }
+      }
+    }
+    peek() {
+      return this.elements[0]
+    }
+  }
+
+  function sortByHeap(ary) {
+    var pq = new PriorityQueue()
+    for (var i = 0; i < ary.length; i++) {
+      pq.push(ary[i])
+    }
+    var j = 0
+    for (var i = 0; i < ary.length; i++) {
+      ary[j++] = pq.pop()
+    }
+    return ary
+  }
+
+  function ceil(number, percision = 0) {
+    let base = Math.pow(10, percision)
+    number = number * base
+    let n = number % 1
+    if (n > 0) number = (number >> 0) + 1
+    number = number / base
+    return number
+  }
+</script>
