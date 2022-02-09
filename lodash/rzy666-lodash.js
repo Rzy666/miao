@@ -859,6 +859,106 @@ var rzy666 = function () {
   function isElement(value) {
    return toString.call(value) === 'htmlbodyelement'
   }
+  function isEmpty(val) {
+    if (typeof val == 'boolean' || typeof val == 'number' || typeof val == 'undefined' || typeof val == null || val != val) {
+      return true
+    } else {
+      if (typeof val == 'object') {
+        if (Array.isArray(val)) {
+          if (val.length > 0) {
+            return false
+          } else {
+            return true
+          }
+        } else {
+          if (Object.keys(val).length > 0) {
+            return false
+          } else {
+            return true
+          }
+        }
+      }
+    }
+  }
+  function isEqual(value, other) {
+    if (value === other) return true
+    if (Object.prototype.toString.call(value) == Object.prototype.toString.call(other)) {
+      let v = Object.keys(value)
+      let o = Object.keys(other)
+      if (v.length !== o.length) return false
+      for (var key in other) {
+        if(!isEqual(value[key] ,other[key])) return false
+      }
+      return true
+    }
+    return false
+  }
+  function isFinite(value) {
+    return typeof value == 'number' && value >-Infinity && value < Infinity
+  }
+  function isFunction(value) {
+    return Object.prototype.toString.call(value) == '[object function]'
+  }
+  function isInteger(value) {
+    return typeof value == 'number' && value - Math.floor(value) == 0
+  }
+  function isLength(value) {
+    return isInteger(value) && value >-1
+  }
+  function isMap(value) {
+    return value instanceof Map
+  }
+  function isMatch(object, source) {
+    var k = Object.keys(source)
+    for (var i of k) {
+      if(!isMatch(object[i] ,source[i])) return false
+    }
+    return true
+  }
+   function isNaN(value) {
+     if (typeof value == 'object') {
+       value = value.valueOf()
+     }
+     return value != value
+  }
+  function isNumber(value) {
+    return Object.prototype.toString.call(value) === '[object Number]'
+  }
+  function isObject(val) {
+    return  val != null && (typeof val === 'object' || typeof val === 'function')
+  }
+  function isRegExp(value) {
+    return Object.prototype.toString.call(value) ==='[object RegExp]'
+  }
+  function isString(value) {
+    return Object.prototype.toString.call(value) === '[object String]'
+  }
+  function isUndefined(value) {
+    return n === undefined
+  }
+ function min(array) {
+   if (array == null) return undefined
+   var mini = Infinity
+   for (var k in array) {
+     if (array[k] < mini) {
+       mini = array[k]
+     }
+   }
+   return mini
+  }
+  function sumBy(array, predicate) {
+    var pre = iteratee(predicate)
+    var result = 0
+    for (var i = 0; i < array.length; i++){
+      result += pre(array[i])
+    }
+    return result
+  }
+  function constant(value) {
+    return function () {
+      return value
+    }
+  }
   return {
     chunk: chunk,
     compact: compact,
@@ -939,6 +1039,23 @@ var rzy666 = function () {
     castArray: castArray,
     isArguments: isArguments,
     isDate: isDate,
-    isElement: isElement
+    isElement: isElement,
+    isEmpty: isEmpty,
+    isEqual: isEqual,
+    isFinite: isFinite,
+    isFunction: isFunction,
+    isInteger: isInteger,
+    isLength: isLength,
+    isMap: isMap,
+    isMatch: isMatch,
+    isNaN: isNaN,
+    isNumber: isNumber,
+    isObject: isObject,
+    isString: isString,
+    isRegExp: isRegExp,
+    min: min,
+    sumBy: sumBy,
+    constant: constant
+
   }
 }()
