@@ -259,7 +259,7 @@ var rzy666 = function () {
   }
 
   function reduce(collection, iteratee, accumulator) {
-    let result = accumulator ? ? 0
+    let result = accumulator ?? 0
     for (let key in collection) {
       let valuer = collection[key]
       result = iteratee(result, valuer, key)
@@ -793,6 +793,72 @@ var rzy666 = function () {
     res.push(t, f)
     return res
   }
+  function reduce(collection, f, init) {
+    var k = object.keys(collection)
+    var result = init
+    var start = 0
+    if (!init) {
+      result = collection[k[0]]
+      start = 1
+    }
+    for (var i = start; i < k.length; i++){
+      result = f(result ,collection[k[i]] ,k[i])
+    }
+    return result
+  }
+  function reduceRight(obj, f, init) {
+    var k = object.keys(obj)
+    k.reverse()
+    var result = init
+    var start = 0
+    if (!init) {
+      result = obj[k[0]]
+      start = 1
+    }
+    for (var i = start; i < k.length; i++){
+      result = f(result , obj[k[i]] ,k[i])
+    }
+    return result
+  }
+  function reject(collection, predicate) {
+    var pre = iteratee(predicate)
+    var f = []
+    for (var key in collection) {
+      if (!pre(collection[key])) {
+        f.push(collection[key])
+      }
+    }
+    return f
+  }
+  function size(collection) {
+    return collection.length || object.keys(collection).length
+  }
+  function some(collection, predicate) {
+    var pre = iteratee(predicate)
+    for (var key in collection) {
+      if (pre(collection[key])) {
+        return true
+      }
+    }
+    return false
+  }
+  function castArray(value) {
+    if (value.length === 0) return []
+    if (!Array.isArray(value)) {
+      return value
+    } else {
+      return [value]
+    }
+  }
+  function isArguments(value) {
+    return object.property.toString.call(value) === '[object Arguments]'
+  }
+  function isDate(val) {
+    return toString.call(val) ===['object Date']
+  }
+  function isElement(value) {
+   return toString.call(value) === 'htmlbodyelement'
+  }
   return {
     chunk: chunk,
     compact: compact,
@@ -864,6 +930,15 @@ var rzy666 = function () {
     groupBy: groupBy,
     keyBy: keyBy,
     map: map,
-    partition: partition
+    partition: partition,
+    reduce: reduce,
+    reduceRight: reduceRight,
+    reject: reject,
+    size: size,
+    some: some,
+    castArray: castArray,
+    isArguments: isArguments,
+    isDate: isDate,
+    isElement: isElement
   }
 }()
