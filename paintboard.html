@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      background-color: beige;
+
+    }
+
+    .header {
+      width: 1226px;
+      height: 50px;
+      margin: auto;
+      /* border: 1px solid red; */
+      background-color: #F5F6F7;
+      box-sizing: border-box;
+      border: 1px solid #666;
+      margin-bottom: -1px;
+    }
+
+    .header input {
+      margin-right: 25px;
+    }
+
+    .header button {
+      margin: 15px 15px 0 15px;
+      width: 50px;
+    }
+
+    .header button:nth-of-type(4) {
+      width: 66px;
+    }
+
+    .header span {
+      display: inline-block;
+    }
+
+    .svg-weapper {
+      margin: auto;
+      background-color: #fff;
+      box-sizing: border-box;
+      border: 1px solid #666;
+      width: 1226px;
+      height: 666px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class=" header">
+    <span>颜色</span><input type="color" id="colorSelect" value="#ff0000" style="width: 80px">
+    <span>粗细</span><input type="range" id="strokeWidthSelect" value="3" min="1" max="20" step="1">
+    <button onclick="tool='line'">线</button>
+    <button onclick="tool='rect'">框</button>
+    <button onclick="tool='circle'">〇</button>
+    <button onclick="tool='line1'"> 橡皮擦 </button>
+
+  </div>
+  <div class="svg-weapper">
+    <svg width='1226px' height='666px'></svg>
+  </div>
+  <script>
+    var svg = document.querySelector('svg')
+    var colorSelect = document.querySelector('#colorSelect')
+    var strokeWidthSelect = document.querySelector('#strokeWidthSelect')
+    var lastX, lastY, node
+    var tool = 'line'
+    var startPos
+
+    function svgElt(tagName, attrs = {}, ...children) {
+      var node = document.createElementNS('http://www.w3.org/2000/svg', tagName)
+      for (var key in attrs) {
+        var val = attrs[key]
+        node.setAttribute(key, val)
+      }
+      for (var child in children) {
+        if (typeof child == 'string') {
+          child = document.createTextNode(child)
+        }
+        node.appendChild(child)
+      }
+      return node
+    }
+
+    function buttonPressed(event) {
+      if (event.buttons == null) {
+        return event.which !== 0
+      } else {
+        return event.buttons !== 0
+      }
+    }
+
+    function mouse(node) {
+      var nodePos = node.getBoundingClientRect()
+      return {
+        x: window.event.clientX - nodePos.x,
+        y: window.event.clientY - nodePos.y
+      }
+    }
+    svg.addEventListener('mousedown', function (e) {
+      if (e.which == 1) {
+        var pos = mouse(svg)
+        startPos = pos
+
+        if (tool == 'line') {
+          node = svgElt('path', {
+            d: `M${pos.x} ${pos.y} L ${pos.x} ${pos.y}`,
+            stroke: colorSelect.value,
+            fill: 'none',
+            'stroke-width': strokeWidthSelect.value,
+            'stroke-linecap': 'round'
+          })
+          svg.appendChild(node)
+        }
+        if (tool == 'line1') {
+          node = svgElt('path', {
+            d: `M${pos.x} ${pos.y} L ${pos.x} ${pos.y}`,
+            stroke: '#fff',
+            fill: 'none',
+            'stroke-width': 15,
+            'stroke-linecap': 'round'
+          })
+          svg.appendChild(node)
+        }
+        if (tool == 'rect') {
+          node = svgElt('rect', {
+            x: pos.x,
+            y: pos.y,
+            height: 0,
+            width: 0,
+            stroke: colorSelect.value,
+            fill: 'none',
+            'stroke-width': strokeWidthSelect.value,
+            'stroke-linecap': 'round'
+          })
+          svg.appendChild(node)
+        }
+        if (tool == 'circle') {
+          node = svgElt('ellipse', {
+            cx: pos.x,
+            cu: pos.y,
+            rx: 0,
+            ry: 0,
+            stroke: colorSelect.value,
+            fill: 'none',
+            'stroke-width': strokeWidthSelect.value,
+            'stroke-linecap': 'round'
+          })
+          svg.appendChild(node)
+        }
+        window.addEventListener('mousemove', onMove)
+      }
+    })
+
+    function onMove(e) {
+      if (!buttonPressed(e)) {
+        window.removeEventListener('mousemove', onMove)
+        return
+      }
+      var pos = mouse(svg)
+      if (tool == 'line') {
+        var d = node.getAttribute('d')
+        d += `L${pos.x} ${pos.y}`
+        node.setAttribute('d', d)
+      }
+      if (tool == 'line1') {
+        var d = node.getAttribute('d')
+        d += `L${pos.x} ${pos.y}`
+        node.setAttribute('d', d)
+      }
+      if (tool == 'rect') {
+        var width = pos.x - startPos.x
+        var height = pos.y - startPos.y
+        node.setAttribute('height', height)
+        node.setAttribute('width', width)
+      }
+      if (tool == 'circle') {
+        var cx = (pos.x + startPos.x) / 2
+        var cy = (pos.y + startPos.y) / 2
+        var rx = pos.x - startPos.x
+        var ry = pos.y - startPos.y
+        node.setAttribute('cx', cx)
+        node.setAttribute('cy', cy)
+        node.setAttribute('rx', rx)
+        node.setAttribute('ry', ry)
+      }
+    }
+    window.addEventListener('keydown', function (e) {
+      if (e.ctrlKey && e.key == 'z') {
+        svg.removeChild(svg.lastChild)
+      }
+    })
+  </script>
+</body>
+
+</html>

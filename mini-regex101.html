@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @keyframes spin {
+
+      /* 动画名称spin */
+      from {
+        /* 设置关键帧动画 */
+        width: 60px;
+        background-color: red;
+      }
+
+      50% {
+        /* 这里的顺序可以随便写，不会影响运行效果 */
+        width: 10px;
+      }
+
+      20%,
+      70% {
+        width: 150px;
+        background-color: blue;
+        animation-timing-function: steps(8);
+        /* 把每个关键帧分成8等份 */
+      }
+
+      to {
+        width: 90px;
+        background-color: red;
+      }
+    }
+
+    em {
+      font-style: normal;
+    }
+
+    em:nth-child(1) {
+      background-color: #c4e8ac;
+    }
+
+    em:nth-child(2) {
+      background-color: #f6d7a6;
+    }
+
+    em:nth-child(3) {
+      background-color: #c8c8ff;
+    }
+
+    em:nth-child(4) {
+      background-color: #f2cfff;
+    }
+
+    em:nth-child(5) {
+      background-color: #ffc5bf;
+    }
+
+    em:nth-child(6) {
+      background-color: #c8e7d6;
+    }
+
+    div:nth-of-type(1) {
+      font-size: 40px;
+      background-image: -webkit-linear-gradient(left, blue,
+          #66ffff 10%, #c0aec5 20%,
+          #CC00CC 30%, #CCCCFF 40%,
+          #00FFFF 50%, #CCCCFF 60%,
+          #CC00CC 70%, #CC00FF 80%,
+          #66FFFF 90%, blue 100%);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: masked-animation 4s linear infinite;
+      margin: 0;
+      padding: 0;
+    }
+
+    @keyframes masked-animation {
+      0% {
+        background-position: 0 0;
+      }
+
+      100% {
+        background-position: -100% 0;
+      }
+    }
+
+    div:nth-of-type(2),
+    label {
+      font-size: 24px;
+    }
+
+    strong:nth-child(odd) {
+      background-color: #d5ebff;
+    }
+
+    strong:nth-child(even) {
+      background-color: #9fcfff;
+    }
+
+    div+input {
+      width: 200px;
+      height: 32px;
+
+    }
+
+    label>input {
+      width: 24px;
+      height: 24px;
+      vertical-align: middle;
+    }
+
+    strong:empty {
+      display: inline-block;
+      width: 2px;
+      height: 1.3em;
+      background-color: red;
+      vertical-align: bottom;
+      margin-left: -1px;
+      margin-right: -1px;
+    }
+
+    #string {
+      width: 500px;
+      position: relative;
+    }
+
+    pre,
+    textarea {
+      xposition: absolute;
+      top: 0;
+      border: 1px solid red;
+      width: 100%;
+      margin: 0;
+      padding: 5px;
+      overflow-wrap: break-word;
+      white-space: pre-wrap;
+      height: 150px;
+      font-size: 24px;
+      line-height: 1.3;
+      font-family: consolas;
+      background-color: transparent;
+    }
+  </style>
+</head>
+
+<body>
+  <div>REGULAR EXPRESSION</div>
+  <input type="text" id="reInput" value="f..">
+  <label>g<input unclick="run" type="checkbox" checked id="reFlagGlobal"></label>
+  <label>m<input unclick="run" type="checkbox" id="reFlagMultiline"></label>
+  <label>i<input unclick="run" type="checkbox" id="reFlagIgnorecase"></label>
+  <div>TEST STRING</div>
+  <div id="string">
+    <pre contenteditable id="resultShow"></pre>
+    <textarea style="resize:none" onscroll="scrollSync()" id="testStringInput" spellcheck="false" s cols="30"
+      rows="10">foof1foosafhjklas</textarea>
+  </div>
+  <script>
+    function scrollSync() {
+      resultShow.scrollTop = testStringInput.scrollTop
+    }
+
+    function run() {
+      var reStr = reInput.value
+      var flags = getFlags()
+      var testString = testStringInput.value
+      if (reStr.length == 0) {
+        resultShow.innerHTML = testString + '\n'
+        return
+      }
+      try {
+        var re = new RegExp(reStr, flags + 'd')
+      } catch (e) {
+        if (e instanceof TypeError) {
+          resultShow.innerHTML = testString
+          return
+        } else {
+          throw (e)
+        }
+      }
+      var resultHTML = ''
+      var startIdx = 0
+      var match
+      var matchCount = 0
+
+      while (match = re.exec(testString)) {
+        matchCount++
+        resultHTML += testString.slice(startIdx, match.index)
+        resultHTML += `<strong title="Match${matchCount}">` + highlightGroups(match) + `</strong>`
+        startIdx = re.lastIndex
+        if (match[0] == '') {
+          re.lastIndex++
+        }
+        if (!re.global) break
+      }
+      resultHTML += testString.slice(startIdx)
+      resultShow.innerHTML = resultHTML + '\n'
+    }
+
+    function highlightGroups(match) {
+      var result = ''
+      var matchString = match[0]
+
+      var groupRanges = match.indices.map(range => {
+        var start = range[0]
+        var end = range[1]
+        return [start - match.index, end - match.index]
+      })
+      groupRanges.shift()
+      var startIdx = 0
+      for (var range of groupRanges) {
+        result += matchString.slice(startIdx, range[0])
+        result += '<em>' + matchString.slice(range[0], range[1]) + '</em>'
+        startIdx = range[1]
+      }
+      result += matchString.slice(startIdx)
+      return result
+    }
+
+    run()
+
+    function getFlags() {
+      let flag = ''
+      if (reFlagGlobal.checked) {
+        flag += 'g'
+      }
+      if (reFlagMultiline.checked) {
+        flag += 'm'
+      }
+      if (reFlagIgnorecase.checked) {
+        flag += 'i'
+      }
+      return flag
+    }
+    var input = document.querySelector("input")
+    var textarea = document.querySelector("textarea")
+    input.addEventListener("input", run)
+    textarea.addEventListener("input", run)
+  </script>
+</body>
+
+</html>
