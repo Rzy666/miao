@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>炸雷</title>
+  <style>
+    #map {
+      position: absolute;
+      border-radius: 20px;
+      padding: 5px;
+      border: 3px #A4A4A4 solid;
+    }
+    .box{
+      width: 25px;
+      height: 25px;
+      border-radius: 5px;
+      text-align: center;
+    }
+    /* span{
+    background:url(https://img.wenanjuzi.com/upload/8c1180235254n938377250m26.jpg);
+    display:block;
+    width:20px;
+    height:23px;
+    background-size: contain;
+    } */
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+
+    const width =15, height = 15,COUNT = 20;
+    let randarArr =[]
+    let randarDom = document.getElementById('map')
+    var flagcount = 0
+
+    window.onload = function(){
+      init()
+      createRandar()
+      roundrandarcount()
+      reader()
+
+    }
+
+    function reader(){
+      let table = document.createElement('table')
+      for(let i = 0; i<height;i++){
+        let tr = document.createElement('tr')
+        for(let j=0;j< width;j++ ){
+          let td = document.createElement('td')
+          td.id = i+ '-' + j
+          td.className = 'box'
+          td.style.backgroundColor = "#BDBDBD"
+          td.onclick = function(){
+            click(i,j)
+          }
+          td.oncontextmenu =function(e){
+            e.preventDefault()
+            inserflagcount(i,j)
+          }
+          tr.appendChild(td)
+        }
+        table.appendChild(tr)
+      }
+    randarDom.appendChild(table)
+    }
+
+    function init(){
+      for(var i =0;i< height;i++){
+        randarArr[i] = []
+        for(var j = 0;j< width;j++){
+          randarArr[i][j] = {
+            isshow : false,
+            isrander: false,
+            roundcount: ''
+          }
+        }
+      }
+    }
+
+    function createRandar(){
+      let count = 0,i ,j
+      while(count < COUNT){
+         i = Math.floor(Math.random()*height)
+         j = Math.floor(Math.random()* width)
+         if(randarArr[i][j].isrander === false){
+           randarArr[i][j].isrander = true
+           count++
+         }
+      }
+    }
+
+    function roundrandarcount(){
+      let count = 0
+      for(let i =0;i< height ;i++){
+        for(var j =0;j< width;j++){
+          if(i -1 >= 0 && j - 1 >= 0){
+            if(randarArr[i-1][j-1].isrander){
+              count++
+            }
+          }
+          if(i-1>= 0){
+            if(randarArr[i-1][j].isrander){
+              count++
+            }
+          }
+          if(i-1>= 0 && j+1< width){
+            if(randarArr[i-1][j+1].isrander){
+              count++
+            }
+          }
+          if(j-1>= 0){
+            if(randarArr[i][j-1].isrander){
+              count++
+            }
+          }
+          if(j+1 < width){
+            if(randarArr[i][j+1].isrander){
+              count++
+            }
+          }
+          if(i+1 < height&& j-1>= 0){
+            if(randarArr[i+1][j-1].isrander){
+              count++
+            }
+          }
+          if(i+1 < height ){
+            if(randarArr[i+1][j]){
+              count++
+            }
+          }
+          if(i+1 <height && j+1< width){
+            if(randarArr[i+1][j+1].isrander){
+              count++
+            }
+          }
+          if(count >0){
+            randarArr[i][j].roundcount = count
+            count = 0
+          }
+        }
+      }
+    }
+    function click(i ,j){
+      let currentDom = document.getElementById(i+'-' + j)
+      let current = randarArr[i][j]
+
+      let img = currentDom.querySelector('img')
+      if(img){
+        currentDom.removeChild(img)
+        current.isshow = false
+        return true
+      }
+
+      if(current.isrander){
+        currentDom.style.backgroundColor = '#848484'
+        currentDom.innerHTML = '<span style="color: red">@</span>'
+
+        setTimeout(()=>{
+          showAllrandar()
+        },0)
+        setTimeout(() => {
+          alert("Game Over")
+        }, 200);
+        return
+      }
+      showNumber(i,j)
+    }
+
+    function showNumber(i ,j){
+      let currentDom = document.getElementById(i +'-' +j)
+      let current = randarArr[i][j]
+      if(current.isshow ===false){
+        current.isshow = true
+        currentDom.style.backgroundColor = '#848484'
+        currentDom.innerHTML = current.roundcount
+        if(current.roundcount === ''){
+            // 左上
+        if (i - 1 >= 0 && j - 1 >= 0) {
+          showNumber(i - 1, j - 1)
+        }
+        // 上
+        if (i - 1 >= 0) {
+          showNumber(i - 1, j)
+        }
+        // 右上
+        if (i - 1 >= 0 && j + 1 < width) {
+          showNumber(i - 1, j + 1)
+        }
+        // 右
+        if (j + 1 < width) {
+          showNumber(i, j + 1)
+        }
+        // 右下
+        if (i + 1 < height && j + 1 < width) {
+          showNumber(i + 1, j + 1)
+        }
+        // 下
+        if (i + 1 < height) {
+          showNumber(i + 1, j)
+        }
+        // 左下
+        if (i + 1 < height && j - 1 >= 0) {
+          showNumber(i + 1, j - 1)
+        }
+        // 左
+        if (j - 1 >= 0) {
+          showNumber(i, j - 1)
+        }
+        }
+      }
+    }
+
+
+    function showAllrandar(){
+      for(let i =0;i< height;i++){
+        for(let j = 0;j< width;j++){
+          if(randarArr[i][j].isrander ){
+            let dom =document.getElementById(i + '-' + j)
+            dom.style.backgroundColor = '#848484'
+            dom.innerHTML = '<span style="color: red">@</span>'
+
+          }
+        }
+      }
+    }
+    function inserflagcount(i ,j){
+      let currentDom = document.getElementById(i+'-'+j)
+      let current = randarArr[i][j]
+      if(current.isshow == false && flagcount <= COUNT){
+        let img = document.createElement('img')
+        img.src = 'https://img95.699pic.com/element/40150/0760.png_300.png!/fw/431/clip/0x300a0a0'
+        img.style.width = '18px'
+        img.style.height = '18px'
+        img.style.margin = '0'
+        currentDom.appendChild(img)
+        current.isshow = true
+        flagcount++
+      }
+    }
+
+    document.addEventListener('keydown' ,function(e){
+      if(e.key == 'Enter'){
+        location.reload();
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+Notes:
+<button onclick="addNote()">New</button>
+<button onclick="deleteNote()">Delete</button><br>
+<select id="list"></select>
+<textarea id="currentnote" style="width : 100%; height : 10em">
+</textarea>
+<script>
+  var list = document.querySelector("#list");//找到菜单document树
+
+  function addToList(name) {//函数addToList 构造菜单里的多行目录 加入菜单中
+    var option = document.createElement("option");
+    option.textContent = name;
+    list.appendChild(option);
+  }
+  // Initialize the list from loca lStorage
+  var notes = JSON.parse(localStorage.getItem("notes")) || { "shopping list": "" };//设置变量notes 是一个对象
+
+  // 当同一网站的其它页面修改了localStorage时触发
+  window.addEventListener('storage', function(e) {
+    console.log('storage changed', e)
+    if (e.key == 'notes') {
+      notes = JSON.parse(localStorage.getItem("notes"))
+      current.value = notes[list.value]
+    } else if (e.key == 'lastSelectedNote') {
+      // list.value = e.newValue
+      // current.value = notes[list.value]
+    }
+  })
+
+  for (var name in notes) {
+    if (notes.hasOwnProperty(name)) {
+      addToList(name);
+    }
+  }//如果对象有这个key 添加进入list目录中
+
+  list.value = localStorage.lastSelectedNote ?? 'shopping list'//目录的值加载进去
+
+
+  function saveToStorage() {
+    localStorage.lastSelectedNote = list.value //最后翻到的在那个目录里保存下来
+    localStorage.setItem("notes", JSON.stringify(notes));//保存到云端
+  }
+
+  var current = document.querySelector("#currentnote");//找到多行文本的dom树
+
+  current.value = notes[list.value]; //多行文本
+
+  list.addEventListener("change", function () {
+    current.value = notes[list.value];
+    localStorage.lastSelectedNote = list.value
+  });
+
+
+  current.addEventListener("input", function () {
+    notes[list.value] = current.value;
+    saveToStorage();
+  });
+
+
+  function addNote() {
+    var name = prompt("Note name", "");
+    if (!name) return;
+    if (!notes.hasOwnProperty(name)) { // 没有同名笔记
+      notes[name] = ""; // 创建出该名字的笔记
+      addToList(name);  // 在select中添加下拉条目
+      saveToStorage();  // 存盘
+    }
+    list.value = name;  // 将当前选中的笔记切成刚刚创建的这个
+    current.value = notes[name]; // 将当前笔记的内容设置到文本框中
+    localStorage.lastSelectedNote = list.value
+  }
+
+  function deleteNote() {
+    if (confirm('确定删除吗?')) {
+      delete notes[list.value]
+      var selectedOption = Array.from(list.options).find(it => it.selected)//被选中的
+      list.removeChild(selectedOption)
+      if (list.options.length > 0) {
+        list.value = list.options[0].value
+        current.value = notes[list.value]
+        localStorage.lastSelectedNote = list.value
+      } else { // 删除的是唯一一条，则清空文本框
+        current.value = ''
+      }
+      saveToStorage()
+    }
+  }
+
+
+</script>

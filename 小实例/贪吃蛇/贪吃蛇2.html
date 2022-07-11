@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>贪吃蛇2</title>
+</head>
+<body>
+  <pre>
+
+  </pre>
+  <script>
+    class SnakeGame{
+      constructor(width = 10 ,height = 10){
+        this.width = width
+        this.height = height
+        this.world = null
+        this.headpos = null
+        this.tailpos = null
+        this.snakelength = 0
+        this.isGameOver = false
+        this.init()
+      }
+      init(){
+        this.world = Array(this.height).fill(0).map(it =>
+          Array(this.width).fill('.')
+        )
+        this.world[3][3] = '>'
+        this.headpos = {row : 3 ,col : 3}
+        this.tailpos = { row: 3 ,col : 3}
+        this.snakelength = 1
+        this.placeApple()
+      }
+      placeApple(){
+        var row =Math.floor(this.height * Math.random())
+        var col = Math.floor(this.width * Math.random())
+        if(this.world[row][col] == '.'){
+          this.world[row][col] = 'Q'
+        } else {
+          this.placeApple()
+        }
+      }
+      getChar(pos){
+        return this.world[pos.row][pos.col]
+      }
+      getNextPos(pos){
+        var currChar = this.getChar(pos)
+        if(currChar == '>'){
+          return {row : pos.row ,col : pos.col + 1}
+        }
+        if(currChar == '<'){
+        return {row : pos.row ,col : pos.col - 1}
+        }
+        if(currChar == '^'){
+        return {row : pos.row - 1  ,col : pos.col}
+        }
+        if(currChar == 'v'){
+        return {row : pos.row + 1 ,col : pos.col }
+        }
+
+      }
+      changeDirection(direction){
+        switch(direction){
+          case 'up' : return this.setChar(this.headpos , '^')
+          case 'down' : return this.setChar(this.headpos , 'v')
+          case 'left' : return this.setChar(this.headpos , '<')
+          case 'right': return this.setChar(this.headpos ,'>')
+        }
+      }
+      setChar(pos , char){
+         this.world[pos.row][pos.col] = char
+      }
+      gameOver(){
+        this.isGameOver = true
+        setTimeout(() => {
+         alert('game over , score :' +this.snakelength)
+        });
+      }
+      next(){
+         if(this.isGameOver){
+         return
+       }
+        var headChar = this.getChar(this.headpos)
+        var headNextPos = this.getNextPos(this.headpos)
+        var headNextChar = this.getChar(headNextPos)
+        if(headNextChar == '.'){
+          this.setChar(headNextPos , headChar)
+          this.headpos =headNextPos
+        } else if(headNextChar == 'Q'){
+          this.setChar(headNextPos , headChar)
+          this.headpos = headNextPos
+          this.placeApple()
+          this.snakelength++
+        } else {
+          this.gameOver()
+        }
+        if(headNextChar == '.'){
+          var tailNextPos = this.getNextPos(this.tailpos)
+          this.setChar(this.tailpos , '.')
+          this.tailpos = tailNextPos
+        }
+         return this
+      }
+      toString(){
+        return this.world.map(row =>{
+          return row.map(char =>{
+            if(char == '.'){
+              return ' '
+            } else {
+              return 0
+            }
+          }).join('')
+        }).join('\n')
+      }
+    }
+    var game = new SnakeGame()
+    var pre = document.querySelector('pre')
+    function tick(){
+      game.next()
+      pre.textContent = game.toString()
+    }
+    document.addEventListener('keydown' ,e =>{
+      if(e.key.startsWith('Arrow')){
+        var direction = e.key.slice(5).toLocaleLowerCase()
+        game.changeDirection(direction)
+        clearInterval(id)
+        tick()
+        id = setInterval(tick ,1000);
+      }
+    })
+    pre.textContent = game.toString()
+    var id = setInterval(tick ,1000);
+  </script>
+</body>
+</html>

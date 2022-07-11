@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+        div {
+      border: 1px solid;
+      position: relative;
+      display: inline-block;
+    }
+    ul {
+      position: absolute;
+      top: 100%;
+      left: -1px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      width: 100%;
+      border: 1px solid;
+      display: none;
+    }
+    input:focus + ul:not(:empty) {
+      display: block;
+    }
+
+  </style>
+</head>
+<body>
+  <div>
+    <input type="text" name="word">
+    <ul class="suggestions"></ul>
+  </div>
+  <script>
+    var input = document.querySelector('input')
+    var suggestions = document.querySelector('.suggestions')
+    var 已经显示出来的词原始词的输入时间 = 0
+    input.addEventListener('input' ,function(e){
+      var word = input.value
+      var time = Date.now()
+      getSuggests( word ,function(suggests){
+        if(time >= 已经显示出来的词原始词的输入时间){
+          var html = suggests.map(it => {
+            return `<li> ${it}</li>`
+          }).join('')
+          suggestions.innerHTML = html
+          已经显示出来的词原始词的输入时间 = time
+        }
+      })
+    })
+    function getSuggests(word ,callback){
+      fetch(`https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=36072,35970,35105,31254,36005,35914,34584,35872,35948,35802,35984,26350,36025,22157,36061&wd=${word}&req=2&csor=3&pwd=fo&_=1646965636518`)
+      .then(it =>it.json())
+      .then(json => {
+        callback(json.g.map(it => it.q))
+      })
+
+    }
+  </script>
+</body>
+</html>

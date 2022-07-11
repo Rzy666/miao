@@ -59,6 +59,7 @@
     var t = ary[i]
     ary[i] = ary[j]
     ary[j] = t
+    return ary
   }
 </script>
 <script>
@@ -127,5 +128,61 @@
   }
 </script>
 <script>
- 
+  function swap(ary, i, j) {
+    var t = ary[i]
+    ary[i] = ary[j]
+    ary[j] = t
+    return ary
+  } //换位排序
+  //快速排序大法
+  function qSort(ary, start = 0, end = ary.length - 1) {
+    if (start >= end) {
+      return ary
+    }
+    var pivoTide = Math.floor(Math.random() * (end - start + 1) + start) //在开始值跟结束之中随机选哨兵位置，哨兵下标
+    var pivot = ary[pivoTide] //哨兵的值
+    swap(ary, pivoTide, end) //哨兵值换到最后面去
+    var i = start //设置开始下标为 i
+    for (var j = start; j < end; j++) { //j从开始下标开始遍历，如果j比哨兵小，j和i换位置
+      if (ary[j] < pivot) {
+        swap(ary, i, j) 
+        i++//i左边都是比哨兵小的数
+      }
+    }
+    swap(ary, i, end) //哨兵跟i的值换位置，此时哨兵在i的位置上，左边的数都比哨兵小，右边的数都比哨兵大
+    qSort(ary, start, i - 1)//i左边排序
+    qSort(ary, i + 1, end)// i右边排序
+     return ary
+  }
 </script>
+<script>
+function bubbleSort(ary){
+  for(var i = ary.length -2;i >= 0 ;i--){
+    for(var j = 0; j <=i; j ++){
+      if(ary[j] > ary[j + 1]){
+        var t = ary[j]
+        ary[j] = ary[j + 1]
+        ary[j + 1] = t
+      }
+    }
+  }
+  return ary
+}
+</script>
+<script>
+  function select(ary){
+    for(var i = 0;i < ary.length;i++){
+      var min = i
+      for(var j = i +1;j < ary.length;j++){
+        if(ary[min] > ary[j]){
+          min = j
+        }
+      }
+              var t = ary[i]
+              ary[i] = ary[min]
+              ary[min] = t
+    }
+    return ary
+  }
+</script>
+

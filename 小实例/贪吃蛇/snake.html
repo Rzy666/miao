@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snake</title>
+  <style>
+    body,html{
+      margin: 0;
+      padding: 0;
+    }
+    div {
+      display: flex;
+      justify-content: center;
+    }
+     pre {
+     font-family: "Courier New", Courier, monospace;
+     line-height: .6;
+     vertical-align: bottom;
+     /* font-size: 2em; */
+     margin: 0;
+     flex: 0 0 auto;
+     }
+  </style>
+</head>
+<body>
+  <div >
+    <pre></pre>
+  </div>
+  <script>
+    let opposite = {
+      left : "right",
+      right : "left",
+      down : "up",
+      up : "down",
+    }
+
+    class Snake{
+     constructor(x , y , direction){
+      this.x = x
+      this.y = y
+      this.direction = direction
+      }
+      samePos(other){
+        return this.x == other.x && this.y == other.y
+      }
+    }
+
+    class Apple{
+      constructor(x , y){
+        this.x = x
+        this.y = y
+      }
+      samePos(other){
+        return this.x == other.x && this.y == other.y
+      }
+    }
+
+    class Game{
+      constructor(width = 20 ,height = 20){
+        this.width = width
+        this.height = height
+        this.snake = []
+        this.apples = []
+        this.status = "pre"
+        this.speed = 1
+        this.intervalId = 0
+      }
+
+      init(){
+        this.snake = []
+        this.apples = []
+        this.snake.push(new Snake(3 ,3 , "right" ))
+        this.snake.push(new Snake(2 ,3 , "right"))
+        this.apples.push(this.generateApple() )
+        this.speed = 2
+      }
+      generateApple(){
+        let x = Math.floor(this.width * Math.random())
+        let y = Math.floor(this.height * Math.random())
+        let apple = new Apple(x , y)
+        for(let s of this.snake){
+          if(s.samePos(apple)){
+            return this.generateApple()
+          }
+        }
+        return apple
+      }
+      next(){
+        let grow = 0
+        let head = this.snake[0]
+        let newHead = new Snake(head.x ,head.y ,head.direction)
+        switch(head.direction){
+          case "left" : newHead.x-- ;break
+          case "right" : newHead.x++ ; break
+          case "up" : newHead.y-- ;break
+          case "down" : newHead.y++;break
+        }
+
+        if(newHead.x <0 || newHead.x >= this.width || newHead.y< 0 || newHead.y>= this.height){
+          this.gameOver()
+          return
+        }
+        for(let apple of this.apples){
+          if(newHead.samePos(apple)){
+            grow = 1
+            this.apples.splice(this.apples.indexOf(apple) , 1)
+            this.apples.push(this.generateApple())
+            this.speed++
+            clearInterval(game.intervalId)
+            game.run()
+          }
+        }
+
+        for(let s of this.snake){
+          if(newHead.samePos(s)){
+            this.gameOver()
+          }
+        }
+        if(!grow){
+          this.snake.pop()
+        }
+        this.snake.unshift(newHead)
+        this.print()
+      }
+
+      run(){
+        this.status = "play"
+        this.intervalId = setInterval(() => {
+          this.next()
+        }, 1000);
+      }
+
+      gameOver(){
+        this.status = "over"
+        clearInterval(this.intervalId)
+        this.print()
+      }
+
+
+      toString(){
+        let resultArr =new Array(this.height).fill(0).map(row =>
+         new Array(this.width).fill(' ')
+        )
+        for(let s of this.snake){
+          resultArr[s.y][s.x] ="■"
+        }
+        console.log(this.apples)
+        for(let a of this.apples){
+          resultArr[a.y][a.x] = "o"
+        }
+
+        if(this.status == "over"){
+          let endSign = "GAME OVER!"
+          let endSign2 = "Press Enter"
+          let startRow = Math.floor(this.height / 2) - 1
+          let startCol = Math.floor((this.width - 10) / 2 )
+          for(let i = 0; i < endSign.length;i++){
+            resultArr[startRow][startCol + i] = endSign[i]
+          }
+          for(let i = 0; i < endSign2.length ;i++){
+            resultArr[startCol + 2][startCol - 1 + i] = endSign2[i]
+          }
+        }
+
+        let result =
+        "┌" +
+        "─".repeat(this.width) +
+        "┐\n" +
+        "│" +
+        `score: ${this.snake.length - 2}`.padStart(this.width, " ") +//算上字一共20个空格
+        "│\n" +
+        "├" +
+        "─".repeat(this.width) +
+        "┤\n" +
+        resultArr.map((row) => "│" + row.join("") + "│").join("\n") +
+        "\n└" +
+        "─".repeat(this.width) +
+        "┘\n";
+
+        return result
+      }
+
+        print(){
+        pre.textContent = game.toString()
+      }
+    }
+
+
+
+    let game = new Game(20 , 20)
+    game.init()
+    game.run()
+
+    let pre = document.querySelector("pre")
+    pre.textContent = game.toString()
+    pre.style.zoom = 2
+
+    document.addEventListener("keydown" , function(e){
+      if(e.key.startsWith("Arrow")){
+        if(game.status == "play"){
+           if(opposite[game.snake[0].direction] !== e.key.slice(5).toLowerCase()){
+            game.snake[0].direction = e.key.slice(5).toLowerCase()
+            game.next()
+            clearInterval(game.intervalId)
+            game.run()
+           }
+        }
+      }
+      if(game.status == "over"){
+        if(e.key == "Enter"){
+          game.init()
+          game.run()
+        }
+      }
+    })
+
+
+
+
+  </script>
+</body>
+</html>

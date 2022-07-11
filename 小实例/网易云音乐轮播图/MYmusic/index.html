@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="./main.css">
+  <title>网易云音乐</title>
+</head>
+<body>
+<div class="swipe" id="swipe">
+  <div class="bg" id="swipe_bg"></div>
+  <section>
+    <div class="img-box" id="swipe_img_box">
+      <a href="#" class="link" id="swipe_link">
+        <img src="../网易云/1.jpg" alt="" class="img" id="swipe_img">
+      </a>
+    </div>
+    <!-- 指示点 -->
+    <div class="select" id="swipe_select">
+      <!-- <a href="#" class="item checked"></a>
+      <a href="#" class="item "></a>
+      <a href="#" class="item "></a> -->
+    </div>
+    <div class="btn left" id="swipe_btn_left">
+       <i class="fa fa-angle-left" aria-hidden="true"></i>
+    </div>
+    <div class="btn right" id="swipe_btn_right">
+      <i class="fa fa-angle-right" aria-hidden="true"></i>
+    </div>
+  </section>
+</div>
+
+<script src="./main.js"></script>
+<!-- <script>
+let current_index = -1 //当前轮播图编号
+let swipe_time = null // 自动播放的定时器
+let links = [
+  {
+    'image': '../网易云/1.jpg',
+    'target': '#1'
+  }, {
+    'image': '../网易云/2.jpg',
+    'target': '#2'
+  }, {
+    'image': '../网易云/3.jpg',
+    'target': '#3'
+  }, {
+    'image': '../网易云/4.png',
+    'target': '#4'
+  }, {
+    'image': '../网易云/5.jpg',
+    'target': '#5'
+  }, {
+    'image': '../网易云/6.jpg',
+    'target': '#6'
+  }
+] // 图片的链接
+//操作需要用的元素
+var swipe = document.getElementById('swipe')
+var swipe_bg = document.getElementById('swipe_bg')
+var swipe_img_box = document.getElementById('swipe_img_box')
+var swipe_link = document.getElementById('swipe_link')
+var swipe_img = document.getElementById('swipe_img')
+var swipe_select = document.getElementById('swipe_select')
+var swipe_btn_left = document.getElementById('swipe_btn_left')
+var swipe_btn_right = document.getElementById('swipe_btn_right')
+
+
+let Select =(index)=> {//切换图片
+  stop() // 切换新图片
+  index = Number(index) //图片编号转数字
+  if (index >= links.length) {
+    return
+  }
+  if (current_index == index) {
+    return
+  }
+  if (current_index > -1) { //如果大于-1 就取消默认选中的样式
+    swipe_select.children[current_index].classList.remove('checked')
+  }
+  current_index = index
+
+  let current_link = links[current_index]
+
+  swipe_bg.style.backgroundImage = 'url(' + current_link.image + ')'
+  swipe_img.setAttribute('src', current_link.image)
+  swipe_link.setAttribute('href', current_link.target)
+  swipe_select.children[current_index].classList.add('checked')
+}
+
+
+//自动切换图片
+let autoSelect = (index) =>{
+  index = Number(index)
+   if (index >= links.length) {
+    return
+  }
+  if (current_index == index) {
+    return
+  }
+  swipe_select.children[current_index].classList.remove('checked')
+  current_index = index
+  let current_link = links[current_index]
+
+  swipe_img.style.transition = 'opacity 0.5s ease-in 0s'
+  swipe_img.style.opacity = 0.2
+
+  setTimeout(() => {
+    swipe_bg.style.backgroundImage = 'url(' + current_link.image + ')'
+    swipe_img.setAttribute('src', current_link.image)
+    swipe_img.setAttribute('href', current_link.target)
+    swipe_img.style.transition = 'opacity 0.7s ease-in 0s'
+    swipe_img.style.opacity = 1
+
+    if (!document.querySelector('.swipe .checked')) {
+      swipe_select.children[current_index].style.transition = 'background-color 0.5s'
+      swipe_select.children[current_index].classList.add('checked')
+    }
+  }, 500)
+
+}
+
+ let play =() =>{
+  swipe_time = setInterval(() => { //每隔三秒自动播放
+    let index = current_index + 1 // 图片序号
+    if (index >= links.length) { //如果超过最后一张 返回第一张
+      index = 0
+    }
+    autoSelect(index)
+  } ,3000)
+}
+let  stop =()=> {
+  if (swipe_time) {
+    clearInterval(swipe_time)
+    swipe_time = null
+  }
+}
+
+let init = () => {
+  let swipe_select = document.getElementById('swipe_select')
+  for (let i = 0; i < links.length; i++) {
+    let item = document.createElement('a')
+    item.setAttribute('class', 'item')
+    item.setAttribute('href', '#')
+    item.setAttribute('data-index', i)
+    swipe_select.appendChild(item);
+  }
+  Select(0)
+  bind()
+  play()
+}
+
+let bind =()=> {
+  swipe_btn_left.addEventListener('click', () => {
+    let index = current_index -1
+    if (index < 0) {
+      index = links.length -1
+    }
+    Select(index)
+  })
+  swipe_btn_right.addEventListener('click', () => {
+    let index = current_index + 1
+    if (index >= links.length) {
+      index = 0
+    }
+    Select(index)
+  })
+
+  for (const key in swipe_select.children) {
+    if (swipe_select.children.hasOwnProperty(key)) {
+      const element = swipe_select.children[key]
+      element.addEventListener('click', (e) => {
+        e.preventDefault()
+        Select(e.target.dataset.index)
+      })
+    }
+  }
+
+  swipe.addEventListener('mouseover', (e) => {
+    if (e.relatedTarget ) {
+      stop()
+    }
+  })
+
+  swipe.addEventListener('mouseout', (e) => {
+    if (e.relatedTarget) {
+      play()
+    }
+  })
+  swipe.addEventListener('mousemove', (e) => {
+    stop()
+  })
+}
+
+
+
+window.addEventListener('load', () => {
+  init()
+})
+
+</script> -->
+</body>
+</html>

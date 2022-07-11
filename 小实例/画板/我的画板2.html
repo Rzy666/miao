@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>画出你的大作</title>
+  <style>
+      .svg-weapper{
+      margin: auto;
+      background-color: #fff;
+      box-sizing: border-box;
+      border: 1px solid #666;
+      width: 1226px;
+      height: 666px;
+      }
+      .selected-colors.selected {
+        border: 2px solid;
+      }
+      .selected-colors.selected {
+      outline: 2px solid #808080;
+      }
+  </style>
+</head>
+<body>
+  <div class="colors">
+    <button class="color" style="background-color: aquamarine;"></button>
+    <button class="color" style="background-color: rgb(155, 22, 88);"></button>
+      <button class="color" style="background-color: transparent;"></button>
+    <button class="color" style="background-color: rgb(229, 255, 0);"></button>
+    <button class="color" style="background-color: violet;"></button>
+    <input type="color" id="colorSelect" value="#ff0000" style="width: 80px;">
+    <span class="selected-colors selected" id="color1" style="background-color: black;"> 颜色1 </span>
+    <span class="selected-colors" id="color2" style="background-color: white;"> 颜色2</span>
+
+  </div>
+<div class="header">
+
+  <input type="range"  id="strokeWidthSelect" value="3" min="1" max="20" step="1">
+  <button onclick=" tool == 'line'">线</button>
+  <button onclick="tool = 'rect'">□</button>
+  <button onclick="tool = 'circle'">⚪</button>
+</div>
+<div class="svg-weapper">
+  <svg width = "1226px" height = "666px"> </svg>
+</div>
+<script>
+  var config = {
+    color1 : 'black',
+    color2 : 'transparent',
+    tool:'line',
+    setColor : 'color1'
+  }
+
+
+  var svg = document.querySelector('svg')
+  var colorSelect = document.querySelector('#colorSelect')
+  var strokeWidthSelect = document.querySelector('#strokeWidthSelect')
+  var lastX,lastY,node
+  var startPos
+  var  tool = 'line'
+  var color1Show = document.querySelector('#color1')
+  var color2Show = document.querySelector('#color2')
+  var colorDiv =document.querySelector('.colors')
+
+  colorSelect.addEventListener('change', function(e) {
+      var colorButtons = document.querySelectorAll('.colors button.color')
+      for (var btn of colorButtons) {
+        btn.classList.remove('selected')
+      }
+      setColor(config.setColor, e.target.value)
+    })
+  color1Show.addEventListener('click' , function(){
+    config.setColor = 'color1'
+    color1Show.classList.add('selected')
+    color2Show.classList.remove('selected')
+  })
+  color2Show.addEventListener('click' , function(){
+    config.setColor = 'color2'
+    color2Show.classList.add('selected')
+    color1Show.classList.remove('selected')
+  })
+  // function setColor1 (color){
+  //   color1 = e.target.style.backgroundColor
+  //   color1Show.style.backgroundColor = color1
+  // }
+  // function setColor2 (color){
+  //   color2 = e.target.style.backgroundColor
+  //   color2Show.style.backgroundColor = color2
+  // }
+  colorDiv.addEventListener('click' , function(e){
+    if(e.target.matches('button.color')){
+      var colorButtons = document.querySelectorAll('.colors button.color')
+      for(var btn of colorButtons){
+        btn.classList.remove('selected')
+      }
+      e.target.classList.add('selected')
+      setColor(config.setColor , e.target.style.backgroundColor)
+    }
+  })
+   function setColor(colorName, value) {
+      config[colorName] = value
+      document.querySelector('#' + colorName).style.backgroundColor = value
+    }
+
+  function svgElt(tagName ,attrs= {} ,...children){
+    var node = document.createElementNS('http://www.w3.org/2000/svg',tagName)
+    for(var key in attrs ){
+      var val = attrs[key]
+      node.setAttribute(key ,val)
+    }
+    for(var child in children){
+      if(typeof child == 'string'){
+        child = document.createTextNode(child)
+      }
+      node.appendchild(child)
+    }
+    return node
+  }
+  function buttonPressed(event){
+    if(event.buttons == null){
+      return event.which !== 0
+    } else {
+      return event.buttons !== 0
+    }
+  }
+  function mouse(node){//移动的距离
+      var nodePos = node.getBoundingClientRect()
+      return {
+        x: window.event.clientX - nodePos.x,
+        y : window.event.clientY - nodePos.y
+      }
+    }
+  svg.addEventListener('mousedown' , function(e){
+    if(e.which == 1 ){
+      var pos = mouse(svg)
+      startPos = pos
+
+    if(tool == 'line'){
+        node = svgElt('path' ,{
+          d :`M${pos.x} ${pos.y} L ${pos.x} ${pos.y}`,
+          stroke: config.color1,
+          fill: config.color2,
+          'stroke-width':strokeWidthSelect.value,
+          'stroke-linecap': 'round'
+        })
+        svg.appendChild(node)
+      }
+    if(tool == 'rect'){
+      node = svgElt('rect' ,{
+        x: pos.x,
+        y:pos.y,
+        width: 0,
+        height: 0,
+        stroke: config.color1,
+        fill: config.color2,
+        'stroke-width':strokeWidthSelect.value,
+        'stroke-linecap': 'round'
+      })
+      svg.appendChild(node)
+    }
+      if(tool == 'circle'){
+        node = svgElt('ellipse' ,{
+          cx: pos.x,
+          cy:pos.y,
+          rx:0,
+          ry: 0,
+          stroke: config.color1,
+          fill: config.color2,
+           'stroke-width':strokeWidthSelect.value,
+           'stroke-linecap': 'round'
+        })
+        svg.appendChild(node)
+      }
+    window.addEventListener('mousemove' , onMove)
+  }
+  })
+  function onMove(e){
+    if(!buttonPressed(e)){
+      window.removeEventListener('mousemove' , onMove)
+      return
+    }
+    var pos = mouse(svg)
+    if(tool == 'line'){
+      var d = node.getAttribute('d')
+      d += `L${pos.x} ${pos.y}`
+      node.setAttribute('d' , d)
+    }
+    if(tool == 'rect'){
+      var width = pos.x - startPos.x
+      var height = pos.y -startPos.y
+      node.setAttribute('width' ,width)
+      node.setAttribute('height' ,height)
+    }
+    if(tool == 'circle'){
+        var cx = (pos.x+ startPos.x)/2
+        var cy = (pos.y +startPos.y)/2
+        var rx = pos.x-startPos.x
+        var ry = pos.y -startPos.y
+        node.setAttribute('cx', cx)
+        node.setAttribute('cy', cy)
+        node.setAttribute('rx', rx)
+        node.setAttribute('ry', ry)
+    }
+  }
+  </script>
+</body>
+</html>

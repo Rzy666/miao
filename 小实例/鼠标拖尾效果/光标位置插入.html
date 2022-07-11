@@ -1,0 +1,24 @@
+<textarea name="" id="" cols="30" rows="10"></textarea>
+
+<script>
+  var textarea = document.querySelector('textarea')
+
+  textarea.addEventListener('keydown', function(e) {
+    console.log(e)
+
+    if (e.key == 'F5') {
+
+      var now = new Date().toString()
+
+      var before = this.value.slice(0, this.selectionStart)//光标位置插入
+      var after = this.value.slice(this.selectionEnd)
+
+      this.value = before + now + after
+
+      this.selectionEnd = this.selectionStart = before.length + now.length
+
+
+      e.preventDefault()
+    }
+  })
+</script>

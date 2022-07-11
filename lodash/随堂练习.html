@@ -959,4 +959,350 @@ https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-
     number = number / base
     return number
   }
+  function deepFreeze(obj){
+    object.freeze(obj)
+    for(var key in obj){
+      if(obj[key] && typeof obj[key] === 'object'){
+        deepFreeze(obj[key])
+      }
+    }
+    return obj
+  }
+  function MultiplicatorUnitFailure (){
+    this.MultiplicatorUnitFailure = MultiplicatorUnitFailure
+  }
+  function primitivrMultiply(a,b){
+    if(Math.random()< 0.5){
+      return a * b
+    } else {
+      throw new MultiplicatorUnitFailure()
+    }
+  }
+  function Multiply(a,b){
+    try{
+      return primitivrMultiply(a ,b)
+    } catch(e) {
+      if( e instanceof MultiplicatorUnitFailure){
+        return Multiply(a , b)
+      } else {
+        throw e
+      }
+    }
+  }
+
+  var box = {
+    locked: true,
+    unlock : function(){this.locked = false},
+    lock: function() {this.locked = true},
+    _content : [],
+    get content(){
+      if(this.locked) throw new Error("locked!");
+      return this._content;
+    }
+  }
+  function withBoxUnlocked(f){
+    try{
+      box.lock
+      f
+    } finally{
+      box.unlock
+    }
+  }
+  https://www.codewars.com/kata/regex-validate-pin-code
+
+  https://www.codewars.com/kata/credit-card-mask/train/javascript
+
+  https://www.codewars.com/kata/decipher-this/javascript
+
+  https://www.codewars.com/kata/exclamation-marks-series-number-5-remove-all-exclamation-marks-from-the-end-of-words/train/javascript
+
+  https://www.codewars.com/kata/cancer-cells
+
+  https://www.codewars.com/kata/counting-duplicates/train/javascript
+
+  https://www.codewars.com/kata/trim-method
+
+  https://www.codewars.com/kata/basic-markdown-to-html
+
+  https://www.codewars.com/kata/kebabize/train/javascript
+
+  https://www.codewars.com/kata/convert-string-to-camel-case
+
+  https://www.codewars.com/kata/a-string-with-bugs
+
+  https://www.codewars.com/kata/valid-phone-number
+
+  https://www.codewars.com/kata/extract-file-name
+
+  https://www.codewars.com/kata/string-incrementer
+
+  https://www.codewars.com/kata/extract-the-domain-name-from-a-url-1
+
+  https://www.codewars.com/kata/mod4-regex
+
+  https://www.codewars.com/kata/regex-tic-tac-toe-win-checker
+
+  https://www.codewars.com/kata/validdate-regex/train/javascript
+
+  https://www.codewars.com/kata/calculating-with-functions/train/javascript
+
+
+  function decipherThis(str) {
+  //have fun!
+  return str.replace(/\b(\d+)(\w?)(\w*?)(\w?)\b/g, function(_, num, a, b, c) {
+  return String.fromCharCode(+num) + c + b + a
+  })
+  };
+
+  RegExp.prototype.test2 = function (str) {
+  // 'this' is the regexp object
+  return !!this.exec(str)
+}
+
+
+'asofojwoeifodfw'.search(/fo./g)
+
+String.prototype.search2 = function (re) {
+  if (typeof re == 'string') {
+    return this.indexOf(re)
+  }
+  var oldLastIndex = re.lastIndex
+  re.lastIndex = 0
+  var match = re.exec(this)
+  re.lastIndex = oldLastIndex
+  if (match == null) {
+    return -1
+  } else {
+    return match.index
+  }
+}
+
+
+'asofiwefoijlsfoweflsfwef'.match(/f(.)/)
+
+String.prototype.match2 = function (re) {
+  var str = this
+  if (typeof re == 'string') {
+    re = new RegExp(re)
+  }
+  if (!re.global) {
+    return re.exec(str)
+  }
+
+  var result = []
+  var oldLastIndex = re.lastIndex
+  re.lastIndex = 0
+  var match
+  while (match = re.exec(str)) {
+    result.push(match[0])
+  }
+  re.lastIndex = oldLastIndex
+  return result
+}
+
+
+
+
+
+String.prototype.matchAll2 = function (re) {
+  if (!re.global) {
+    throw new TypeError('String.prototype.matchAll called with a non-global RegExp argument')
+  }
+  return this.match2(re)
+}
+
+
+String.prototype.split2 = function (spliter) {
+  if (typeof spliter == 'string') {
+    var result = []
+    if (spliter == '') {
+      for (var i = 0; i < this.length; i++) {
+        result.push(this[i])
+      }
+      return result
+    }
+    var startIdx = 0
+    while (true) {
+      var idx = this.indexOf(spliter, startIdx)
+      if (idx >= 0) {
+        result.push(this.slice(startIdx, idx))
+        startIdx = idx + spliter.length
+      } else {
+        result.push(this.slice(startIdx))
+        break
+      }
+    }
+    return result
+  } else {
+    var result = []
+    var re = new RegExp(spliter.source, spliter.global ? spliter.flags : spliter.flags + 'g')
+    var startIdx = 0
+    var match
+    while (match = re.exec(this)) {
+      result.push(this.slice(startIdx, match.index))
+      result.push(...match.slice(1))
+      startIdx = re.lastIndex
+    }
+    result.push(this.slice(startIdx))
+    return result
+  }
+}
+
+
+
+String.prototype.replace2 = function (replacer, replacement) {
+  if (typeof replacer == 'string') {
+    var idx = this.indexOf(replacer)
+    if (idx >= 0) {
+      var p1 = this.slice(0, idx)
+      var p3 = this.slice(idx + replacer.length)
+      var p2
+      if (typeof replacement == 'function') {
+        p2 = replacement(replacer, idx, this)
+      } else {
+        p2 = replacement.split2('$&').join(replacer)
+      }
+
+      return p1 + p2 + p3
+    }
+    return this
+  } else {
+    var result = ''
+    var match
+    var startIdx = 0
+    while (match = replacer.exec(this)) {
+      result += this.slice(startIdx, match.index)
+      if (typeof replacement == 'string') {
+        replacement = replacement.split2('$1').join(match[1])
+        replacement = replacement.split2('$2').join(match[2])
+        replacement = replacement.split2('$3').join(match[3])
+        replacement = replacement.split2('$4').join(match[4])
+        replacement = replacement.split2('$5').join(match[5])
+        replacement = replacement.split2('$6').join(match[6])
+        replacement = replacement.split2('$7').join(match[7])
+        replacement = replacement.split2('$8').join(match[8])
+        replacement = replacement.split2('$9').join(match[9])
+        replacement = replacement.split2('$&').join(match[0])
+        result += replacement
+      } else {
+        result += replacement(...match, match.index, this.toString())
+      }
+      startIdx = replacer.lastIndex
+      if (!replacer.global) {
+        break
+      }
+    }
+    result += this.slice(startIdx)
+    return result
+  }
+}
+
+String.prototype.replaceAll2 = function() {}
+
+
+function getTextContent(node){
+  if(node.nodeType == document.TEXT_NODE){
+    return node.nodeValue
+  } else if(node.nodeType == document.ELEMENT_NODE) {
+    var result = ''
+    for(var i = 0; i <node.ELEMENT_NODE.length; i++){
+      result += getTextContent(node.ELEMENT_NODE[i])
+    }
+    return result
+  }
+  function getElemenrsVyTagName(parent , tagName){ //获取parent元素里面的标签名称为tagName的所有标签并返回数组
+    var result = []
+    var target = this.tagName
+    for(var i = 0; i <parent.children.length;i++){
+      if(parent.children[i].tagNAme == tagNAme){
+        result.push(parent.children[i])
+      }
+       result.push(...getElemenrsVyTagName(parent.children[i], tagName))
+    }
+  }
+ function getElemengtById(){
+   var result = null
+   traverse (getElemengtById , el => {
+    if(el.id === id){
+      result = el
+    }
+   })
+   return  result
+ }
+  function traverse(node , action){
+    if(action(node) === false){
+      return false
+    }
+    for(var child of node.children){
+      if(traverse(child , action) === false){
+        return false
+      }
+    }
+  }
+function getElemengtById(id , node){
+  if(node.id == id) {
+    return node
+  }
+  for( var child of node.children){
+    var result = getElemengtById(id ,child)
+    if(result ){
+      return result
+    }
+  }
+  return null
+}
+Array.prototype.slice2 = function(start ,end){
+  var result = []
+  for(var  i = start ; i <end ;i++){
+    result.push(this[i])
+  }
+  return  result
+ }
+function elt(tagName ,attrs = {} ,...children){
+var el = document.createElement(tagName)
+if(attrs && typeof attrs == 'object'){
+  for(var key in attrs){
+    el.setAttribute(key , attrs[key])
+  }
+}
+for(var child of children){
+  if(typeof child == 'string'){
+    el.appendChild(document.createTextNode(child))
+  }else {
+    el.appendChild(child)
+  }
+}
+return el
+}
+
+function getTextContent(node){
+  if(node.nodeType == document.TEXT_NODE){
+   return  node.nodeValue
+  } else if(node.nodeType == document.ELEMENT_NODE){
+    var result = ''
+    for(var i = 0 ; i < document.ELEMENT_NODE.length; i++){
+      result += getTextContent(document.ELEMENT_NODE[i])
+    }
+  }
+  return result
+}
+function getElemenrsVyTagName(parent , tagName){
+  var result = []
+  for(var i = 0 ; i< parent.children.length ; i++){
+    if(parent.children[i].tagNAme == tagName){
+      result.push(parent.children[i])
+    }
+    result.push(...getElemenrsVyTagName(parent.children[i]))
+  }
+  return result
+}
+function getElementById(id) {
+  var result = null
+  traverse(document.documentElement , el => {
+    if(el.id == id)
+    result = id
+    return result
+  })
+}
+
 </script>

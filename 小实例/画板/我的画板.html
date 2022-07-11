@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      background-color: beige;
+
+    }
+    .header{
+      width: 1226px;
+      height: 50px;
+      margin: auto;
+      /* border: 1px solid red; */
+      background-color: #DBE7F7;
+      box-sizing: border-box;
+       border: 1px solid #666;
+       margin-bottom:-1px;
+       display: flex;
+    }
+    .svg-weapper{
+      margin: auto;
+      background-color: #fff;
+      box-sizing: border-box;
+       border: 1px solid #666;
+      width: 1226px;
+      height: 666px;
+    }
+    .selected-colors.selected {
+    border: 2px solid;
+    }
+    .selected-colors.selected {
+    outline: 2px solid #808080;
+    }
+    .colors{
+      display: flex;
+      width: 300px;
+      height: 36px;
+      flex-wrap: wrap;
+      margin: 7px 25px;
+    }
+    .color{
+      width: 25px;
+      height: 18px;
+    }
+    .head button{
+      margin: 1px 15px;
+      background-color: #D4D9E9;
+    }
+    .head span {
+      font-size: 12px;
+      margin: 5px;
+      vertical-align: middle;
+    }
+    .head input{
+      margin-top: 10px;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div class=" header">
+  <div class="colors">
+    <button class="color" style="background-color: aqua;"></button>
+    <button class="color" style="background-color: rgb(190, 62, 39);"></button>
+    <button class="color" style="background-color: rgb(243, 240, 61);"></button>
+    <button class="color" style="background-color: rgb(80, 207, 68);"></button>
+    <button class="color" style="background-color: rgb(56, 59, 204);"></button>
+    <button class="color" style="background-color: transparent;"></button>
+     <button class="color" style="background-color: aqua;"></button>
+     <button class="color" style="background-color: rgb(190, 62, 39);"></button>
+     <button class="color" style="background-color: rgb(243, 240, 61);"></button>
+     <button class="color" style="background-color: rgb(80, 207, 68);"></button>
+     <button class="color" style="background-color: rgb(56, 59, 204);"></button>
+     <button class="color" style="background-color: transparent;"></button>
+      <button class="color" style="background-color: aqua;"></button>
+      <button class="color" style="background-color: rgb(190, 62, 39);"></button>
+      <button class="color" style="background-color: rgb(243, 240, 61);"></button>
+      <button class="color" style="background-color: rgb(80, 207, 68);"></button>
+      <button class="color" style="background-color: rgb(56, 59, 204);"></button>
+      <button class="color" style="background-color: transparent;"></button>
+      <button class="color" style="background-color: aqua;"></button>
+      <button class="color" style="background-color: rgb(190, 62, 39);"></button>
+      <button class="color" style="background-color: rgb(243, 240, 61);"></button>
+      <button class="color" style="background-color: rgb(80, 207, 68);"></button>
+      <button class="color" style="background-color: rgb(56, 59, 204);"></button>
+      <button class="color" style="background-color: transparent;"></button>
+    </div>
+    <div class=" head">
+    <span>调色板</span><input type="color" id="colorSelect" value="#ff0000" style="width: 80px">
+     <span class="selected-colors selected" id="color1" style="background-color: black;"> 颜色1 </span>
+     <span class="selected-colors" id="color2" style="background-color: white;"> 颜色2</span>
+    <span>粗细</span><input type="range" id="strokeWidthSelect" value="3" min="1" max="20" step="1">
+    <button  onclick="tool='line'">线</button>
+    <button  onclick="tool='rect'">框</button>
+    <button  onclick="tool='circle'">〇</button>
+    <button onclick="tool='line1'"> 橡皮擦 </button>
+    <button class="save">保存</button>
+    <button class="clear">清空</button>
+      </div>
+  </div>
+  <div class="svg-weapper">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width='1226px' height='666px'></svg>
+  </div>
+  <script>
+
+    var svg =document.querySelector('svg')
+    var colorSelect = document.querySelector('#colorSelect')
+    var strokeWidthSelect = document.querySelector('#strokeWidthSelect')
+    var lastX,lastY,node
+    var tool = 'line'
+    var saver = document.querySelector('.save')
+    var Clear = document.querySelector('.clear')
+    var startPos
+
+    var config ={
+      color1 : 'black',
+      color2 : 'transparent',
+     tool : 'line',
+     setColor : 'color1'
+    }
+    var color1Show= document.querySelector('#color1')
+    var color2Show = document.querySelector('#color2')
+    var colorDiv = document.querySelector('.colors')
+    colorSelect.addEventListener('change' , function(e){
+      var colorButtons = document.querySelectorAll('.colors button.color')
+      for(var btn of colorButtons){
+        btn.classList.remove('selected')
+      }
+      setColor(config.setColor , e.target.value)
+    })
+    color1Show.addEventListener('click' , function(){
+    config.setColor = 'color1'
+    color1Show.classList.add('selected')
+    color2Show.classList.remove('selected')
+  })
+  color2Show.addEventListener('click' , function(){
+    config.setColor = 'color2'
+    color2Show.classList.add('selected')
+    color1Show.classList.remove('selected')
+  })
+    function setColor( colorName , value){
+      config[colorName] = value
+      document.querySelector('#' + colorName).style.backgroundColor =value
+    }
+    colorDiv.addEventListener('click' ,function(e){
+      if(e.target.matches('button.color')){
+        var colorButtons = document.querySelectorAll('.colors nutton.color')
+        for(var btn of colorButtons){
+          btn.classList.remove('selected')
+        }
+        e.target.classList.add('selected')
+        setColor(config.setColor ,e.target.style.backgroundColor )
+      }
+    })
+    function svgElt(tagName ,attrs={} , ...children){
+      var node = document.createElementNS('http://www.w3.org/2000/svg', tagName)
+      for(var key in  attrs){
+        var val = attrs[key]
+        node.setAttribute(key , val)
+      }
+      for(var child in children){
+        if(typeof child == 'string'){
+          child = document.createTextNode(child)
+        }
+        node.appendChild(child)
+      }
+      return node
+    }
+    function buttonPressed(event){
+      if(event.buttons == null ){
+        return event.which !== 0
+      } else {
+        return event.buttons !== 0
+      }
+    }
+    function mouse(node){//移动的距离
+      var nodePos = node.getBoundingClientRect()
+      return {
+        x: window.event.clientX - nodePos.x,
+        y : window.event.clientY - nodePos.y
+      }
+    }
+    svg.addEventListener('mousedown' ,function(e){
+      if(e.which == 1){
+        var pos = mouse(svg)//得到原始的位置
+        startPos = pos
+
+      if(tool == 'line'){
+        node = svgElt('path' ,{
+          d :`M${pos.x} ${pos.y} L ${pos.x} ${pos.y}`,
+          stroke: config.color1,
+          fill: config.color2,
+          'stroke-width':strokeWidthSelect.value,
+          'stroke-linecap': 'round'
+        })
+        svg.appendChild(node)
+      }
+      if(tool == 'line1'){
+        node = svgElt('path' ,{
+          d :`M${pos.x} ${pos.y} L ${pos.x} ${pos.y}`,
+          stroke:'#fff',
+          fill: 'none',
+          'stroke-width':15,
+          'stroke-linecap': 'round'
+        })
+        svg.appendChild(node)
+      }
+      if(tool == 'rect'){
+        node = svgElt('rect' ,{
+          x:pos.x,
+          y:pos.y,
+          height : 0,
+          width: 0,
+           stroke: config.color1,
+           fill: config.color2,
+           'stroke-width':strokeWidthSelect.value,
+           'stroke-linecap': 'round'
+        })
+        svg.appendChild(node)
+      }
+      if(tool == 'circle'){
+        node = svgElt('ellipse' ,{
+          cx: pos.x,
+          cy:pos.y,
+          rx:0,
+          ry: 0,
+           stroke: config.color1,
+           fill: config.color2,
+           'stroke-width':strokeWidthSelect.value,
+           'stroke-linecap': 'round'
+        })
+        svg.appendChild(node)
+      }
+      window.addEventListener('mousemove' , onMove)
+      }
+    })
+    function onMove(e){
+      if(!buttonPressed(e)){
+        window.removeEventListener('mousemove',onMove)
+        return
+      }
+      var pos = mouse(svg)
+      drawedAndNoSave = true
+      if(tool == 'line'){
+        var d = node.getAttribute('d')
+        d += `L${pos.x} ${pos.y}`
+        node.setAttribute('d' ,d)
+      }
+      if(tool == 'line1'){
+        var d = node.getAttribute('d')
+        d += `L${pos.x} ${pos.y}`
+        node.setAttribute('d' ,d)
+      }
+      if(tool == 'rect'){
+        var width = pos.x - startPos.x
+        var height = pos.y - startPos.y
+        node.setAttribute('height' ,height)
+        node.setAttribute('width',width)
+      }
+      if(tool == 'circle'){
+        var cx = (pos.x+ startPos.x)/2
+        var cy = (pos.y +startPos.y)/2
+        var rx = pos.x-startPos.x
+        var ry = pos.y -startPos.y
+        node.setAttribute('cx', cx)
+        node.setAttribute('cy', cy)
+        node.setAttribute('rx', rx)
+        node.setAttribute('ry', ry)
+      }
+    }
+    window.addEventListener('keydown' ,function(e){
+      if(e.ctrlKey && e.key == 'z'){
+        svg.removeChild(svg.lastChild)
+      }
+    })
+    saver.addEventListener('click' ,function(e){ //保存流程
+      var svgSource = svg.outerHTML
+      var blob = new Blob(['<?xml version="1.0" encoding="utf-8"?>', svgSource], {
+      type: 'image/xml+svg'
+      })
+      var url =  URL.createObjectURL(blob)
+      var anchor = document.createElement('a')
+      anchor.href = url
+      anchor.download = '-.svg'
+      anchor.click()
+      drawedAndNoSave = false
+    })
+    var drawedAndNoSave = false
+    window.addEventListener('beforeunload' ,function(e){
+      if(drawedAndNoSave){
+        e.returnValue = '还未保存，是否要退出？'
+      }
+    })
+    Clear.addEventListener('click' , function(e){
+      while(svg.lastElementChild){
+        svg.removeChild(svg.lastElementChild)
+      }
+    })
+  </script>
+</body>
+</html>

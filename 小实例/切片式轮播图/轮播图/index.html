@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width= , initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+<div class="container">
+  <div class="big-box"></div>
+  <div class="small-box">
+    <div class="img"> <img src="../切片式轮播图/1.jpg" alt=""></div>
+    <div class="img"> <img src="../切片式轮播图/2.jpg" alt=""></div>
+    <div class="img"> <img src="../切片式轮播图/3.jpg" alt=""></div>
+    <div class="img"> <img src="../切片式轮播图/4.jpg" alt=""></div>
+    <div class="img"> <img src="../切片式轮播图/5.jpg" alt=""></div>
+  </div>
+</div>
+<script>
+  var big_box = document.querySelector(".big-box")
+  var imgs = document.querySelectorAll(".img")
+  var timer = null
+  var index = 0
+  // 每一个图片重置
+  function reset() {
+    for(let i =0 ; i <imgs.length;i++){
+      imgs[i].className = "img"
+    }
+  }
+  function selected(){
+    reset()
+    imgs[index].className = "img active"
+  }
+
+  function play(){
+    timer  = setInterval(() => {
+      selected()
+      index++
+      big_box.style.backgroundImage = "url(../切片式轮播图/" + index + ".jpg)"
+
+      if(index == 5) {
+        index = 0
+      }
+    }, 1500);
+  }
+  for(let i =0 ; i <imgs.length;i++){
+    imgs[i].addEventListener('mousemove' , () =>{
+    big_box.style.backgroundImage = "url(../切片式轮播图/" + ( i +1 ) + ".jpg)"
+    reset()
+    clearInterval(timer)
+    index = i++
+    if(index == 5){
+      index = 0
+    }
+    play()
+    })
+  }
+  play()
+</script>
+</body>
+</html>

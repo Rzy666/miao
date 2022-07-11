@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="addNote()"> New</button>
+  <button onclick="deleteNote()"> Delete</button>
+  <select  id="list"></select>
+  <textarea  id="currentnote" style="width: 10em; height: 10em;resize: none;"></textarea>
+  <script>
+    var list =document.querySelector('#list')
+    var current = document.querySelector('#currentnote')
+    function addToList(name){
+      var option = document.createElement('option')
+      option.textContent = name
+      list.appendChild(option)
+    }
+    var notes = JSON.parse(localStorage.getItem('notes')) || {"shopping list" : ""}
+    window.addEventListener('storage',function(e){
+      if(e.key == 'notes'){
+        notes = JSON.parse(localStorage.getItem("notes"))
+        current.value = notes[list.value]
+      }
+    })
+    for(var name in notes){
+      if(notes.hasOwnProperty(name)){
+        addToList(name)
+      }
+    }
+    list.value = localStorage.lastSelectedNote ?? 'shopping list'
+    function saveToStorage(){
+      localStorage.lastSelectedNote = list.value
+      localStorage.setItem('notes' ,JSON.stringify(notes))
+    }
+    current.value = notes[list.value]
+    list.addEventListener('change' ,function(e){
+      current.value = notes[list.value]
+      localStorage.lastSelectedNote = list.value
+    })
+    current.addEventListener('input' , function(e){
+      notes[list.value] =  current.value
+      saveToStorage()
+    })
+    function addNote(){
+      var name = prompt("Note Name" , "")
+      if(!name ) return
+      if(!notes.hasOwnProperty(name)){
+        notes[name] = ""
+        addToList(name)
+        saveToStorage()
+      }
+      list.value = name
+      current.value = notes[name]
+      localStorage.lastSelectedNote = list.value
+    }
+    function deleteNote(){
+      if(confirm("确认删除？")){
+        delete notes[list.value]
+        var selectedOption = Array.from(list.options).find(it => it.selected)
+        list.removeChild(selectedOption)
+        if(list.options.length > 0){
+          list.value = list.options[0].value
+          current.value = notes[list.value]
+          localStorage.lastSelectedNote = list.value
+        } else {
+          current.value = ''
+        }
+        saveToStorage()
+      }
+    }
+  </script>
+</body>
+</html>

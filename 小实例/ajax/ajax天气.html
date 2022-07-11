@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>天气</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    input{
+      width: 150px;
+      height: 30px;
+      line-height: 30px;
+      font-size: 20px;
+      border-radius: 5px;
+    }
+    button{
+      height: 30px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>百度一下</h1>
+  <input type="text" placeholder="百度一下你就知道">
+  <button>你点我呀</button>
+  <p></p>
+</body>
+<script>
+
+  var input = document.querySelector('input')
+  var button = document.querySelector('button')
+  var val = input.value
+  var p = document.querySelector('p')
+  button.addEventListener('click' , function(){
+    var xhr =new XMLHttpRequest()
+    xhr.open('get',`https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=36072,35970,35105,31254,36005,35914,34584,35872,35948,35802,35984,26350,36025,22157,36061&wd=${val}&req=2&csor=3&pwd=fo&_=1646965636518`)
+    xhr.send()
+
+    p.innerHTML = xhr.responseText //响应对象
+  })
+</script>
+</html>
+

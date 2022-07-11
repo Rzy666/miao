@@ -1,0 +1,112 @@
+<script>
+  var ParseJSON = (function(){
+    var str ='{"xxxx":[1,1,1,{"a":1,"b":[2,2,2]},1],"y":2,"a":null,"b":false,"c":[1,2,null,{"a":1,"b":2},true,[4,5,6]],"d":{"z":{"y":1,"x":33}}}'
+    var i = 0
+    return function ParseJSON(input){
+      i = 0
+      str = input
+      return parseValue()
+    }
+function parseValue(){
+  if(str[i] == '"'){
+    return parseString()
+  }
+  if(str[i] == '['){
+    return parseArray()
+  }
+  if(str[i] == '{'){
+    return parseObject()
+  }
+  if(str[i] >= '0' && str[i] <= '9'){
+    return parseNumber()
+  }
+  if(str[i] == 't'){
+    return parseTrue()
+  }
+  if(str[i] == 'f'){
+    return parseFasle()
+  }
+  if(str[i] == 'n'){
+    return parseNull()
+  }
+}
+
+function parseString(){
+  i++
+  var start = i
+  while(str[i]!= '"'){//从"开始到"结束是对象名称
+    i++
+  }
+  var s = str.slice(start , i)
+  i++
+  return s
+}
+function parseNumber(){
+  var numStr = ''
+  while(str[i] >= '0' && str[i] <= '9'){
+    numStr += str[i++]
+  }
+  return parseInt( numStr ,10 )
+}
+function parseTrue (){
+  i+= 4
+  return true
+}
+function parseFasle(){
+  i += 5
+  return false
+}
+function parseNull(){
+  i += 4
+  return null
+}
+function parseArray(){
+  var ary = []
+  i++
+  if(str[i] == ']'){
+    i++
+    return ary
+  }
+  while(true){
+    var value = parseValue()
+    ary.push(value)
+    if(str[i] == ','){
+      i++
+      continue
+    }
+    if(str[i] == ']'){
+      i++
+      return ary
+    }
+  }
+}
+function parseObject(){
+  var obj = {}
+  i++
+  if(str[i] == '}'){
+    i++
+    return obj
+  }
+  while(str[i] !== '}'){
+    var key = parseString()
+    if(str[i]!== ':'){
+      throw new SyntaxError ('Unexpected Token ' + str[i] + ' at pos ' + i)
+    }else {
+      i++
+    }
+    var val = parseValue()
+    obj[key] = val
+    if(str[i] == ','){
+      i++
+      continue
+    }
+    if( str[i] == '}'){
+      i++
+      return obj
+    }
+  }
+}
+})
+
+
+</script>

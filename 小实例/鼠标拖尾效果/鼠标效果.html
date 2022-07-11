@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./springyEmojiCursor.js">
+
+  </script>
+  <style>
+    body {
+      width: 100%;
+      height: 100vh;
+    }
+
+    span {
+      width: 15px;
+      height: 15px;
+      background-color: red;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <span></span>
+  <script>
+  var span = document.querySelector('span')
+  var startX, startY
+  var lastTime = 0
+  var angle = 0
+  window.addEventListener('mousemove', function (e) {
+    startX = e.clientX
+    startY = e.clientY
+    requestAnimationFrame(function animate(time) {
+      if (lastTime !== null) {
+        angle += (time - lastTime) * 0.01
+      }
+      lastTime = time
+      var x = Math.cos(angle) * 100
+      var y = Math.sin(angle) * 100
+      span.style.top = y + startY + 'px'
+      span.style.left = x + startX + 'px'
+      requestAnimationFrame(animate)
+    })
+  })
+  new springyEmojiCursor({ element: document.querySelector("body") })
+</script>
+</body>
+</html>
+
+
+
+
+
+

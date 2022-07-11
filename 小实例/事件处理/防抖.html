@@ -1,0 +1,34 @@
+<script>
+  function debounce(func , time){
+    var timeout
+    return function(){
+      clearTimeout(timeout)
+      timeout = setTimeout(func , time)
+    }
+  }
+  function throttle(func , time){
+    var timeout
+    var scheduled = false
+    var event
+     return function(){
+      clearTimeout(timeout)
+      if(!scheduled){
+        scheduled = true
+        timeout = setTimeout(() => {
+          func(event)
+          scheduled = false
+        } ,time)
+      }
+    }
+  }
+  function throttle2(fucn ,time){
+    var lastTime = 0
+    return function(e){
+      var now = Date.now()
+      if(now -lastTime > time){
+        func(e)
+        lastTime = now
+      }
+    }
+  }
+</script>

@@ -1,0 +1,112 @@
+<!-- <canvas id="canvas" style="border: 1px solid red; margin:50px auto;display: block;"></canvas> -->
+<!-- <script>
+  window.onload = function(){
+    var canvas = document.getElementById('canvas')
+    var context = canvas.getContext('2d')
+    canvas.width = 800
+    canvas.height = 800
+
+
+    // context.beginPath() //折线
+    // context.moveTo(100,200)
+    // context.lineTo(300,400)
+    // context.lineTo(100,600)
+    // context.strokeStyle = 'red'
+    // context.stroke()
+
+
+    // context.beginPath()
+    // context.lineTo(300,200)
+    // context.lineTo(500,400)
+    // context.lineTo(300,600)
+    // context.strokeStyle = 'blue'
+    // context.stroke()
+
+    context.beginPath()
+    context.moveTo(100,350)
+    context.lineTo(500,350)
+    context.lineTo(500,200)
+    context.lineTo(700,400)
+    context.lineTo(500,600)
+    context.lineTo(500,450)
+    context.lineTo(100,450)
+    // context.lineTo(100,350)
+    context.closePath()
+
+    context.fillStyle = 'yellow'//先填充颜色
+    context.lineWidth = 10
+    context.strokeStyle = 'red'//再描边
+
+    context.fill()
+    context.stroke()
+
+    context.fillRect(100,100,200,200)//直接用fillstyle填充一个矩形
+    context.strokeRect(200,200,100,100)//用strokeStyle直接画一个矩形出来
+  }
+
+</script> -->
+<canvas id="canvas" style="border: 1px solid red; margin:50px auto;display: block;"></canvas>
+<script>
+  window.onload = function(){
+  var canvas = document.getElementById('canvas')
+    canvas.width = 800
+    canvas.height = 800
+  var context = canvas.getContext('2d')
+
+
+    // var skyStyle = context.createLinearGradient(0,0,0,canvas.height) //创建线性渐变
+    // skyStyle.addColorStop(0.0 , 'black') //从开始的位置
+    // skyStyle.addColorStop(1.0,'#035') //结束的位置
+
+
+    var skyStyle = context.createRadialGradient(
+      canvas.width/2,canvas.height,0,canvas.width/2,canvas.height,canvas.height
+      ) //创建径向渐变
+    skyStyle.addColorStop(0.0 , '#035') //从开始的位置
+    skyStyle.addColorStop(1.0,'black') //结束的位置
+
+    context.fillStyle = skyStyle
+    context.fillRect(0,0,canvas.width, canvas.height)
+    for(var i = 0;i < 200;i++){
+      var r = Math.random()*3 + 5
+      var x = Math.random()*canvas.width
+      var y = Math.random()*canvas.height*0.65
+      var rot = Math.random()*360
+      drawStart(context,x,y,r,rot)
+    }
+
+
+  }
+
+  function drawStart(cxt,x,y,r,rot){
+
+    cxt.save()
+    cxt.translate(x,y)
+    cxt.rotate(rot/180 *Math.PI)
+    cxt.scale(r,r)
+
+
+    startPath(cxt)
+
+
+    cxt.fillStyle ='#fd3'
+    // cxt.strokeStyle = '#fd5'
+    // cxt.lineWidth = 3
+    // cxt.lineJoin = 'round'
+    cxt.fill()
+     cxt.restore()
+    // cxt.stroke()
+  }
+  function startPath(cxt){
+    cxt.beginPath()
+     for(var i= 0;i<5;i++){
+      cxt.lineTo(Math.cos((18 + i*72)/180 * Math.PI),
+        -Math.sin((18 + i*72)/180 * Math.PI)
+      );
+      cxt.lineTo(Math.cos((54 + i*72)/180 * Math.PI)* 0.5,
+        -Math.sin((54 + i*72)/180 * Math.PI)* 0.5
+      )
+    }
+
+  }
+</script>
